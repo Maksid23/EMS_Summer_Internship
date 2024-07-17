@@ -61,7 +61,7 @@ class FacultyController
             'faculty_designation' => 'required|string|max:255',
             'faculty_department' => 'required|string|max:255',
         ]);
-
+        
         // Create a new Faculty instance
         $faculty = new Faculty();
 

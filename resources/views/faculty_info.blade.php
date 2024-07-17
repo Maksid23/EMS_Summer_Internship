@@ -87,6 +87,8 @@
 
 <body>
     <div class="container">
+
+       
         <h2 class="form-title">Faculty Form</h2>
         <a class="button" href="{{ URL::to('faculty/show') }}">Show Faculty Info</a>
         @if (session('success'))
