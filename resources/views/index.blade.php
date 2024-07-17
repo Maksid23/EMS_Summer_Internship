@@ -260,6 +260,14 @@ nav.close ~ .dashboard .top{
         .footer .social-icons a i {
             font-size: 24px; /* Adjust icon size as needed */
         }
+        .logout-button {
+        background-color: #626cd6;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+
+        }
     </style>
 </head>
 <body>
@@ -329,10 +337,9 @@ nav.close ~ .dashboard .top{
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a href="{{ route('logout') }}" onclick="event.preventDefault(); 
-                        document.getElementById('logout-form').submit();">
-    Logout
-</a>
+                        <button onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="logout-button">
+                           Logout
+                        </button>
 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
     @csrf
                             </form>

@@ -79,11 +79,11 @@
 
             <div class="form-group">
                 <label for="faculty_gender">Faculty Gender</label>
-                <select class="form-control" id="faculty_gender" name="faculty_gender" " required>
+                <select class="form-control" id="faculty_gender" name="faculty_gender" value="{{$faculty->faculty_gender}}" required>
                     <option value="">Select Gender</option>
-                    <option value="male" {{$faculty->faculty_gender == "male" ? "selected" : ""  }}>Male</option>
-                    <option value="female"  {{$faculty->faculty_gender == "female" ? "selected" : ""  }} >Female</option>
-                    <option value="other"  {{$faculty->faculty_gender == "other" ? "selected" : ""  }}>Other</option>
+                    <option value="male" {{$faculty->faculty_gender}}>Male</option>
+                    <option value="female" {{$faculty->faculty_gender}}>Female</option>
+                    <option value="other" {{$faculty->faculty_gender}}>Other</option>
                 </select>
             </div>
 

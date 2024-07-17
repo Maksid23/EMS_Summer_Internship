@@ -124,9 +124,6 @@
     @endif
     <h1>Faculty Info -></h1>
     <a class="button" href="{{ URL::to('faculty') }}">Add Faculty Info</a>
-    <a class="Back-button" href="{{ URL::to('form') }}">DashBoard</a>
-    
-    
     <br>
     <table>
         <thead>
