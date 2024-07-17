@@ -3,48 +3,80 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Database\Eloquent\Model;
-use App\Models\Student;
+use App\Models\studnt;
 
-class StudentController
+class StudentController extends Controller
 {
-    public function showStudentForm()
-    {
-        return view('student');
+    public function index() { 
+        $users = studnt::all();
+        return view('student', compact('users'));   
+        
     }
 
-    // Handle form submission and store the student data
-    public function storeStudent(Request $request)
-    {
-        $validatedData = $request->validate([
-            'student_id' => 'required|unique:student,student_id',
-            'student_name' => 'required|string|max:255',
-            'dob' => 'required|date',
-            'gender' => 'required|string',
-            'address' => 'required|string|max:500',
-            'parent_guardian_contact_info' => 'required|string|max:10',
-            'other_contact' => 'nullable|string|max:10',
-            'email_address' => 'required|email|max:255',
+    public function store(Request $request){
+        $request->validate(
+            [
+                'student_id' => 'required',
+                'student_name'=>'required',
+                'dob' => 'required|date',
+                'gender' => 'required',
+                'address' => 'required',
+                'parent_guardian_contact_info' =>['required', 'regex:/^[0-9]{10}$/'],
+                'other_contact' => ['required', 'regex:/^[0-9]{10}$/'],
+                'email_address' => 'required|email',
+                'class_id' => 'required|exists:class,class_id'
+            ]);
 
-
-        ]);
-
-        /* dd($request);
- */
-        $student = new Student();
-        $student->student_id = $request->input('student_id');
-        $student->student_name = $request->input('student_name');
-        $student->dob = $request->input('dob');
-        $student->gender = $request->input('gender');
-        $student->address = $request->input('address');
-        $student->parent_guardian_contact_info = $request->input('parent_guardian_contact_info');
-        $student->other_contact = $request->input('other_contact');
-        $student->email_address = $request->input('email_address');
-
-        $student->save();
-
-        return redirect()->back()->with('success', 'Student added successfully.');
+            $studnt = new studnt();
+            $studnt->student_id = $request->input('student_id');
+            $studnt->student_name = $request->input('student_name');
+            $studnt->dob = $request->input('dob');
+            $studnt->gender = $request->input('gender');
+            $studnt->address = $request->input('address');
+            $studnt->parent_guardian_contact_info = $request->input('parent_guardian_contact_info');
+            $studnt->other_contact = $request->input('other_contact');
+            $studnt->email_address = $request->input('email_address');
+            $studnt->class_id = $request->input('class_id');
+            $studnt->save();
+            return redirect()->back()->with('success', 'Student data stored successfully!');
     }
 
-    // Other admin panel methods...
+//UPDATE
+       public function update(Request $data){
+
+            $studnt = studnt::find($data->input('update_id'));;
+            $studnt->student_id = $data->input('student_id');
+            $studnt->student_name = $data->input('student_name');
+            $studnt->dob = $data->input('dob');
+            $studnt->gender = $data->input('gender');
+            $studnt->address = $data->input('address');
+            $studnt->parent_guardian_contact_info = $data->input('parent_guardian_contact_info');
+            $studnt->other_contact = $data->input('other_contact');
+            $studnt->email_address = $data->input('email_address');
+            $studnt->class_id = $data->input('class_id');
+            $studnt->save();
+            return redirect()->route('student.view')->with('success', 'Student data stored successfully!');
+    }
+
+//view    
+    public function view(){
+        $studnt = studnt::all();
+        return view('studentview', compact('studnt'));
+    }
+
+    public function delete($student_id)
+    {
+        $studnt = studnt::find($student_id);
+        $studnt->delete();
+
+        // Additional logic or redirection after successful data deletion
+
+        return redirect()->back()->with('success', 'Comment deleted successfully!');
+    }
+
+    public function edit($student_id)
+    {
+        $studnt = studnt::find($student_id);
+        return view('studentEdit', compact('studnt'));
+    }
 }
