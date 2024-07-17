@@ -118,7 +118,7 @@
         <br>
         <input type="submit" name="save" value="Save Record" />
     </form>
-    <a class="button" href="{{ URL::to('/form') }}">Back</a>
+    <a class="button" href="{{ URL::to('/form') }}">Back123</a>
 </body>
 </html>
 
