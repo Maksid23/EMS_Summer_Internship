@@ -12,11 +12,26 @@ use App\Http\Controllers\ParentController;
 use App\Models\Student;
 use App\Models\Institute;
 
+
+Route::group(['middleware' => 'disable_back_btn'], function () {
+   Route::group(['middleware' => 'guest'], function () {
+      Route::get('/login', [MainController::class, 'login']);
+      Route::post('/loginUser', [MainController::class, 'loginUser'])->name('loginUser');
+   });
+});
+
+Route::group(['middleware' => 'disable_back_btn'], function () {
+   Route::group(['middleware' => 'auth'], function () {
+      Route::get('/form', [FormController::class, 'showForm'])->name('form');
+      Route::get('/logout', [MainController::class, 'logout'])->name('logout');
+   });
+});
+
+
+
 //Route::get('/admin',[MainController::class,'admin']);
-Route::get('/login', [MainController::class, 'login']);
 Route::get('/register1', [MainController::class, 'register1']);
 Route::get('/registerUser', [MainController::class, 'registerUser']);
-Route::post('/loginUser', [MainController::class, 'loginUser'])->name('loginUser'); // Example login route
 // Route::get('/loginUser',[MainController::class,'loginUser']);// Example login route
 // Route::get('/login', function () {
 //     return view('login'); // Ensure 'login' is the correct view name for your login page
@@ -25,7 +40,6 @@ Route::post('/loginUser', [MainController::class, 'loginUser'])->name('loginUser
 
 
 // Route to display the form
-Route::get('/form', [FormController::class, 'showForm'])->name('form');
 Route::post('/register', [FormController::class, 'submitForm'])->name('register');
 
 // Route to handle form submission
@@ -91,4 +105,4 @@ Route::group(['prefix' => '/parent'], function () {
 
 
 
-Route::post('/logout', [MainController::class, 'logout'])->name('logout');
+
