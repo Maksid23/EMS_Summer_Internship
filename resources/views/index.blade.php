@@ -308,9 +308,9 @@ nav.close ~ .dashboard .top{
                 <a href="#managementSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Management</a>
                 <ul class="collapse list-unstyled" id="managementSubmenu">
                     <li><a href="{{url('/staff')}}" onclick="displayInfo('management', 'staff information')">Staff information</a></li>
+                    <li><a href="{{url('/clss')}}" onclick="displayInfo('management', 'class')">Class</a></li>
                     <li><a href="#" onclick="displayInfo('management', 'add staff')">Add Staff</a></li>
                     <li><a href="#" onclick="displayInfo('management', 'reports')">Reports</a></li>
-                    <li><a href="#" onclick="displayInfo('management', 'analytics')">Analytics</a></li>
                     <li><a href="#" onclick="displayInfo('management', 'settings')">Settings</a></li>
                 </ul>
             </li>
