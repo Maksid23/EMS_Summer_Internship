@@ -396,7 +396,7 @@ nav.close ~ .dashboard .top{
                     <div class="box box3">
                         <i class="uil uil-comments"></i>
                         <span class="text">Total Institute</span>
-                        <span class="number">50</span>
+                        <span class="number">100</span>
                     </div>
 
                 </div>
