@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+//namespace App\Http\Controllers\Auth;
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-use App\Models\User;
+use App\Models\users;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
@@ -54,7 +54,7 @@ public function loginUser(Request $data){
         ]);
     
         try {
-            $newUser = new User();
+            $newUser = new users();
             $newUser->name = $validatedData['name'];
             $newUser->email = $validatedData['email'];
             // Hash the password for security
