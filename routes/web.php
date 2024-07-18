@@ -8,7 +8,7 @@ use App\Http\Controllers\FacultyController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\ParentController;
-
+use App\Http\Controllers\Clsscontroller;
 use App\Models\Student;
 use App\Models\Institute;
 
@@ -80,7 +80,14 @@ Route::group(['prefix' => '/staff'], function () {
    Route::get('form/delete/{id}', [StaffController::class, 'destroy'])->name('view.destroy');
 });
 
-
+Route::group(['prefix' => 'clss'], function () {
+   Route::get('/', [Clsscontroller::class, 'index'])->name('clss.form');
+   Route::post('store', [Clsscontroller::class, 'insert'])->name('clss.store');
+   Route::get('view', [Clsscontroller::class, 'view'])->name('clss.view');
+   Route::get('delete/{class_id}', [Clsscontroller::class, 'delete'])->name('clss.delete');
+   Route::get('edit/{class_id}', [Clsscontroller::class, 'edit'])->name('clss.edit');
+   Route::post('update', [Clsscontroller::class, 'update'])->name('clss.update');
+});
 Route::get('/institute', function () {
    $institute = Institute::all();
    return view('instituteshow', compact('institute'));
