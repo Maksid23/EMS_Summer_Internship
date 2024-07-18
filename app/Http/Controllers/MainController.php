@@ -61,7 +61,7 @@ public function loginUser(Request $data){
             $newUser->password = Hash::make($validatedData['password']);
     
             if($newUser->save()){
-                return redirect('/')->with('success', 'Registered successfully!');
+                return redirect('/login')->with('success', 'Registered successfully!');
             } else {
                 // Debug statement to check if save() method returns false
                 dd('Failed to save user');
