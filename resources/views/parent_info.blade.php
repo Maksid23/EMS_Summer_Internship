@@ -94,6 +94,12 @@
         .button:hover {
             background-color: #3050C4; /* Button hover color */
         }
+        .error {
+            color: red;
+            font-size: 12px;
+            margin-top: -10px;
+            margin-bottom: 10px;
+        }
 
     </style>
 </head>
@@ -103,7 +109,7 @@
         <a class="button" href="{{ URL::to('parent/show') }}">Show Parent Info</a>
     </div>
 
-    @if ($errors->any())
+    <!-- @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
                 @foreach ($errors->all() as $error)
@@ -111,22 +117,40 @@
                 @endforeach
             </ul>
         </div>
-    @endif
+    @endif -->
 
 
     <form action="{{ URL::to('parent/insertRecord') }}" method="POST">
         @csrf
         Parent ID:<input type="text" name="parent_id" placeholder="Enter ID" required />
+        @error('parent_id')
+            <div class="error">{{ $message }}</div>
+        @enderror
         <br>
         Parent Name:<input type="text" name="parent_name" placeholder="Enter Name" required />
+        @error('parent_name')
+            <div class="error">{{ $message }}</div>
+        @enderror
         <br>
         Contact Number:<input type="text" name="contact_number" placeholder="Enter Contact Number" required />
+        @error('contact_number')
+            <div class="error">{{ $message }}</div>
+        @enderror
         <br>
         Email:<input type="text" name="parent_email" placeholder="Enter Email" required />
+        @error('parent_email')
+            <div class="error">{{ $message }}</div>
+        @enderror
         <br>
         Address:<input type="text" name="address" placeholder="Enter Address" required />
+        @error('address')
+            <div class="error">{{ $message }}</div>
+        @enderror
         <br>
         Relation:<input type="text" name="relationship_to_student" placeholder="F/M/G" required />
+        @error('relationship_to_student')
+            <div class="error">{{ $message }}</div>
+        @enderror
         <br>
         <input type="submit" name="save" value="Save Record" />
     </form>
