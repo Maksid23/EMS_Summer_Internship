@@ -308,9 +308,9 @@ nav.close ~ .dashboard .top{
                 <a href="#managementSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Management</a>
                 <ul class="collapse list-unstyled" id="managementSubmenu">
                     <li><a href="{{url('/staff')}}" onclick="displayInfo('management', 'staff information')">Staff information</a></li>
+                    <li><a href="{{url('/clss')}}" onclick="displayInfo('management', 'class')">Class</a></li>
                     <li><a href="#" onclick="displayInfo('management', 'add staff')">Add Staff</a></li>
                     <li><a href="#" onclick="displayInfo('management', 'reports')">Reports</a></li>
-                    <li><a href="#" onclick="displayInfo('management', 'analytics')">Analytics</a></li>
                     <li><a href="#" onclick="displayInfo('management', 'settings')">Settings</a></li>
                 </ul>
             </li>
@@ -336,13 +336,9 @@ nav.close ~ .dashboard .top{
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                        <button onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="logout-button">
-                           Logout
-                        </button>
-</a>
-<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-    @csrf
-                            </form>
+                        <a href="{{ route('logout') }}">
+                                Logout
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -396,7 +392,7 @@ nav.close ~ .dashboard .top{
                     <div class="box box3">
                         <i class="uil uil-comments"></i>
                         <span class="text">Total Institute</span>
-                        <span class="number">50</span>
+                        <span class="number">100</span>
                     </div>
 
                 </div>
