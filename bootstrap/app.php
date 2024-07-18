@@ -11,7 +11,14 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        //
+        $middleware->alias([
+            'disable_back_btn' => \App\Http\Middleware\DisableBackBtn::class,
+        ]);
+
+        $middleware->redirectTo(
+            guests:'login',
+            users:'form'
+        );
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

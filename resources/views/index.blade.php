@@ -336,13 +336,9 @@ nav.close ~ .dashboard .top{
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                        <button onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="logout-button">
-                           Logout
-                        </button>
-</a>
-<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-    @csrf
-                            </form>
+                        <a href="{{ route('logout') }}">
+                                Logout
+                            </a>
                         </li>
                     </ul>
                 </div>

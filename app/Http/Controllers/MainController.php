@@ -26,14 +26,22 @@ class MainController extends Controller
 
 
 public function loginUser(Request $data){
-    //dd($data);
-    $user = User::where('email', $data->input('email'))->first();
-    //dd($user);
-    if ($user && $data->input('password') == $user->password && $data->input('user_id') == $user->user_id) {
-        //session()->put('id', $user->id);
-        session()->put('user_id', $user->user_id); // Add authentication of user_id
-        return redirect('/form');
+
+
+
+    if (Auth::attempt(['email' => $data->email, 'password' => $data->password])) {
+        return redirect()->route('form');
     }
+
+
+    // //dd($data);
+    // $user = User::where('email', $data->input('email'))->first();
+    // //dd($user);
+    // if ($user && $data->input('password') == $user->password && $data->input('user_id') == $user->user_id) {
+    //     //session()->put('id', $user->id);
+    //     session()->put('user_id', $user->user_id); // Add authentication of user_id
+    //     return redirect('/form');
+    // }
     return redirect('/login')->with('error', 'Invalid email or password or ID');
 }
 
