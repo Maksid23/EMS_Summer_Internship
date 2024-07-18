@@ -19,6 +19,16 @@ class ParentController extends Controller
 
     public function insert(Request $data)
     {
+        $data->validate([
+            'parent_id' => 'required|numeric|unique:parent,parent_id',
+            'parent_name' => 'required|string|max:255',
+            'contact_number' => 'required|numeric',
+            'parent_email' => 'required|email|unique:parent,parent_email',
+            'address' => 'required|string|max:255',
+            'relationship_to_student' => 'required|string|in:F,M,G'
+        ]);
+        
+        
         $parent = new parents();
         $parent->parent_id=$data->input('parent_id');
         $parent->parent_name=$data->input('parent_name');
@@ -33,6 +43,15 @@ class ParentController extends Controller
     public function update(Request $data)
     {
 
+        $data->validate([
+            'parent_id' => 'required|numeric|unique:parent,parent_id,'.$request->input('update_id'),
+            'parent_name' => 'required|string|max:255',
+            'contact_number' => 'required|numeric|max:10',
+            'parent_email' => 'required|email|unique:parent,parent_email,'.$request->input('update_id'),
+            'address' => 'required|string|max:255',
+            'relationship_to_student' => 'required|string|in:F,M,G'
+        ]);
+
         $parent = parents::find($data->input('update_id'));
         $parent->parent_id = $data->input('parent_id');
         $parent->parent_name = $data->input('parent_name');
@@ -42,9 +61,6 @@ class ParentController extends Controller
         $parent->relationship_to_student=$data->input('relationship_to_student');
         $parent->save();
         return redirect('/parent/show');
-       
-        
-       
     }
 
     public function delete($parent_id)

@@ -102,6 +102,18 @@
     <div class="container">
         <a class="button" href="{{ URL::to('parent/show') }}">Show Parent Info</a>
     </div>
+
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
+
     <form action="{{ URL::to('parent/insertRecord') }}" method="POST">
         @csrf
         Parent ID:<input type="text" name="parent_id" placeholder="Enter ID" required />
