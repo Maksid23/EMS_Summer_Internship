@@ -8,15 +8,30 @@ use App\Http\Controllers\FacultyController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\ParentController;
-
+use App\Http\Controllers\Clsscontroller;
 use App\Models\Student;
 use App\Models\Institute;
 
+
+Route::group(['middleware' => 'disable_back_btn'], function () {
+   Route::group(['middleware' => 'guest'], function () {
+      Route::get('/login', [MainController::class, 'login']);
+      Route::post('/loginUser', [MainController::class, 'loginUser'])->name('loginUser');
+   });
+});
+
+Route::group(['middleware' => 'disable_back_btn'], function () {
+   Route::group(['middleware' => 'auth'], function () {
+      Route::get('/form', [FormController::class, 'showForm'])->name('form');
+      Route::get('/logout', [MainController::class, 'logout'])->name('logout');
+   });
+});
+
+
+
 //Route::get('/admin',[MainController::class,'admin']);
-Route::get('/login', [MainController::class, 'login']);
 Route::get('/register1', [MainController::class, 'register1']);
 Route::get('/registerUser', [MainController::class, 'registerUser']);
-Route::post('/loginUser', [MainController::class, 'loginUser'])->name('loginUser'); // Example login route
 // Route::get('/loginUser',[MainController::class,'loginUser']);// Example login route
 // Route::get('/login', function () {
 //     return view('login'); // Ensure 'login' is the correct view name for your login page
@@ -25,7 +40,6 @@ Route::post('/loginUser', [MainController::class, 'loginUser'])->name('loginUser
 
 
 // Route to display the form
-Route::get('/form', [FormController::class, 'showForm'])->name('form');
 Route::post('/register', [FormController::class, 'submitForm'])->name('register');
 
 // Route to handle form submission
@@ -66,7 +80,14 @@ Route::group(['prefix' => '/staff'], function () {
    Route::get('form/delete/{id}', [StaffController::class, 'destroy'])->name('view.destroy');
 });
 
-
+Route::group(['prefix' => 'clss'], function () {
+   Route::get('/', [Clsscontroller::class, 'index'])->name('clss.form');
+   Route::post('store', [Clsscontroller::class, 'insert'])->name('clss.store');
+   Route::get('view', [Clsscontroller::class, 'view'])->name('clss.view');
+   Route::get('delete/{class_id}', [Clsscontroller::class, 'delete'])->name('clss.delete');
+   Route::get('edit/{class_id}', [Clsscontroller::class, 'edit'])->name('clss.edit');
+   Route::post('update', [Clsscontroller::class, 'update'])->name('clss.update');
+});
 Route::get('/institute', function () {
    $institute = Institute::all();
    return view('instituteshow', compact('institute'));
@@ -91,4 +112,4 @@ Route::group(['prefix' => '/parent'], function () {
 
 
 
-Route::post('/logout', [MainController::class, 'logout'])->name('logout');
+
