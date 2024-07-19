@@ -5,6 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Faculty Info View</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
     <style>
         body {
             background-color: #f8f9fa;
@@ -117,13 +121,30 @@
 </head>
 
 <body>
+     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <!-- Brand/logo -->
+        <a class="navbar-brand" href="#">EMS</a>
+
+        <!-- Links -->
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ URL::to('form') }}">Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ URL::to('faculty/show') }}">Show Faculty Info</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ URL::to('faculty') }}">Add Faculty Info</a>
+            </li>
+        </ul>
+    </nav>
     @if (session('success'))
     <div class="alert alert-success">
         {{ session('success') }}
     </div>
     @endif
     <h1>Faculty Info -></h1>
-    <a class="button" href="{{ URL::to('faculty') }}">Add Faculty Info</a>
+    <!-- <a class="button" href="{{ URL::to('faculty') }}">Add Faculty Info</a> -->
     <br>
     <table>
         <thead>
