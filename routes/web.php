@@ -111,14 +111,12 @@ Route::group(['prefix' => '/parent'], function () {
    Route::get('show', [ParentController::class, 'showparent']);
 });
 
-Route::get('/studentTimetable',[studenttimetablecontroller::class, 'showstudtimeform']);
-Route::post('/studentTimetable/store', [studenttimetablecontroller::class, 'storestudtimetable'])->name('timetable.store');
-Route::get('/studentTimetable/show',[studenttimetablecontroller::class,'showstudtime']);
-Route::get('/studentTimetable/delete/{stud_timetable}',[studenttimetablecontroller::class,'delete']);
-Route::get('/studentTimetable/updateshow/{stud_timetable}',[studenttimetablecontroller::class,'updateinfoview']);
-Route::post('/studentTimetable/update',[studenttimetablecontroller::class,'update']);
 
-
-
-
-
+Route::group(['prefix' => '/studentTimetable'], function () {
+   Route::get('/', [studenttimetablecontroller::class, 'showstudtimeform']);
+   Route::post('store', [studenttimetablecontroller::class, 'storestudtimetable'])->name('timetable.store');
+   Route::get('show', [studenttimetablecontroller::class, 'showstudtime']);
+   Route::get('delete/{stud_timetable}', [studenttimetablecontroller::class, 'delete']);
+   Route::get('updateshow/{stud_timetable}', [studenttimetablecontroller::class, 'updateinfoview']);
+   Route::post('update', [studenttimetablecontroller::class, 'update']);
+});
