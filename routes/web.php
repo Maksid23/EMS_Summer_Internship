@@ -11,6 +11,7 @@ use App\Http\Controllers\ParentController;
 use App\Http\Controllers\Clsscontroller;
 use App\Http\Controllers\student_dashboard_Controller;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\communicationcontroller;
 use App\Models\Student;
 use App\Models\Institute;
 
@@ -121,4 +122,15 @@ Route::group(['prefix'=> '/course'], function () {
    Route::get('/add', [CourseController::class, 'insertform']);
    Route::post('/add_course', [CourseController::class, 'insert']);
    Route::get('/delete/{$course_id}', [CourseController::class, 'delete']);
+});
+
+
+//communication route
+Route::group(['prefix' => 'communication'], function() {
+    Route::get('/', [communicationcontroller::class, 'index'])->name('communication.form');
+    Route::post('store', [communicationcontroller::class, 'store']);
+    Route::get('view', [communicationcontroller::class, 'view']);
+    Route::get('delete/{staff_id}', [communicationcontroller::class, 'delete']);
+    Route::get('edit/{staff_id}', [communicationcontroller::class, 'edit']);
+    Route::post('update', [communicationcontroller::class, 'update']);
 });
