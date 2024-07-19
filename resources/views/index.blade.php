@@ -337,7 +337,7 @@ nav.close ~ .dashboard .top{
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
                             <div class="logout-button">
-                        <a href="{{ route('logout') }}">
+                        <a href="{{ route('logout') }}"style="color: white">
                                 Logout
                             </a>
                             </div>
