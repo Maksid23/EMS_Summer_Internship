@@ -66,17 +66,18 @@ Route::group(['prefix' => '/staff'], function () {
    Route::get('form/delete/{id}', [StaffController::class, 'destroy'])->name('view.destroy');
 });
 
-
-Route::get('/institute', function () {
+Route::group(['prefix'=> 'institute'], function () {
+Route::get('/instituteshow', function () {
    $institute = Institute::all();
    return view('instituteshow', compact('institute'));
 });
-Route::post('/institute/insert_institute', [institutecontroller::class, 'insert']);
-Route::get('/institute/delete_institute/{institute_id}', [institutecontroller::class, 'delete']);
-Route::get('/institute/edit_institute/{institute_id}', [institutecontroller::class, 'edit']);
-Route::post('/institute/update_institute/{institute_id}', [institutecontroller::class, 'update']);
-Route::get('/institute/insertinstitute', function () {
+Route::post('/insert_institute', [institutecontroller::class, 'insert']);
+Route::get('/delete_institute/{institute_id}', [institutecontroller::class, 'delete']);
+Route::get('/edit_institute/{institute_id}', [institutecontroller::class, 'edit']);
+Route::post('/update_institute/{institute_id}', [institutecontroller::class, 'update']);
+Route::get('/insertinstitute', function () {
    return view('insertinstitute');
+});
 });
 
 
