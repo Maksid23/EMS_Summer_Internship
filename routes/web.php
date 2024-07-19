@@ -7,10 +7,10 @@ use App\Http\Controllers\institutecontroller;
 use App\Http\Controllers\FacultyController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\StaffController;
+use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ParentController;
 use App\Http\Controllers\Clsscontroller;
 use App\Http\Controllers\student_dashboard_Controller;
-use App\Http\Controllers\CourseController;
 use App\Http\Controllers\communicationcontroller;
 use App\Models\Student;
 use App\Models\Institute;
@@ -87,6 +87,8 @@ Route::group(['prefix' => '/staff'], function () {
    Route::get('form/delete/{id}', [StaffController::class, 'destroy'])->name('view.destroy');
 });
 
+
+
 Route::group(['prefix' => 'clss'], function () {
    Route::get('/', [Clsscontroller::class, 'index'])->name('clss.form');
    Route::post('store', [Clsscontroller::class, 'insert'])->name('clss.store');
@@ -95,18 +97,30 @@ Route::group(['prefix' => 'clss'], function () {
    Route::get('edit/{class_id}', [Clsscontroller::class, 'edit'])->name('clss.edit');
    Route::post('update', [Clsscontroller::class, 'update'])->name('clss.update');
 });
-Route::get('/institute', function () {
-   $institute = Institute::all();
-   return view('instituteshow', compact('institute'));
-});
-Route::post('/institute/insert_institute', [institutecontroller::class, 'insert']);
-Route::get('/institute/delete_institute/{institute_id}', [institutecontroller::class, 'delete']);
-Route::get('/institute/edit_institute/{institute_id}', [institutecontroller::class, 'edit']);
-Route::post('/institute/update_institute/{institute_id}', [institutecontroller::class, 'update']);
-Route::get('/institute/insertinstitute', function () {
-   return view('insertinstitute');
-});
 
+
+Route::group(['prefix'=> 'institute'], function () {
+   Route::get('/instituteshow', function () {
+      $institute = Institute::all();
+      return view('instituteshow', compact('institute'));
+   });
+   Route::post('/insert_institute', [institutecontroller::class, 'insert']);
+   Route::get('/delete_institute/{institute_id}', [institutecontroller::class, 'delete']);
+   Route::get('/edit_institute/{institute_id}', [institutecontroller::class, 'edit']);
+   Route::post('/update_institute/{institute_id}', [institutecontroller::class, 'update']);
+   Route::get('/insertinstitute', function () {
+      return view('insertinstitute');
+   });
+   });
+
+Route::group(['prefix'=> '/course'], function () {
+   Route::get('/courseview', [CourseController::class, 'view'])->name('course.view');
+   Route::get('/add', [CourseController::class, 'insertform']);
+   Route::post('/add_course', [CourseController::class, 'insert']);
+   Route::get('/delete/{course_id}', [CourseController::class, 'delete']);
+   Route::get('/edit/{course_id}', [Coursecontroller::class, 'edit']);
+   Route::post('/update', [coursecontroller::class, 'update']);
+});
 
 Route::group(['prefix' => '/parent'], function () {
    Route::get('/', [ParentController::class, 'index']);
@@ -121,12 +135,12 @@ Route::group(['prefix' => '/parentdashboard'], function () {
    Route::get('/', [ParentController::class, 'index1']);
 });
 
-Route::group(['prefix'=> '/course'], function () {
-   Route::get('/', [CourseController::class, 'view'])->name('course.view');
-   Route::get('/add', [CourseController::class, 'insertform']);
-   Route::post('/add_course', [CourseController::class, 'insert']);
-   Route::get('/delete/{$course_id}', [CourseController::class, 'delete']);
-});
+// Route::group(['prefix'=> '/course'], function () {
+//    Route::get('/', [CourseController::class, 'view'])->name('course.view');
+//    Route::get('/add', [CourseController::class, 'insertform']);
+//    Route::post('/add_course', [CourseController::class, 'insert']);
+//    Route::get('/delete/{$course_id}', [CourseController::class, 'delete']);
+// });
 
 
 //communication route
