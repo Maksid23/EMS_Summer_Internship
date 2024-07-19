@@ -7,6 +7,10 @@
     <title>Faculty Info Form</title>
     <!-- Bootstrap CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
     <style>
         body {
             background-color: #f8f9fa;
@@ -81,16 +85,34 @@
             box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
             /* Custom focus outline */
         }
-
     </style>
 </head>
 
 <body>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <!-- Brand/logo -->
+        <a class="navbar-brand" href="#">EMS</a>
+
+        <!-- Links -->
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ URL::to('form') }}">Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ URL::to('faculty/show') }}">Show Faculty Info</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ URL::to('faculty') }}">Add Faculty Info</a>
+            </li>
+        </ul>
+    </nav>
+
     <div class="container">
 
-       
+
         <h2 class="form-title">Faculty Form</h2>
-        <a class="button" href="{{ URL::to('faculty/show') }}">Show Faculty Info</a>
+        <!-- <a class="button" href="{{ URL::to('form') }}">Dashboard</a>
+        <a class="button" href="{{ URL::to('faculty/show') }}">Show Faculty Info</a> -->
         @if (session('success'))
         <div class="alert alert-success">
             {{ session('success') }}

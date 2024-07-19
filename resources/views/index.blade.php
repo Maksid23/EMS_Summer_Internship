@@ -275,16 +275,16 @@ nav.close ~ .dashboard .top{
     <!-- Sidebar -->
     <nav id="sidebar">
         <div class="sidebar-header">
-            <h3>Education Management</h3>
+            <h3>Education Management System</h3>
         </div>
 
         <ul class="list-unstyled components">
             <li class="active">
                 <a href="#studentSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Student</a>
                 <ul class="collapse list-unstyled" id="studentSubmenu">
-                    <li><a href="{{url('/student')}}" onclick="displayInfo('student', 'profile')">Profile</a></li>
-                    <li><a href="{{url('/student_dashboard')}}"  onclick="displayInfo('student', 'student_dashboard')">Student Dashboard</a></li>
-                    <li><a href="#" onclick="displayInfo('student', 'attendance')">Attendance</a></li>
+                    <li><a href="{{url('/student')}}" onclick="displayInfo('student', 'profile')">Add Student</a></li>
+                    <li><a href="{{url('/student/view')}}" onclick="displayInfo('student', 'grades')">View Student</a></li>
+                    <!-- <li><a href="#" onclick="displayInfo('student', 'attendance')">Attendance</a></li> -->
                 </ul>
             </li>
             <li>
@@ -297,11 +297,11 @@ nav.close ~ .dashboard .top{
                 </ul>
             </li>
             <li>
-                <a href="#teacherSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Teacher</a>
+                <a href="#teacherSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Faculty</a>
                 <ul class="collapse list-unstyled" id="teacherSubmenu">
-                    <li><a href="{{url('/faculty')}}" onclick="displayInfo('teacher', 'profile')">Faculty Profile</a></li>
-                    <li><a href="#" onclick="displayInfo('teacher', 'classes')">Classes</a></li>
-                    <li><a href="#" onclick="displayInfo('teacher', 'schedule')">Schedule</a></li>
+                    <li><a href="{{url('/faculty')}}" onclick="displayInfo('teacher', 'profile')">Add Faculty</a></li>
+                    <li><a href="{{url('/faculty/show')}}" onclick="displayInfo('teacher', 'classes')">Show Faculty</a></li>
+                    <!-- <li><a href="#" onclick="displayInfo('teacher', 'schedule')">Schedule</a></li> -->
                 </ul>
             </li>
             <li>
@@ -340,7 +340,6 @@ nav.close ~ .dashboard .top{
                         <a href="{{ route('logout') }}"style="color: white;">
                                 Logout
                             </a>
-                            </div>
                         </li>
                     </ul>
                 </div>
@@ -360,7 +359,7 @@ nav.close ~ .dashboard .top{
                 <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
                 <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
             </div>
-            <p>&copy; 2023 Your Company Name. All rights reserved.</p>
+            <p>&copy; 2024 Top-Notch. All rights reserved.</p>
         </div>
         <div class="footer">
             <p>Connect with us:</p>
@@ -369,7 +368,7 @@ nav.close ~ .dashboard .top{
                 <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
                 <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
             </div>
-            <p>&copy; 2023 Top-Notch. All rights reserved.</p>
+            <p>&copy; 2024 Top-Notch. All rights reserved.</p>
         </div>
     </div>
 </div>
