@@ -111,5 +111,6 @@ Route::group(['prefix' => '/parent'], function () {
 });
 
 
-
-
+Route::group(['prefix' => '/parentdashboard'], function () {
+   Route::get('/', [ParentController::class, 'index1']);
+});

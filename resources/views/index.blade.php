@@ -318,7 +318,7 @@ nav.close ~ .dashboard .top{
                 <a href="#parentsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Parents</a>
                 <ul class="collapse list-unstyled" id="parentsSubmenu">
                     <li><a href="{{url('/parent')}}" onclick="displayInfo('parents', 'children')">Parent Profile</a></li>
-                    <li><a href="#" onclick="displayInfo('parents', 'progress')">Progress</a></li>
+                    <li><a href="{{url('/parentdashboard')}}" onclick="displayInfo('parents', 'progress')">Parent Dashboard</a></li>
                     <li><a href="#" onclick="displayInfo('parents', 'messages')">Messages</a></li>
                 </ul>
             </li>
@@ -336,9 +336,11 @@ nav.close ~ .dashboard .top{
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                        <a href="{{ route('logout') }}">
+                            <div class="logout-button">
+                        <a href="{{ route('logout') }}"style="color: white">
                                 Logout
                             </a>
+                            </div>
                         </li>
                     </ul>
                 </div>
