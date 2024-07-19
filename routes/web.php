@@ -7,6 +7,7 @@ use App\Http\Controllers\institutecontroller;
 use App\Http\Controllers\FacultyController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\StaffController;
+use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ParentController;
 
 use App\Models\Student;
@@ -80,6 +81,14 @@ Route::get('/insertinstitute', function () {
 });
 });
 
+Route::group(['prefix'=> '/course'], function () {
+   Route::get('/courseview', [CourseController::class, 'view'])->name('course.view');
+   Route::get('/add', [CourseController::class, 'insertform']);
+   Route::post('/add_course', [CourseController::class, 'insert']);
+   Route::get('/delete/{course_id}', [CourseController::class, 'delete']);
+   Route::get('/edit/{course_id}', [Coursecontroller::class, 'edit']);
+   Route::post('/update', [coursecontroller::class, 'update']);
+});
 
 Route::group(['prefix' => '/parent'], function () {
    Route::get('/', [ParentController::class, 'index']);
