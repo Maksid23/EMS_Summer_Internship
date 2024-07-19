@@ -117,6 +117,10 @@ Route::group(['prefix' => '/parent'], function () {
    Route::get('show', [ParentController::class, 'showparent']);
 });
 
+Route::group(['prefix' => '/parentdashboard'], function () {
+   Route::get('/', [ParentController::class, 'index1']);
+});
+
 Route::group(['prefix'=> '/course'], function () {
    Route::get('/', [CourseController::class, 'view'])->name('course.view');
    Route::get('/add', [CourseController::class, 'insertform']);
