@@ -310,7 +310,7 @@ nav.close ~ .dashboard .top{
                     <li><a href="{{url('/staff')}}" onclick="displayInfo('management', 'staff information')">Staff information</a></li>
                     <li><a href="{{url('/clss')}}" onclick="displayInfo('management', 'class')">Class</a></li>
                     <li><a href="#" onclick="displayInfo('management', 'add staff')">Add Staff</a></li>
-                    <li><a href="#" onclick="displayInfo('management', 'reports')">Reports</a></li>
+                    <li><a href="{{url('/communication')}}" onclick="displayInfo('management', 'reports')">Communication</a></li>
                     <li><a href="#" onclick="displayInfo('management', 'settings')">Settings</a></li>
                 </ul>
             </li>

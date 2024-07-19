@@ -9,6 +9,7 @@ use App\Http\Controllers\MainController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\ParentController;
 use App\Http\Controllers\Clsscontroller;
+use App\Http\Controllers\communicationcontroller;
 use App\Models\Student;
 use App\Models\Institute;
 
@@ -113,4 +114,15 @@ Route::group(['prefix' => '/parent'], function () {
 
 Route::group(['prefix' => '/parentdashboard'], function () {
    Route::get('/', [ParentController::class, 'index1']);
+});
+
+
+//communication route
+Route::group(['prefix' => 'communication'], function() {
+    Route::get('/', [communicationcontroller::class, 'index'])->name('communication.form');
+    Route::post('store', [communicationcontroller::class, 'store']);
+    Route::get('view', [communicationcontroller::class, 'view']);
+    Route::get('delete/{staff_id}', [communicationcontroller::class, 'delete']);
+    Route::get('edit/{staff_id}', [communicationcontroller::class, 'edit']);
+    Route::post('update', [communicationcontroller::class, 'update']);
 });

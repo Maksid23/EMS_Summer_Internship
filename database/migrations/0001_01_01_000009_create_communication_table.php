@@ -18,6 +18,7 @@ return new class extends Migration
             $table->text('notification',100);
             $table->dateTime('meeting_schedule');
             $table->foreign('staff_id')->references('staff_id')->on('staff_information')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 
