@@ -275,33 +275,33 @@ nav.close ~ .dashboard .top{
     <!-- Sidebar -->
     <nav id="sidebar">
         <div class="sidebar-header">
-            <h3>Education Management</h3>
+            <h3>Education Management System</h3>
         </div>
 
         <ul class="list-unstyled components">
             <li class="active">
                 <a href="#studentSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Student</a>
                 <ul class="collapse list-unstyled" id="studentSubmenu">
-                    <li><a href="{{url('/student')}}" onclick="displayInfo('student', 'profile')">Profile</a></li>
-                    <li><a href="#" onclick="displayInfo('student', 'grades')">Grades</a></li>
-                    <li><a href="#" onclick="displayInfo('student', 'attendance')">Attendance</a></li>
+                    <li><a href="{{url('/student')}}" onclick="displayInfo('student', 'profile')">Add Student</a></li>
+                    <li><a href="{{url('/student/view')}}" onclick="displayInfo('student', 'grades')">View Student</a></li>
+                    <!-- <li><a href="#" onclick="displayInfo('student', 'attendance')">Attendance</a></li> -->
                 </ul>
             </li>
             <li>
                 <a href="#instituteSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Institute</a>
                 <ul class="collapse list-unstyled" id="instituteSubmenu">
-                    <li><a href="{{url('/institute')}}" onclick="displayInfo('institute', 'view institute')">View Institute</a></li>
+                    <li><a href="{{url('/institute/instituteshow')}}" onclick="displayInfo('institute', 'view institute')">View Institute</a></li>
                     <li><a href="{{url('/institute/insertinstitute')}}" onclick="displayInfo('institute', 'profile')">Add Institute</a></li>
-                    <li><a href="#" onclick="displayInfo('institute', 'classes')">Classes</a></li>
+                    <li><a href="{{url('/course/courseview')}}" onclick="displayInfo('courses', 'classes')">View Courses</a></li>
                     <li><a href="#" onclick="displayInfo('institute', 'schedule')">Schedule</a></li>
                 </ul>
             </li>
             <li>
                 <a href="#teacherSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Faculty</a>
                 <ul class="collapse list-unstyled" id="teacherSubmenu">
-                    <li><a href="{{url('/faculty')}}" onclick="displayInfo('teacher', 'profile')">Faculty Profile</a></li>
-                    <li><a href="#" onclick="displayInfo('teacher', 'classes')">Classes</a></li>
-                    <li><a href="{{url('/studentTimetable')}}" onclick="displayInfo('teacher', 'schedule')">Timetable</a></li>
+                    <li><a href="{{url('/faculty')}}" onclick="displayInfo('teacher', 'profile')">Add Faculty</a></li>
+                    <li><a href="{{url('/faculty/show')}}" onclick="displayInfo('teacher', 'classes')">Show Faculty</a></li>
+                    <!-- <li><a href="#" onclick="displayInfo('teacher', 'schedule')">Schedule</a></li> -->
                 </ul>
             </li>
             <li>
@@ -310,7 +310,7 @@ nav.close ~ .dashboard .top{
                     <li><a href="{{url('/staff')}}" onclick="displayInfo('management', 'staff information')">Staff information</a></li>
                     <li><a href="{{url('/clss')}}" onclick="displayInfo('management', 'class')">Class</a></li>
                     <li><a href="#" onclick="displayInfo('management', 'add staff')">Add Staff</a></li>
-                    <li><a href="#" onclick="displayInfo('management', 'reports')">Reports</a></li>
+                    <li><a href="{{url('/communication')}}" onclick="displayInfo('management', 'reports')">Communication</a></li>
                     <li><a href="#" onclick="displayInfo('management', 'settings')">Settings</a></li>
                 </ul>
             </li>
@@ -318,7 +318,7 @@ nav.close ~ .dashboard .top{
                 <a href="#parentsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Parents</a>
                 <ul class="collapse list-unstyled" id="parentsSubmenu">
                     <li><a href="{{url('/parent')}}" onclick="displayInfo('parents', 'children')">Parent Profile</a></li>
-                    <li><a href="#" onclick="displayInfo('parents', 'progress')">Progress</a></li>
+                    <li><a href="{{url('/parentdashboard')}}" onclick="displayInfo('parents', 'progress')">Parent Dashboard</a></li>
                     <li><a href="#" onclick="displayInfo('parents', 'messages')">Messages</a></li>
                 </ul>
             </li>
@@ -336,7 +336,8 @@ nav.close ~ .dashboard .top{
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                        <a href="{{ route('logout') }}">
+                            <div class="logout-button">
+                        <a href="{{ route('logout') }}"style="color: white;">
                                 Logout
                             </a>
                         </li>
@@ -358,7 +359,7 @@ nav.close ~ .dashboard .top{
                 <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
                 <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
             </div>
-            <p>&copy; 2023 Your Company Name. All rights reserved.</p>
+            <p>&copy; 2024 Top-Notch. All rights reserved.</p>
         </div>
         <div class="footer">
             <p>Connect with us:</p>
@@ -367,7 +368,7 @@ nav.close ~ .dashboard .top{
                 <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
                 <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
             </div>
-            <p>&copy; 2023 Top-Notch. All rights reserved.</p>
+            <p>&copy; 2024 Top-Notch. All rights reserved.</p>
         </div>
     </div>
 </div>
@@ -382,17 +383,17 @@ nav.close ~ .dashboard .top{
                     <div class="box box1">
                         <i class="uil uil-thumbs-up"></i>
                         <span class="text">Total Students</span>
-                        <span class="number">50,120</span>
+                        <span class="number">{{ $rowCount1 }}</span>
                     </div>
                     <div class="box box2">
                         <i class="uil uil-comments"></i>
                         <span class="text">Total faculties</span>
-                        <span class="number">1500</span>
+                        <span class="number">{{ $rowCount2 }}</span>
                     </div>
                     <div class="box box3">
                         <i class="uil uil-comments"></i>
                         <span class="text">Total Institute</span>
-                        <span class="number">100</span>
+                        <span class="number">{{ $rowCount3 }}</span>
                     </div>
 
                 </div>
