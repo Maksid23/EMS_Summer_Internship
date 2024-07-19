@@ -336,9 +336,11 @@ nav.close ~ .dashboard .top{
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
+                            <div class="logout-button">
                         <a href="{{ route('logout') }}">
                                 Logout
                             </a>
+                            </div>
                         </li>
                     </ul>
                 </div>
