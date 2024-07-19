@@ -10,6 +10,7 @@ use App\Http\Controllers\StaffController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ParentController;
 use App\Http\Controllers\Clsscontroller;
+use App\Http\Controllers\studenttimetablecontroller;
 use App\Http\Controllers\student_dashboard_Controller;
 use App\Http\Controllers\communicationcontroller;
 use App\Models\Student;
@@ -142,6 +143,14 @@ Route::group(['prefix' => '/parentdashboard'], function () {
 //    Route::get('/delete/{$course_id}', [CourseController::class, 'delete']);
 // });
 
+Route::group(['prefix' => '/studentTimetable'], function () {
+   Route::get('/', [studenttimetablecontroller::class, 'showstudtimeform']);
+   Route::post('store', [studenttimetablecontroller::class, 'storestudtimetable'])->name('timetable.store');
+   Route::get('show', [studenttimetablecontroller::class, 'showstudtime']);
+   Route::get('delete/{stud_timetable}', [studenttimetablecontroller::class, 'delete']);
+   Route::get('updateshow/{stud_timetable}', [studenttimetablecontroller::class, 'updateinfoview']);
+   Route::post('update', [studenttimetablecontroller::class, 'update']);
+});
 
 //communication route
 Route::group(['prefix' => 'communication'], function() {
