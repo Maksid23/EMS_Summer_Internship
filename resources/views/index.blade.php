@@ -301,7 +301,8 @@ nav.close ~ .dashboard .top{
                 <ul class="collapse list-unstyled" id="teacherSubmenu">
                     <li><a href="{{url('/faculty')}}" onclick="displayInfo('teacher', 'profile')">Add Faculty</a></li>
                     <li><a href="{{url('/faculty/show')}}" onclick="displayInfo('teacher', 'classes')">Show Faculty</a></li>
-                    <!-- <li><a href="#" onclick="displayInfo('teacher', 'schedule')">Schedule</a></li> -->
+                    <li><a href="{{url('/studentTimetable')}}" onclick="displayInfo('teacher', 'schedule')">Add Student Timetable</a></li>
+                    <li><a href="{{url('/studentTimetable/show')}}" onclick="displayInfo('teacher', 'classes')">Show Student Timetable</a></li>
                 </ul>
             </li>
             <li>
