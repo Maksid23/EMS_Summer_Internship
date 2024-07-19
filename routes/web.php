@@ -9,15 +9,32 @@ use App\Http\Controllers\MainController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ParentController;
-
+use App\Http\Controllers\Clsscontroller;
+use App\Http\Controllers\student_dashboard_Controller;
+use App\Http\Controllers\communicationcontroller;
 use App\Models\Student;
 use App\Models\Institute;
 
+
+Route::group(['middleware' => 'disable_back_btn'], function () {
+   Route::group(['middleware' => 'guest'], function () {
+      Route::get('/login', [MainController::class, 'login']);
+      Route::post('/loginUser', [MainController::class, 'loginUser'])->name('loginUser');
+   });
+});
+
+Route::group(['middleware' => 'disable_back_btn'], function () {
+   Route::group(['middleware' => 'auth'], function () {
+      Route::get('/form', [FormController::class, 'showForm'])->name('form');
+      Route::get('/logout', [MainController::class, 'logout'])->name('logout');
+   });
+});
+
+
+
 //Route::get('/admin',[MainController::class,'admin']);
-Route::get('/login', [MainController::class, 'login']);
 Route::get('/register1', [MainController::class, 'register1']);
 Route::get('/registerUser', [MainController::class, 'registerUser']);
-Route::post('/loginUser', [MainController::class, 'loginUser'])->name('loginUser'); // Example login route
 // Route::get('/loginUser',[MainController::class,'loginUser']);// Example login route
 // Route::get('/login', function () {
 //     return view('login'); // Ensure 'login' is the correct view name for your login page
@@ -26,7 +43,6 @@ Route::post('/loginUser', [MainController::class, 'loginUser'])->name('loginUser
 
 
 // Route to display the form
-Route::get('/form', [FormController::class, 'showForm'])->name('form');
 Route::post('/register', [FormController::class, 'submitForm'])->name('register');
 
 // Route to handle form submission
@@ -49,6 +65,10 @@ Route::group(['prefix' => '/faculty'], function () {
    Route::get('show', [FacultyController::class, 'showFaculty'])->name('show.faculty');
 });
 
+Route::group(['prefix' => '/student_dashboard'], function () {
+   Route::get('/', [student_dashboard_Controller::class, 'index'])->name('dashboard.form');
+});
+
 Route::group(['prefix' => '/student'], function () {
    Route::get('/', [StudentController::class, 'index'])->name('student.form');
    Route::post('store', [StudentController::class, 'store'])->name('student.store');
@@ -67,19 +87,31 @@ Route::group(['prefix' => '/staff'], function () {
    Route::get('form/delete/{id}', [StaffController::class, 'destroy'])->name('view.destroy');
 });
 
+
+
+Route::group(['prefix' => 'clss'], function () {
+   Route::get('/', [Clsscontroller::class, 'index'])->name('clss.form');
+   Route::post('store', [Clsscontroller::class, 'insert'])->name('clss.store');
+   Route::get('view', [Clsscontroller::class, 'view'])->name('clss.view');
+   Route::get('delete/{class_id}', [Clsscontroller::class, 'delete'])->name('clss.delete');
+   Route::get('edit/{class_id}', [Clsscontroller::class, 'edit'])->name('clss.edit');
+   Route::post('update', [Clsscontroller::class, 'update'])->name('clss.update');
+});
+
+
 Route::group(['prefix'=> 'institute'], function () {
-Route::get('/instituteshow', function () {
-   $institute = Institute::all();
-   return view('instituteshow', compact('institute'));
-});
-Route::post('/insert_institute', [institutecontroller::class, 'insert']);
-Route::get('/delete_institute/{institute_id}', [institutecontroller::class, 'delete']);
-Route::get('/edit_institute/{institute_id}', [institutecontroller::class, 'edit']);
-Route::post('/update_institute/{institute_id}', [institutecontroller::class, 'update']);
-Route::get('/insertinstitute', function () {
-   return view('insertinstitute');
-});
-});
+   Route::get('/instituteshow', function () {
+      $institute = Institute::all();
+      return view('instituteshow', compact('institute'));
+   });
+   Route::post('/insert_institute', [institutecontroller::class, 'insert']);
+   Route::get('/delete_institute/{institute_id}', [institutecontroller::class, 'delete']);
+   Route::get('/edit_institute/{institute_id}', [institutecontroller::class, 'edit']);
+   Route::post('/update_institute/{institute_id}', [institutecontroller::class, 'update']);
+   Route::get('/insertinstitute', function () {
+      return view('insertinstitute');
+   });
+   });
 
 Route::group(['prefix'=> '/course'], function () {
    Route::get('/courseview', [CourseController::class, 'view'])->name('course.view');
@@ -99,6 +131,24 @@ Route::group(['prefix' => '/parent'], function () {
    Route::get('show', [ParentController::class, 'showparent']);
 });
 
+Route::group(['prefix' => '/parentdashboard'], function () {
+   Route::get('/', [ParentController::class, 'index1']);
+});
+
+// Route::group(['prefix'=> '/course'], function () {
+//    Route::get('/', [CourseController::class, 'view'])->name('course.view');
+//    Route::get('/add', [CourseController::class, 'insertform']);
+//    Route::post('/add_course', [CourseController::class, 'insert']);
+//    Route::get('/delete/{$course_id}', [CourseController::class, 'delete']);
+// });
 
 
-Route::post('/logout', [MainController::class, 'logout'])->name('logout');
+//communication route
+Route::group(['prefix' => 'communication'], function() {
+    Route::get('/', [communicationcontroller::class, 'index'])->name('communication.form');
+    Route::post('store', [communicationcontroller::class, 'store']);
+    Route::get('view', [communicationcontroller::class, 'view']);
+    Route::get('delete/{staff_id}', [communicationcontroller::class, 'delete']);
+    Route::get('edit/{staff_id}', [communicationcontroller::class, 'edit']);
+    Route::post('update', [communicationcontroller::class, 'update']);
+});

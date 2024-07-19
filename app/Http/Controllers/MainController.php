@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+//namespace App\Http\Controllers\Auth;
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-use App\Models\User;
+use App\Models\users;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
@@ -26,14 +26,22 @@ class MainController extends Controller
 
 
 public function loginUser(Request $data){
-    //dd($data);
-    $user = User::where('email', $data->input('email'))->first();
-    //dd($user);
-    if ($user && $data->input('password') == $user->password && $data->input('user_id') == $user->user_id) {
-        //session()->put('id', $user->id);
-        session()->put('user_id', $user->user_id); // Add authentication of user_id
-        return redirect('/form');
+
+
+
+    if (Auth::attempt(['email' => $data->email, 'password' => $data->password])) {
+        return redirect()->route('form');
     }
+
+
+    // //dd($data);
+    // $user = User::where('email', $data->input('email'))->first();
+    // //dd($user);
+    // if ($user && $data->input('password') == $user->password && $data->input('user_id') == $user->user_id) {
+    //     //session()->put('id', $user->id);
+    //     session()->put('user_id', $user->user_id); // Add authentication of user_id
+    //     return redirect('/form');
+    // }
     return redirect('/login')->with('error', 'Invalid email or password or ID');
 }
 
@@ -46,14 +54,14 @@ public function loginUser(Request $data){
         ]);
     
         try {
-            $newUser = new User();
+            $newUser = new users();
             $newUser->name = $validatedData['name'];
             $newUser->email = $validatedData['email'];
             // Hash the password for security
             $newUser->password = Hash::make($validatedData['password']);
     
             if($newUser->save()){
-                return redirect('/')->with('success', 'Registered successfully!');
+                return redirect('/login')->with('success', 'Registered successfully!');
             } else {
                 // Debug statement to check if save() method returns false
                 dd('Failed to save user');

@@ -283,7 +283,7 @@ nav.close ~ .dashboard .top{
                 <a href="#studentSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Student</a>
                 <ul class="collapse list-unstyled" id="studentSubmenu">
                     <li><a href="{{url('/student')}}" onclick="displayInfo('student', 'profile')">Profile</a></li>
-                    <li><a href="#" onclick="displayInfo('student', 'grades')">Grades</a></li>
+                    <li><a href="{{url('/student_dashboard')}}"  onclick="displayInfo('student', 'student_dashboard')">Student Dashboard</a></li>
                     <li><a href="#" onclick="displayInfo('student', 'attendance')">Attendance</a></li>
                 </ul>
             </li>
@@ -308,9 +308,9 @@ nav.close ~ .dashboard .top{
                 <a href="#managementSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Management</a>
                 <ul class="collapse list-unstyled" id="managementSubmenu">
                     <li><a href="{{url('/staff')}}" onclick="displayInfo('management', 'staff information')">Staff information</a></li>
+                    <li><a href="{{url('/clss')}}" onclick="displayInfo('management', 'class')">Class</a></li>
                     <li><a href="#" onclick="displayInfo('management', 'add staff')">Add Staff</a></li>
-                    <li><a href="#" onclick="displayInfo('management', 'reports')">Reports</a></li>
-                    <li><a href="#" onclick="displayInfo('management', 'analytics')">Analytics</a></li>
+                    <li><a href="{{url('/communication')}}" onclick="displayInfo('management', 'reports')">Communication</a></li>
                     <li><a href="#" onclick="displayInfo('management', 'settings')">Settings</a></li>
                 </ul>
             </li>
@@ -318,7 +318,7 @@ nav.close ~ .dashboard .top{
                 <a href="#parentsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Parents</a>
                 <ul class="collapse list-unstyled" id="parentsSubmenu">
                     <li><a href="{{url('/parent')}}" onclick="displayInfo('parents', 'children')">Parent Profile</a></li>
-                    <li><a href="#" onclick="displayInfo('parents', 'progress')">Progress</a></li>
+                    <li><a href="{{url('/parentdashboard')}}" onclick="displayInfo('parents', 'progress')">Parent Dashboard</a></li>
                     <li><a href="#" onclick="displayInfo('parents', 'messages')">Messages</a></li>
                 </ul>
             </li>
@@ -336,13 +336,11 @@ nav.close ~ .dashboard .top{
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                        <button onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="logout-button">
-                           Logout
-                        </button>
-</a>
-<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-    @csrf
-                            </form>
+                            <div class="logout-button">
+                        <a href="{{ route('logout') }}"style="color: white;">
+                                Logout
+                            </a>
+                            </div>
                         </li>
                     </ul>
                 </div>
@@ -386,17 +384,17 @@ nav.close ~ .dashboard .top{
                     <div class="box box1">
                         <i class="uil uil-thumbs-up"></i>
                         <span class="text">Total Students</span>
-                        <span class="number">50,120</span>
+                        <span class="number">{{ $rowCount1 }}</span>
                     </div>
                     <div class="box box2">
                         <i class="uil uil-comments"></i>
                         <span class="text">Total faculties</span>
-                        <span class="number">1500</span>
+                        <span class="number">{{ $rowCount2 }}</span>
                     </div>
                     <div class="box box3">
                         <i class="uil uil-comments"></i>
                         <span class="text">Total Institute</span>
-                        <span class="number">50</span>
+                        <span class="number">{{ $rowCount3 }}</span>
                     </div>
 
                 </div>
