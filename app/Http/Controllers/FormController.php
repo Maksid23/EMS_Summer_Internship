@@ -39,4 +39,5 @@ class FormController extends Controller
         // Redirect back to the form page with a success message
         return redirect()->route('form')->with('success', 'Form submitted successfully!');
     }
+    
 }
