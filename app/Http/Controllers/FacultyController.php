@@ -131,6 +131,6 @@ class FacultyController
         $faculty->save();
 
         // Redirect back with a success message
-        return redirect('/faculty/show')->with('success', 'Faculty added successfully.');
+        return redirect('/faculty/show')->with('success', 'Faculty updated successfully.');
     }
 }

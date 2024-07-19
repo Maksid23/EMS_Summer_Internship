@@ -282,9 +282,9 @@ nav.close ~ .dashboard .top{
             <li class="active">
                 <a href="#studentSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Student</a>
                 <ul class="collapse list-unstyled" id="studentSubmenu">
-                    <li><a href="{{url('/student')}}" onclick="displayInfo('student', 'profile')">Profile</a></li>
-                    <li><a href="#" onclick="displayInfo('student', 'grades')">Grades</a></li>
-                    <li><a href="#" onclick="displayInfo('student', 'attendance')">Attendance</a></li>
+                    <li><a href="{{url('/student')}}" onclick="displayInfo('student', 'profile')">Add Student</a></li>
+                    <li><a href="{{url('/student/view')}}" onclick="displayInfo('student', 'grades')">View Student</a></li>
+                    <!-- <li><a href="#" onclick="displayInfo('student', 'attendance')">Attendance</a></li> -->
                 </ul>
             </li>
             <li>
@@ -297,11 +297,11 @@ nav.close ~ .dashboard .top{
                 </ul>
             </li>
             <li>
-                <a href="#teacherSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Teacher</a>
+                <a href="#teacherSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Faculty</a>
                 <ul class="collapse list-unstyled" id="teacherSubmenu">
-                    <li><a href="{{url('/faculty')}}" onclick="displayInfo('teacher', 'profile')">Faculty Profile</a></li>
-                    <li><a href="#" onclick="displayInfo('teacher', 'classes')">Classes</a></li>
-                    <li><a href="#" onclick="displayInfo('teacher', 'schedule')">Schedule</a></li>
+                    <li><a href="{{url('/faculty')}}" onclick="displayInfo('teacher', 'profile')">Add Faculty</a></li>
+                    <li><a href="{{url('/faculty/show')}}" onclick="displayInfo('teacher', 'classes')">Show Faculty</a></li>
+                    <!-- <li><a href="#" onclick="displayInfo('teacher', 'schedule')">Schedule</a></li> -->
                 </ul>
             </li>
             <li>
