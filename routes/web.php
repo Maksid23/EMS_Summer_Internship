@@ -9,6 +9,8 @@ use App\Http\Controllers\MainController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\ParentController;
 use App\Http\Controllers\Clsscontroller;
+use App\Http\Controllers\student_dashboard_Controller;
+use App\Http\Controllers\CourseController;
 use App\Models\Student;
 use App\Models\Institute;
 
@@ -62,6 +64,10 @@ Route::group(['prefix' => '/faculty'], function () {
    Route::get('show', [FacultyController::class, 'showFaculty'])->name('show.faculty');
 });
 
+Route::group(['prefix' => '/student_dashboard'], function () {
+   Route::get('/', [student_dashboard_Controller::class, 'index'])->name('dashboard.form');
+});
+
 Route::group(['prefix' => '/student'], function () {
    Route::get('/', [StudentController::class, 'index'])->name('student.form');
    Route::post('store', [StudentController::class, 'store'])->name('student.store');
@@ -110,6 +116,9 @@ Route::group(['prefix' => '/parent'], function () {
    Route::get('show', [ParentController::class, 'showparent']);
 });
 
-
-
-
+Route::group(['prefix'=> '/course'], function () {
+   Route::get('/', [CourseController::class, 'view'])->name('course.view');
+   Route::get('/add', [CourseController::class, 'insertform']);
+   Route::post('/add_course', [CourseController::class, 'insert']);
+   Route::get('/delete/{$course_id}', [CourseController::class, 'delete']);
+});
