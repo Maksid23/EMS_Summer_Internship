@@ -297,11 +297,11 @@ nav.close ~ .dashboard .top{
                 </ul>
             </li>
             <li>
-                <a href="#teacherSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Teacher</a>
+                <a href="#teacherSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Faculty</a>
                 <ul class="collapse list-unstyled" id="teacherSubmenu">
                     <li><a href="{{url('/faculty')}}" onclick="displayInfo('teacher', 'profile')">Faculty Profile</a></li>
                     <li><a href="#" onclick="displayInfo('teacher', 'classes')">Classes</a></li>
-                    <li><a href="#" onclick="displayInfo('teacher', 'schedule')">Schedule</a></li>
+                    <li><a href="{{url('/studentTimetable')}}" onclick="displayInfo('teacher', 'schedule')">Timetable</a></li>
                 </ul>
             </li>
             <li>

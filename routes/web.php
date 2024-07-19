@@ -9,6 +9,7 @@ use App\Http\Controllers\MainController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\ParentController;
 use App\Http\Controllers\Clsscontroller;
+use App\Http\Controllers\studenttimetablecontroller;
 use App\Models\Student;
 use App\Models\Institute;
 
@@ -109,6 +110,14 @@ Route::group(['prefix' => '/parent'], function () {
    Route::get('updateRecord/{parent_id}', [ParentController::class, 'edit']);
    Route::get('show', [ParentController::class, 'showparent']);
 });
+
+Route::get('/studentTimetable',[studenttimetablecontroller::class, 'showstudtimeform']);
+Route::post('/studentTimetable/store', [studenttimetablecontroller::class, 'storestudtimetable'])->name('timetable.store');
+Route::get('/studentTimetable/show',[studenttimetablecontroller::class,'showstudtime']);
+Route::get('/studentTimetable/delete/{stud_timetable}',[studenttimetablecontroller::class,'delete']);
+Route::get('/studentTimetable/updateshow/{stud_timetable}',[studenttimetablecontroller::class,'updateinfoview']);
+Route::post('/studentTimetable/update',[studenttimetablecontroller::class,'update']);
+
 
 
 
