@@ -34,6 +34,7 @@
       
 
       <!-- Email input box -->
+      
       <div class="input_box">
         <label for="name">Name</label>
         <input type="string" name="name" placeholder="Enter Name" required />

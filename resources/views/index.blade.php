@@ -290,9 +290,9 @@ nav.close ~ .dashboard .top{
             <li>
                 <a href="#instituteSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Institute</a>
                 <ul class="collapse list-unstyled" id="instituteSubmenu">
-                    <li><a href="{{url('/institute')}}" onclick="displayInfo('institute', 'view institute')">View Institute</a></li>
+                    <li><a href="{{url('/institute/instituteshow')}}" onclick="displayInfo('institute', 'view institute')">View Institute</a></li>
                     <li><a href="{{url('/institute/insertinstitute')}}" onclick="displayInfo('institute', 'profile')">Add Institute</a></li>
-                    <li><a href="#" onclick="displayInfo('institute', 'classes')">Classes</a></li>
+                    <li><a href="{{url('/course/courseview')}}" onclick="displayInfo('courses', 'classes')">View Courses</a></li>
                     <li><a href="#" onclick="displayInfo('institute', 'schedule')">Schedule</a></li>
                 </ul>
             </li>
@@ -310,7 +310,7 @@ nav.close ~ .dashboard .top{
                     <li><a href="{{url('/staff')}}" onclick="displayInfo('management', 'staff information')">Staff information</a></li>
                     <li><a href="{{url('/clss')}}" onclick="displayInfo('management', 'class')">Class</a></li>
                     <li><a href="#" onclick="displayInfo('management', 'add staff')">Add Staff</a></li>
-                    <li><a href="#" onclick="displayInfo('management', 'reports')">Reports</a></li>
+                    <li><a href="{{url('/communication')}}" onclick="displayInfo('management', 'reports')">Communication</a></li>
                     <li><a href="#" onclick="displayInfo('management', 'settings')">Settings</a></li>
                 </ul>
             </li>
@@ -318,7 +318,7 @@ nav.close ~ .dashboard .top{
                 <a href="#parentsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Parents</a>
                 <ul class="collapse list-unstyled" id="parentsSubmenu">
                     <li><a href="{{url('/parent')}}" onclick="displayInfo('parents', 'children')">Parent Profile</a></li>
-                    <li><a href="#" onclick="displayInfo('parents', 'progress')">Progress</a></li>
+                    <li><a href="{{url('/parentdashboard')}}" onclick="displayInfo('parents', 'progress')">Parent Dashboard</a></li>
                     <li><a href="#" onclick="displayInfo('parents', 'messages')">Messages</a></li>
                 </ul>
             </li>
@@ -336,7 +336,8 @@ nav.close ~ .dashboard .top{
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                        <a href="{{ route('logout') }}">
+                            <div class="logout-button">
+                        <a href="{{ route('logout') }}"style="color: white;">
                                 Logout
                             </a>
                         </li>
@@ -382,17 +383,17 @@ nav.close ~ .dashboard .top{
                     <div class="box box1">
                         <i class="uil uil-thumbs-up"></i>
                         <span class="text">Total Students</span>
-                        <span class="number">50,120</span>
+                        <span class="number">{{ $rowCount1 }}</span>
                     </div>
                     <div class="box box2">
                         <i class="uil uil-comments"></i>
                         <span class="text">Total faculties</span>
-                        <span class="number">1500</span>
+                        <span class="number">{{ $rowCount2 }}</span>
                     </div>
                     <div class="box box3">
                         <i class="uil uil-comments"></i>
                         <span class="text">Total Institute</span>
-                        <span class="number">100</span>
+                        <span class="number">{{ $rowCount3 }}</span>
                     </div>
 
                 </div>

@@ -16,7 +16,13 @@ class ParentController extends Controller
         // dd($user);
         return view(('parent_info'),compact('parents'));
     }
-
+    public function index1()
+    {
+        // $parents = parents::all();
+        // dd($user);
+        return view('parentdashboard');
+    }
+    
     public function insert(Request $data)
     {
         $data->validate([
@@ -81,8 +87,7 @@ class ParentController extends Controller
     public function showparent()
     {
         $parents = parents::all();
-        return view('parentinfoview',compact('parents'));
-        
+        return view('parentinfoview',compact('parents')); 
     }
 
 }
