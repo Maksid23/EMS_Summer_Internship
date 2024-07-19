@@ -283,7 +283,7 @@ nav.close ~ .dashboard .top{
                 <a href="#studentSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Student</a>
                 <ul class="collapse list-unstyled" id="studentSubmenu">
                     <li><a href="{{url('/student')}}" onclick="displayInfo('student', 'profile')">Profile</a></li>
-                    <li><a href="#" onclick="displayInfo('student', 'grades')">Grades</a></li>
+                    <li><a href="{{url('/student_dashboard')}}"  onclick="displayInfo('student', 'student_dashboard')">Student Dashboard</a></li>
                     <li><a href="#" onclick="displayInfo('student', 'attendance')">Attendance</a></li>
                 </ul>
             </li>
@@ -292,7 +292,7 @@ nav.close ~ .dashboard .top{
                 <ul class="collapse list-unstyled" id="instituteSubmenu">
                     <li><a href="{{url('/institute')}}" onclick="displayInfo('institute', 'view institute')">View Institute</a></li>
                     <li><a href="{{url('/institute/insertinstitute')}}" onclick="displayInfo('institute', 'profile')">Add Institute</a></li>
-                    <li><a href="#" onclick="displayInfo('institute', 'classes')">Classes</a></li>
+                    <li><a href="{{url('/course')}}" onclick="displayInfo('institute', 'classes')">Course</a></li>
                     <li><a href="#" onclick="displayInfo('institute', 'schedule')">Schedule</a></li>
                 </ul>
             </li>
@@ -337,7 +337,7 @@ nav.close ~ .dashboard .top{
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
                             <div class="logout-button">
-                        <a href="{{ route('logout') }}"style="color: white">
+                        <a href="{{ route('logout') }}"style="color: white;">
                                 Logout
                             </a>
                             </div>
@@ -384,17 +384,17 @@ nav.close ~ .dashboard .top{
                     <div class="box box1">
                         <i class="uil uil-thumbs-up"></i>
                         <span class="text">Total Students</span>
-                        <span class="number">50,120</span>
+                        <span class="number">{{ $rowCount1 }}</span>
                     </div>
                     <div class="box box2">
                         <i class="uil uil-comments"></i>
                         <span class="text">Total faculties</span>
-                        <span class="number">1500</span>
+                        <span class="number">{{ $rowCount2 }}</span>
                     </div>
                     <div class="box box3">
                         <i class="uil uil-comments"></i>
                         <span class="text">Total Institute</span>
-                        <span class="number">100</span>
+                        <span class="number">{{ $rowCount3 }}</span>
                     </div>
 
                 </div>
