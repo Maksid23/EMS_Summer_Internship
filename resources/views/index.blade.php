@@ -336,11 +336,9 @@ nav.close ~ .dashboard .top{
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <div class="logout-button">
                         <a href="{{ route('logout') }}">
                                 Logout
                             </a>
-                            </div>
                         </li>
                     </ul>
                 </div>
@@ -360,7 +358,7 @@ nav.close ~ .dashboard .top{
                 <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
                 <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
             </div>
-            <p>&copy; 2023 Your Company Name. All rights reserved.</p>
+            <p>&copy; 2024 Top-Notch. All rights reserved.</p>
         </div>
         <div class="footer">
             <p>Connect with us:</p>
@@ -369,7 +367,7 @@ nav.close ~ .dashboard .top{
                 <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
                 <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
             </div>
-            <p>&copy; 2023 Top-Notch. All rights reserved.</p>
+            <p>&copy; 2024 Top-Notch. All rights reserved.</p>
         </div>
     </div>
 </div>
