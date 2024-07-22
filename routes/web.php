@@ -32,19 +32,16 @@ Route::group(['middleware' => 'disable_back_btn'], function () {
 });
 
 
-
-//Route::get('/admin',[MainController::class,'admin']);
+// Route to display the registration form
 Route::get('/register1', [MainController::class, 'register1']);
-Route::get('/registerUser', [MainController::class, 'registerUser']);
-// Route::get('/loginUser',[MainController::class,'loginUser']);// Example login route
-// Route::get('/login', function () {
-//     return view('login'); // Ensure 'login' is the correct view name for your login page
-// });
+
+// Route to handle the form submission
+Route::post('/registerUser', [MainController::class, 'registerUser'])->name('register');
 
 
 
 // Route to display the form
-Route::post('/register', [FormController::class, 'submitForm'])->name('register');
+// Route::post('/register', [FormController::class, 'submitForm'])->name('register');
 
 // Route to handle form submission
 // Route::get('/student', [StudentController::class, 'showStudentForm'])->name('student.form');
