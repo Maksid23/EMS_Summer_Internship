@@ -4,11 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Faculty Info View</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <title>Student Timetable</title>
     <style>
         body {
             background-color: #f8f9fa;
@@ -121,74 +117,47 @@
 </head>
 
 <body>
-     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-        <!-- Brand/logo -->
-        <a class="navbar-brand" href="#">EMS</a>
-
-        <!-- Links -->
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" href="{{ URL::to('form') }}">Dashboard</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ URL::to('faculty/show') }}">Show Faculty Info</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ URL::to('faculty') }}">Add Faculty Info</a>
-            </li>
-        </ul>
-    </nav>
     @if (session('success'))
     <div class="alert alert-success">
         {{ session('success') }}
     </div>
     @endif
-    <h1>Faculty Info -></h1>
-    <!-- <a class="button" href="{{ URL::to('faculty') }}">Add Faculty Info</a> -->
+    <h1>Timetable info -></h1>
+    <a class="button" href="{{ URL::to('studentTimetable') }}">Add Student Timetable</a>
     <br>
     <table>
         <thead>
             <tr>
-                <th>faculty_id</th>
-                <th>faculty_name</th>
-                <th>faculty_age</th>
-                <th>faculty_dob</th>
-                <th>faculty_gender</th>
-                <th>faculty_contact</th>
-                <th>faculty_address</th>
-                <th>faculty_email</th>
-                <th>faculty_qualification</th>
-                <th>faculty_doj</th>
-                <th>faculty_specializations</th>
-                <th>faculty_experience</th>
-                <th>faculty_designation</th>
-                <th>faculty_department</th>
+                <th>stud_timetable</th>
+                <th>student Id</th>
+                <th>class Id</th>
+                <th>faculty Id</th>
+                <th>course Id</th>
+                <th>day</th>
+                <th>time</th>
+                <th>location</th>
                 <th>Delete!!</th>
                 <th>Update!!</th>
+                
             </tr>
         </thead>
         <tbody>
-            @foreach ($faculties as $item)
+            @foreach ($Timetables as $item)
             <tr>
+                <td> {{ $item->stud_timetable}} </td>
+                <td> {{ $item->student_id}} </td>
+                <td> {{ $item->class_id}} </td>
                 <td> {{ $item->faculty_id}} </td>
-                <td> {{ $item->faculty_name}} </td>
-                <td> {{ $item->faculty_age}} </td>
-                <td> {{ $item->faculty_dob}} </td>
-                <td> {{ $item->faculty_gender}} </td>
-                <td> {{ $item->faculty_contact}} </td>
-                <td> {{ $item->faculty_address}} </td>
-                <td> {{ $item->faculty_email}} </td>
-                <td> {{ $item->faculty_qualification}} </td>
-                <td> {{ $item->faculty_doj}} </td>
-                <td> {{ $item->faculty_specializations}} </td>
-                <td> {{ $item->faculty_experience}} </td>
-                <td> {{ $item->faculty_designation}} </td>
-                <td> {{ $item->faculty_department}} </td>
+                <td> {{ $item->course_id}} </td>
+                <td> {{ $item->day}} </td>
+                <td> {{ $item->time}} </td>
+                <td> {{ $item->location}} </td>
+                
                 <td>
-                    <a href=" {{URL::to('faculty/delete/'.$item->faculty_id)}} ">Delete</a>
+                    <a href=" {{URL::to('studentTimetable/delete/'.$item->stud_timetable)}} ">Delete</a>
                 </td>
                 <td>
-                    <a href="{{URL::to('faculty/updateshow/'.$item->faculty_id)}}">Update</a>
+                    <a href="{{URL::to('studentTimetable/updateshow/'.$item->stud_timetable)}}">Update</a>
                 </td>
             </tr>
             @endforeach

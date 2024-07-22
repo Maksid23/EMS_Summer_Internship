@@ -275,7 +275,7 @@ nav.close ~ .dashboard .top{
     <!-- Sidebar -->
     <nav id="sidebar">
         <div class="sidebar-header">
-            <h3>Education Management</h3>
+            <h3>Education Management System</h3>
         </div>
 
         <ul class="list-unstyled components">
@@ -355,7 +355,6 @@ nav.close ~ .dashboard .top{
                         <a href="{{ route('logout') }}"style="color: white;">
                                 Logout
                             </a>
-                            </div>
                         </li>
                     </ul>
                 </div>
@@ -408,8 +407,20 @@ nav.close ~ .dashboard .top{
                 <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
                 <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
             </div>
-            <p>&copy; 2023 Your Company Name. All rights reserved.</p>
+            <p>&copy; 2024 Top-Notch. All rights reserved.</p>
         </div>
+<<<<<<< HEAD
+=======
+        <div class="footer">
+            <p>Connect with us:</p>
+            <div class="social-icons">
+                <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+            </div>
+            <p>&copy; 2024 Top-Notch. All rights reserved.</p>
+        </div>
+>>>>>>> e52dcdae5f64ee17e71cca7b4de3c89bc0e7a437
     </div>
 </div>
 @if(Auth::user()->role === 'Institute')

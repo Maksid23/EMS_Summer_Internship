@@ -19,8 +19,8 @@ class StaffController extends Controller
         return [
             'staff_id.required' => 'The staff ID field is required.',
             'staff_id.numeric' => 'The staff ID must be a number.',
-            'user_id.required' => 'The user ID field is required.',
-            'user_id.numeric' => 'The user ID must be a number.',
+            'institute_id.required' => 'The Institute ID field is required.',
+            'institute_id.numeric' => 'The Institute ID must be a number.',
             // other custom messages
         ];
     }
@@ -29,7 +29,7 @@ class StaffController extends Controller
         // Validate the request data
         $validatedData = $request->validate([
             'staff_id' => 'required|numeric',
-            'user_id' => 'required|numeric',
+            'institute_id' => 'required|numeric',
             'staff_name' => 'required|string|max:255',
             'contact_number' => 'required',
             'email' => 'required|email|max:255',
@@ -41,7 +41,7 @@ class StaffController extends Controller
         // Create a new Staff record and save it to the database
         $staff = new staff();
         $staff->staff_id = $validatedData['staff_id'];
-        $staff->user_id = $validatedData['user_id'];
+        $staff->institute_id = $validatedData['institute_id'];
         $staff->staff_name = $validatedData['staff_name'];
         $staff->contact_number = $validatedData['contact_number'];
         $staff->email = $validatedData['email'];
@@ -67,7 +67,7 @@ class StaffController extends Controller
     {
         $validatedData = $request->validate([
             'staff_id' => 'required|numeric',
-            'user_id' => 'required|numeric',
+            'institute_id' => 'required|numeric',
             'staff_name' => 'required|string|max:255',
             'contact_number' => 'required',
             'email' => 'required|email|max:255',
@@ -77,7 +77,7 @@ class StaffController extends Controller
         ]);
         $staff = staff::find($request->input('update_id'));
         $staff->staff_id = $validatedData['staff_id'];
-        $staff->user_id = $validatedData['user_id'];
+        $staff->institute_id = $validatedData['institute_id'];
         $staff->staff_name = $validatedData['staff_name'];
         $staff->contact_number = $validatedData['contact_number'];
         $staff->email = $validatedData['email'];

@@ -128,7 +128,7 @@
                         <td data-label="Course Name">{{ $field->course_name }}</td>
                         <td data-label="Actions" class="actions">
                             <a href="{{URL::to('/course/delete/'.$field->course_id)}}">Delete</a>
-                            {{-- <a href="{{URL::to('edit_course/'.$field->course_id)}}">Edit</a>   --}}
+                            <a href="{{URL::to('/course/edit/'.$field->course_id)}}">Edit</a>  
                         </td>
                     </tr>
                 @endforeach

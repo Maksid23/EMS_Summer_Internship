@@ -15,6 +15,9 @@ return new class extends Migration
             $table->id('time_table_id');
             $table->unsignedBigInteger('staff_id');
             $table->unsignedBigInteger('course_id');
+            $table->unsignedBigInteger('institute_id');
+
+            $table->foreign('institute_id')->references('institute_id')->on('institute')->onDelete('cascade');
             $table->string('day',10);
             $table->dateTime('start_time');
             $table->dateTime('end_time');

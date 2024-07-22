@@ -100,9 +100,9 @@
                 @enderror
             </div>
             <div class="form-group">
-                <label for="user_id">User ID:</label>
-                <input type="text" id="user_id" name="user_id">
-                @error('user_id')
+                <label for="institute_id">Institute ID:</label>
+                <input type="text" id="institute_id" name="institute_id">
+                @error('institute_id')
                     <div class="error">{{ $message }}</div>
                 @enderror
             </div>
