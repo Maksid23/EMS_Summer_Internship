@@ -17,9 +17,11 @@ return new class extends Migration
             $table->UnsignedBigInteger('faculty_id'); // Foreign Key (Faculty)
             $table->UnsignedBigInteger('student_id'); // Foreign Key (Student)
             $table->UnsignedBigInteger('class_id'); // Foreign Key (Management)
+            $table->unsignedBigInteger('institute_id');
             $table->timestamps(); // Adds created_at and updated_at columns
-
+            
             // Setting up foreign key constraints
+            $table->foreign('institute_id')->references('institute_id')->on('institute')->onDelete('cascade');
             $table->foreign('parent_id')->references('parent_id')->on('parent') ->onDelete('cascade');
             $table->foreign('faculty_id')->references('faculty_id')->on('faculty_info')->onDelete('cascade');
            $table->foreign('student_id')->references('student_id')->on('student')->onDelete('cascade');

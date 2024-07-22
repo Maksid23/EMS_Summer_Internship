@@ -10,6 +10,7 @@ use App\Http\Controllers\StaffController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ParentController;
 use App\Http\Controllers\Clsscontroller;
+use App\Http\Controllers\studenttimetablecontroller;
 use App\Http\Controllers\student_dashboard_Controller;
 use App\Http\Controllers\communicationcontroller;
 use App\Models\Student;
@@ -31,19 +32,16 @@ Route::group(['middleware' => 'disable_back_btn'], function () {
 });
 
 
-
-//Route::get('/admin',[MainController::class,'admin']);
+// Route to display the registration form
 Route::get('/register1', [MainController::class, 'register1']);
-Route::get('/registerUser', [MainController::class, 'registerUser']);
-// Route::get('/loginUser',[MainController::class,'loginUser']);// Example login route
-// Route::get('/login', function () {
-//     return view('login'); // Ensure 'login' is the correct view name for your login page
-// });
+
+// Route to handle the form submission
+Route::post('/registerUser', [MainController::class, 'registerUser'])->name('register');
 
 
 
 // Route to display the form
-Route::post('/register', [FormController::class, 'submitForm'])->name('register');
+// Route::post('/register', [FormController::class, 'submitForm'])->name('register');
 
 // Route to handle form submission
 // Route::get('/student', [StudentController::class, 'showStudentForm'])->name('student.form');
@@ -142,6 +140,14 @@ Route::group(['prefix' => '/parentdashboard'], function () {
 //    Route::get('/delete/{$course_id}', [CourseController::class, 'delete']);
 // });
 
+Route::group(['prefix' => '/studentTimetable'], function () {
+   Route::get('/', [studenttimetablecontroller::class, 'showstudtimeform']);
+   Route::post('store', [studenttimetablecontroller::class, 'storestudtimetable'])->name('timetable.store');
+   Route::get('show', [studenttimetablecontroller::class, 'showstudtime']);
+   Route::get('delete/{stud_timetable}', [studenttimetablecontroller::class, 'delete']);
+   Route::get('updateshow/{stud_timetable}', [studenttimetablecontroller::class, 'updateinfoview']);
+   Route::post('update', [studenttimetablecontroller::class, 'update']);
+});
 
 //communication route
 Route::group(['prefix' => 'communication'], function() {
@@ -152,3 +158,4 @@ Route::group(['prefix' => 'communication'], function() {
     Route::get('edit/{staff_id}', [communicationcontroller::class, 'edit']);
     Route::post('update', [communicationcontroller::class, 'update']);
 });
+

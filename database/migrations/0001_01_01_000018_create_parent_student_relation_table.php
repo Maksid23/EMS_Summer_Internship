@@ -14,12 +14,14 @@ return new class extends Migration
         Schema::create('parent_student_relation', function (Blueprint $table) {
             $table->increments('psid');
             $table->unsignedBigInteger('parent_id');
+            $table->unsignedBigInteger('institute_id');
             $table->unsignedBigInteger('student_id');
-            $table->timestamps();
-             // Define foreign keys
+            $table->foreign('institute_id')->references('institute_id')->on('institute')->onDelete('cascade');
+            // Define foreign keys
             //  
             $table->foreign('parent_id')->references('parent_id')->on('parent')->onDelete('cascade');
             $table->foreign('student_id')->references('student_id')->on('student')->onDelete('cascade');
+            $table->timestamps();
          });
      } 
        

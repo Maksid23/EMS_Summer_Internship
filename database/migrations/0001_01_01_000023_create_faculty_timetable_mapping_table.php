@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('faculty_timetable_mapping', function (Blueprint $table) {
             $table->id('faculty_timetable_id'); // Primary Key
+            $table->unsignedBigInteger('institute_id');
+            $table->foreign('institute_id')->references('institute_id')->on('institute')->onDelete('cascade');
             $table->unsignedBigInteger('faculty_id'); // Foreign Key (Faculty)
             $table->unsignedBigInteger('timetable_id'); // Foreign Key (Management)
             $table->timestamps(); // Adds created_at and updated_at columns
