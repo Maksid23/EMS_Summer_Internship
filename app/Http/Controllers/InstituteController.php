@@ -7,6 +7,7 @@ use App\Models\Institute;
 
 class institutecontroller extends Controller
 {
+    
     public function insert(Request $data){
         $user=new Institute();
         $user->institute_id=$data->input('institute_id');
