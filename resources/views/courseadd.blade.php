@@ -8,6 +8,29 @@
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <!-- Custom CSS -->
   <link rel="stylesheet" href="{{asset('css/styles.css')}}">
+  <style>
+    /* Custom CSS for the dropdown */
+    .custom-dropdown {
+      width: 100%;
+      padding: 0.375rem 0.75rem;
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.5;
+      color: #495057;
+      background-color: #fff;
+      background-clip: padding-box;
+      border: 1px solid #ced4da;
+      border-radius: 0.25rem;
+      transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+    .custom-dropdown:focus {
+      color: #495057;
+      background-color: #fff;
+      border-color: #80bdff;
+      outline: 0;
+      box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    }
+  </style>
 </head>
 <body>
   <div class="container">
@@ -15,7 +38,7 @@
       <h2 class="text-center mb-4">Course Registration</h2>
       @csrf
       <div class="form-group">
-        <label for="username">Course_ID</label>
+        <label for="username">Course ID</label>
         <input type="integer" id="course_id" name="course_id" class="form-control" required>
         <div class="invalid-feedback">
           Please enter a id.
@@ -23,8 +46,12 @@
       </div>
 
       <div class="form-group">
-        <label for="username">user_ID</label>
-        <input type="integer" id="user_id" name="user_id" class="form-control" required>
+        <label for="username">User ID</label>
+        <select name="user_id" id="user_id" class="custom-dropdown">
+          @foreach ($users as $item)
+              <option value="{{"$item->user_id"}}">{{$item->user_id}}</option>
+          @endforeach
+        </select>
         <div class="invalid-feedback">
           Please enter a id.
         </div>

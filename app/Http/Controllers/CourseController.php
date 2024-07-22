@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\course;
+use App\Models\users;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
@@ -13,8 +14,10 @@ class CourseController extends Controller
     }
 
     public function insertform()
-    {
-        return view('courseadd');
+    {   
+        $users= new users();
+        $users = users::all();
+        return view('courseadd',compact('users'));
     }
 
     public function insert(Request $request)
