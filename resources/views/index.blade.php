@@ -361,12 +361,46 @@ nav.close ~ .dashboard .top{
                 </div>
             </div>
         </nav>
+        @if(Auth::user()->role === 'Student')
         <div class="container-fluid">
             <div id="info-display">
-                <h2>Welcome to the Admin Dashboard</h2>
+                <h2>Welcome to the Student Dashboard</h2>
                 <p>Select an option from the sidebar to view information.</p>
             </div>
         </div>
+        @endif
+        @if(Auth::user()->role === 'Institute')
+        <div class="container-fluid">
+            <div id="info-display">
+                <h2>Welcome to the Institue Dashboard</h2>
+                <p>Select an option from the sidebar to view information.</p>
+            </div>
+        </div>
+        @endif
+        @if(Auth::user()->role === 'Faculty')
+        <div class="container-fluid">
+            <div id="info-display">
+                <h2>Welcome to the Faculty Dashboard</h2>
+                <p>Select an option from the sidebar to view information.</p>
+            </div>
+        </div>
+        @endif
+        @if(Auth::user()->role === 'Management')
+        <div class="container-fluid">
+            <div id="info-display">
+                <h2>Welcome to the Management Dashboard</h2>
+                <p>Select an option from the sidebar to view information.</p>
+            </div>
+        </div>
+        @endif
+        @if(Auth::user()->role === 'Parents')
+        <div class="container-fluid">
+            <div id="info-display">
+                <h2>Welcome to the Parent Dashboard</h2>
+                <p>Select an option from the sidebar to view information.</p>
+            </div>
+        </div>
+        @endif
         <div class="footer">
             <p>Connect with us:</p>
             <div class="social-icons">
@@ -378,6 +412,7 @@ nav.close ~ .dashboard .top{
         </div>
     </div>
 </div>
+@if(Auth::user()->role === 'Institute')
 <section class="dashboard">
 <div class="dash-content">
             <!-- <div class="overview"> -->
@@ -405,6 +440,7 @@ nav.close ~ .dashboard .top{
                 </div>
             <!-- </div> -->
 </section>
+@endif
 <!-- Bootstrap JS and dependencies -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>

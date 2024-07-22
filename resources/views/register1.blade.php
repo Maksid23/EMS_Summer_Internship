@@ -27,15 +27,8 @@
 <form action="{{ route('register') }}" method="POST">
     @csrf
     <div class="input_box">
-        <label for="role">Role</label>
-        <select name="role" id="role" required>
-            <option value="" disabled selected>Select Role</option>
-            <option value="Student">Student</option>
-            <option value="Parents">Parents</option>
-            <option value="Faculty">Faculty</option>
-            <option value="Management">Management</option>
-            <option value="Institute">Institute</option>
-        </select>
+        <label for="institute_id">Institute ID</label>
+        <input type="text" name="institute_id" id="name" placeholder="Enter Institute ID" required>
     </div>
     <div class="input_box">
         <label for="name">Name</label>

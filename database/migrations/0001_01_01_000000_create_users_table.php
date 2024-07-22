@@ -13,6 +13,7 @@ return new class extends Migration
 {
     Schema::create('users', function (Blueprint $table) {
         $table->id(); // This automatically creates an 'id' column as the primary key
+        $table->unsignedBigInteger('institute_id');
         $table->string('role');
         $table->string('name');
         $table->string('email')->unique();

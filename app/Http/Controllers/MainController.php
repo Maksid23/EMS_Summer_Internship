@@ -48,7 +48,8 @@ public function loginUser(Request $data){
 public function registerUser(Request $request){
     // Validate the request data
     $validatedData = $request->validate([
-        'role' => 'required|string|in:Student,Parents,Faculty,Management,Institute',
+        'institute_id'=>'required|unique:users|',
+        'role' => 'string',
         'name' => 'required|string|max:255',
         'email' => 'required|string|email|max:255|unique:users',
         'password' => 'required|string|min:8|confirmed',
@@ -56,12 +57,12 @@ public function registerUser(Request $request){
 
     try {
         $newUser = new users(); // Using 'users' model
-        $newUser->role = $validatedData['role'];
+        $newUser->institute_id = $validatedData['institute_id'];
+        $newUser->role = 'Management';
         $newUser->name = $validatedData['name'];
         $newUser->email = $validatedData['email'];
         // Hash the password for security
         $newUser->password = Hash::make($validatedData['password']);
-        $newUser->email_verified_at = null; // Set to null if not using email verification
 
         if($newUser->save()){
             return redirect('/login')->with('success', 'Registered successfully!');
@@ -76,7 +77,6 @@ public function registerUser(Request $request){
         return redirect('register')->withErrors('Registration failed. Please try again.');
     }
 }
-
 
 
 
