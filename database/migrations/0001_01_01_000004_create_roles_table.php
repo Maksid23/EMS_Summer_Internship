@@ -16,6 +16,8 @@ class CreateRolesTable extends Migration
         Schema::create('roles', function (Blueprint $table) {
 
             $table->id('role_id');
+            $table->unsignedBigInteger('institute_id');
+            $table->foreign('institute_id')->references('institute_id')->on('institute')->onDelete('cascade');
             $table->string('rolename');
             $table->text('description')->nullable();
             $table->timestamps();

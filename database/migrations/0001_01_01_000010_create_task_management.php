@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('task_management', function (Blueprint $table) {
             $table->id('task_id');
             $table->unsignedBigInteger('staff_id');
+            $table->unsignedBigInteger('institute_id');
+            $table->foreign('institute_id')->references('institute_id')->on('institute')->onDelete('cascade');
             $table->text('assigned_task');
             $table->dateTime('task_deadline');
             $table->boolean('task_status')->default(0);

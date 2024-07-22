@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('class_student_mapping', function (Blueprint $table) {
             $table->id('class_student_id'); // Primary Key
-            $table->UnsignedBigInteger('class_id'); // Foreign Key (Management)
+            $table->unsignedBigInteger('institute_id');
+            $table->foreign('institute_id')->references('institute_id')->on('institute')->onDelete('cascade');
+                        $table->UnsignedBigInteger('class_id'); // Foreign Key (Management)
             $table->UnsignedbigInteger('student_id'); // Foreign Key (Student)
             $table->timestamps(); // Adds created_at and updated_at columns
 

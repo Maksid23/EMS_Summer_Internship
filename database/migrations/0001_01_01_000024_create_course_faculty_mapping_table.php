@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('course_faculty_mapping', function (Blueprint $table) {
             $table->id('course_faculty_id'); // Primary Key
-            $table->unsignedBigInteger('course_id'); // Foreign Key (Super Admin)
+            $table->unsignedBigInteger('institute_id');
+            $table->foreign('institute_id')->references('institute_id')->on('institute')->onDelete('cascade');
+                        $table->unsignedBigInteger('course_id'); // Foreign Key (Super Admin)
             $table->unsignedBigInteger('faculty_id'); // Foreign Key (Faculty)
             $table->timestamps(); // Adds created_at and updated_at columns
             

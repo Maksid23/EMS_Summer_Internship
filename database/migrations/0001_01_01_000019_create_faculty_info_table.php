@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('faculty_info', function (Blueprint $table) {
             $table->id('faculty_id'); // Primary Key
-            $table->string('faculty_name', 100);
+            $table->unsignedBigInteger('institute_id');
+            $table->foreign('institute_id')->references('institute_id')->on('institute')->onDelete('cascade');
+                        $table->string('faculty_name', 100);
             $table->integer('faculty_age');
             $table->date('faculty_dob');
             $table->enum('faculty_gender', ['Male', 'Female', 'Other']);
