@@ -30,6 +30,17 @@
       outline: 0;
       box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
     }
+    .readonly-input {
+      background-color: #e9ecef;
+      opacity: 1;
+      color: #495057;
+      border: 1px solid #ced4da;
+      border-radius: 0.25rem;
+      padding: 0.375rem 0.75rem;
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.5;
+    }
   </style>
 </head>
 <body>
@@ -37,6 +48,10 @@
     <form action="{{URL::to('course/add_course')}}" method="post" class="needs-validation" novalidate>
       <h2 class="text-center mb-4">Course Registration</h2>
       @csrf
+      <div class="form-group">
+        <label for="username">Institute ID</label>
+        <input type="text" value="3" class="readonly-input" readonly>
+      </div>
       <div class="form-group">
         <label for="username">Course ID</label>
         <input type="integer" id="course_id" name="course_id" class="form-control" required>
