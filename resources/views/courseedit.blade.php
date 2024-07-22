@@ -51,7 +51,7 @@
                         <input type="text" class="form-control" id="course_name" name="course_name" value="{{ $course->course_name }}" required>
                     </div>
                     <input type="hidden" name="update_id" value="{{$course->course_id}}">
-                    <button type="submit" class="btn btn-primary" name="save">Update Course</button>
+                    <button type="submit" class="btn btn-primary" id="update-course-btn">Update Course</button>
                 </form>
             </div>
         </div>
@@ -59,5 +59,13 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.getElementById('update-course-btn').addEventListener('click', function(event) {
+            var confirmed = confirm('Are you sure you want to update this course?');
+            if (!confirmed) {
+                event.preventDefault();
+            }
+        });
+    </script>
 </body>
 </html>

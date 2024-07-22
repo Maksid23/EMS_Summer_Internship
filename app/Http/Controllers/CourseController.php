@@ -24,9 +24,8 @@ class CourseController extends Controller
         $courses->user_id= $request->user_id;
         $courses->course_name = $request->course_name;
         $courses->save();
-        return redirect()->route('course.view');
+        return redirect()->route('course.view')->with('message', 'Course added successfully');
     }
-
     public function delete($course_id){
         
         $field=course::find($course_id);

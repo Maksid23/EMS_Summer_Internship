@@ -40,6 +40,6 @@ class institutecontroller extends Controller
         $user->contact=$data->input('contact');
         $user->email=$data->input('email');
         $user->save();
-        return redirect('/instituteshow')->with('message','Data Updated Successfully');
+        return redirect('/institute/instituteshow')->with('message','Data Updated Successfully');
     }
 }
