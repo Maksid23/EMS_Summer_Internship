@@ -409,8 +409,6 @@ nav.close ~ .dashboard .top{
             </div>
             <p>&copy; 2024 Top-Notch. All rights reserved.</p>
         </div>
-<<<<<<< HEAD
-=======
         <div class="footer">
             <p>Connect with us:</p>
             <div class="social-icons">
@@ -420,7 +418,6 @@ nav.close ~ .dashboard .top{
             </div>
             <p>&copy; 2024 Top-Notch. All rights reserved.</p>
         </div>
->>>>>>> e52dcdae5f64ee17e71cca7b4de3c89bc0e7a437
     </div>
 </div>
 @if(Auth::user()->role === 'Institute')
