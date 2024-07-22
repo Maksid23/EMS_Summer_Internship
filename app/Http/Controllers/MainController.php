@@ -26,9 +26,6 @@ class MainController extends Controller
 
 
 public function loginUser(Request $data){
-
-
-
     if (Auth::attempt(['email' => $data->email, 'password' => $data->password])) {
         return redirect()->route('form');
     }

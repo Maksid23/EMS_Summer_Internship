@@ -387,7 +387,7 @@ nav.close ~ .dashboard .top{
         @if(Auth::user()->role === 'Management')
         <div class="container-fluid">
             <div id="info-display">
-                <h2>Welcome to the Management Dashboard</h2>
+                <h2>Welcome to the {{ Auth::user()->name }} Dashboard</h2>
                 <p>Select an option from the sidebar to view information.</p>
             </div>
         </div>
