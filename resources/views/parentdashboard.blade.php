@@ -149,34 +149,7 @@
                     <!-- <li><a href="#" onclick="displayInfo('student', 'attendance')">Attendance</a></li> -->
                 </ul>
             </li>
-            <!-- <li>
-                <a href="#instituteSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Institute</a>
-                <ul class="collapse list-unstyled" id="instituteSubmenu">
-                    <li><a href="{{url('/institute/instituteshow')}}" onclick="displayInfo('institute', 'view institute')">View Institute</a></li>
-                    <li><a href="{{url('/institute/insertinstitute')}}" onclick="displayInfo('institute', 'profile')">Add Institute</a></li>
-                    <li><a href="{{url('/course/courseview')}}" onclick="displayInfo('courses', 'classes')">View Courses</a></li>
-                    <li><a href="#" onclick="displayInfo('institute', 'schedule')">Schedule</a></li>
-                </ul>
-            </li> -->
-            <!-- <li>
-                <a href="#teacherSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Faculty</a>
-                <ul class="collapse list-unstyled" id="teacherSubmenu">
-                    <li><a href="{{url('/faculty')}}" onclick="displayInfo('teacher', 'profile')">Add Faculty</a></li>
-                    <li><a href="{{url('/faculty/show')}}" onclick="displayInfo('teacher', 'classes')">Show Faculty</a></li>
-                    <li><a href="{{url('/studentTimetable')}}" onclick="displayInfo('teacher', 'schedule')">Add Student Timetable</a></li>
-                    <li><a href="{{url('/studentTimetable/show')}}" onclick="displayInfo('teacher', 'classes')">Show Student Timetable</a></li>
-                </ul>
-            </li> -->
-            <!-- <li>
-                <a href="#managementSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Management</a>
-                <ul class="collapse list-unstyled" id="managementSubmenu">
-                    <li><a href="{{url('/staff')}}" onclick="displayInfo('management', 'staff information')">Staff information</a></li>
-                    <li><a href="{{url('/clss')}}" onclick="displayInfo('management', 'class')">Class</a></li>
-                    <li><a href="#" onclick="displayInfo('management', 'add staff')">Add Staff</a></li>
-                    <li><a href="{{url('/communication')}}" onclick="displayInfo('management', 'reports')">Communication</a></li>
-                    <li><a href="#" onclick="displayInfo('management', 'settings')">Settings</a></li>
-                </ul>
-            </li> -->
+            
             <li>
                 <a href="#parentsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Parents</a>
                 <ul class="collapse list-unstyled" id="parentsSubmenu">
