@@ -11,6 +11,61 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
     <style>
+   /* General Label Styles */
+label {
+    font-size: large;
+    font-weight: bold;
+}
+
+/* Primary Button Style */
+.btn-primary {
+    background-color: crimson;
+    color: #fff;
+    border: none;
+    border-radius: 5px; /* Added for consistency */
+    padding: 10px 20px; /* Added for consistency */
+    font-size: 16px; /* Added for consistency */
+    font-weight: bold; /* Added for consistency */
+    text-align: center; /* Added for consistency */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; /* Added box-shadow transition */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+/* Button Style for `.button` class */
+.button {
+    display: inline-block;
+    background-color: #007BFF; /* Default background color */
+    color: #fff; /* Text color */
+    border: none;
+    border-radius: 5px; /* Rounded corners */
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    position: absolute; /* Fixed position */
+    top: 30px; /* Distance from top */
+    right: 70px; /* Distance from right */
+    z-index: 1000; /* Ensures the button is on top */
+}
+
+/* Hover effect */
+.button:hover, .btn-primary:hover {
+    background-color: violet; /* Darker shade on hover */
+    transform: translateY(-2px); /* Slight lift on hover */
+}
+
+/* Active effect */
+.button:active, .btn-primary:active {
+    background-color: green; /* Even darker shade on click */
+    transform: translateY(0); /* Reset lift effect */
+}
+
+/* Focus effect */
+.button:focus, .btn-primary:focus {
+    outline: none; /* Remove default focus outline */
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5); /* Custom focus outline */
+}
+
         body {
             background-color: #E4E9F7;
             color: #333;
