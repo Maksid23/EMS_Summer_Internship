@@ -137,7 +137,8 @@ label {
         .button {
             position: absolute;
             right: 8px;
-            margin: 2px 12px;
+            top: 30px;
+            margin: 12px 12px;
             display: inline-block;
             padding: 10px 20px;
             font-size: 16px;
