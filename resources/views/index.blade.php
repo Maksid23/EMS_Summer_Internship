@@ -279,51 +279,66 @@ nav.close ~ .dashboard .top{
         </div>
 
         <ul class="list-unstyled components">
-            <li class="active">
-                <a href="#studentSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Student</a>
-                <ul class="collapse list-unstyled" id="studentSubmenu">
-                    <li><a href="{{url('/student')}}" onclick="displayInfo('student', 'profile')">Profile</a></li>
-                    <li><a href="{{url('/student_dashboard')}}"  onclick="displayInfo('student', 'student_dashboard')">Student Dashboard</a></li>
-                    <li><a href="#" onclick="displayInfo('student', 'attendance')">Attendance</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="#instituteSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Institute</a>
-                <ul class="collapse list-unstyled" id="instituteSubmenu">
-                    <li><a href="{{url('/institute')}}" onclick="displayInfo('institute', 'view institute')">View Institute</a></li>
-                    <li><a href="{{url('/institute/insertinstitute')}}" onclick="displayInfo('institute', 'profile')">Add Institute</a></li>
-                    <li><a href="{{url('/course')}}" onclick="displayInfo('institute', 'classes')">Course</a></li>
-                    <li><a href="#" onclick="displayInfo('institute', 'schedule')">Schedule</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="#teacherSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Teacher</a>
-                <ul class="collapse list-unstyled" id="teacherSubmenu">
-                    <li><a href="{{url('/faculty')}}" onclick="displayInfo('teacher', 'profile')">Faculty Profile</a></li>
-                    <li><a href="#" onclick="displayInfo('teacher', 'classes')">Classes</a></li>
-                    <li><a href="#" onclick="displayInfo('teacher', 'schedule')">Schedule</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="#managementSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Management</a>
-                <ul class="collapse list-unstyled" id="managementSubmenu">
-                    <li><a href="{{url('/staff')}}" onclick="displayInfo('management', 'staff information')">Staff information</a></li>
-                    <li><a href="{{url('/clss')}}" onclick="displayInfo('management', 'class')">Class</a></li>
-                    <li><a href="#" onclick="displayInfo('management', 'add staff')">Add Staff</a></li>
-                    <li><a href="#" onclick="displayInfo('management', 'reports')">Reports</a></li>
-                    <li><a href="#" onclick="displayInfo('management', 'settings')">Settings</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="#parentsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Parents</a>
-                <ul class="collapse list-unstyled" id="parentsSubmenu">
-                    <li><a href="{{url('/parent')}}" onclick="displayInfo('parents', 'children')">Parent Profile</a></li>
-                    <li><a href="#" onclick="displayInfo('parents', 'progress')">Progress</a></li>
-                    <li><a href="#" onclick="displayInfo('parents', 'messages')">Messages</a></li>
-                </ul>
-            </li>
-        </ul>
-    </nav>
+    @if(Auth::user()->role === 'Student'|| Auth::user()->role === 'Institute'||Auth::user()->role === 'Management'||Auth::user()->role === 'Faculty')
+    <li class="active">
+            <a href="#studentSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Student</a>
+            <ul class="collapse list-unstyled" id="studentSubmenu">
+                <li><a href="{{ url('/student') }}" onclick="displayInfo('student', 'profile')">Profile</a></li>
+                <li><a href="{{ url('/student_dashboard') }}" onclick="displayInfo('student', 'student_dashboard')">Student Dashboard</a></li>
+                <li><a href="#" onclick="displayInfo('student', 'attendance')">Attendance</a></li>
+            </ul>
+        </li>
+    @endif
+
+    @if(Auth::user()->role === 'Institute')
+        <li>
+            <a href="#instituteSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Institute</a>
+            <ul class="collapse list-unstyled" id="instituteSubmenu">
+                <li><a href="{{ url('/institute') }}" onclick="displayInfo('institute', 'view institute')">View Institute</a></li>
+                <li><a href="{{ url('/institute/insertinstitute') }}" onclick="displayInfo('institute', 'profile')">Add Institute</a></li>
+                <li><a href="{{ url('/course') }}" onclick="displayInfo('institute', 'classes')">Course</a></li>
+                <li><a href="#" onclick="displayInfo('institute', 'schedule')">Schedule</a></li>
+            </ul>
+        </li>
+    @endif
+
+    @if(Auth::user()->role === 'Faculty'||Auth::user()->role === 'Institute'||Auth::user()->role === 'Management')    
+    <li>
+            <a href="#teacherSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Teacher</a>
+            <ul class="collapse list-unstyled" id="teacherSubmenu">
+                <li><a href="{{ url('/faculty') }}" onclick="displayInfo('teacher', 'profile')">Faculty Profile</a></li>
+                <li><a href="#" onclick="displayInfo('teacher', 'classes')">Classes</a></li>
+                <li><a href="#" onclick="displayInfo('teacher', 'schedule')">Schedule</a></li>
+            </ul>
+        </li>
+       
+    @endif
+
+    @if(Auth::user()->role === 'Management'||Auth::user()->role === 'Institute')
+        <li>
+            <a href="#managementSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Management</a>
+            <ul class="collapse list-unstyled" id="managementSubmenu">
+                <li><a href="{{ url('/staff') }}" onclick="displayInfo('management', 'staff information')">Staff information</a></li>
+                <li><a href="{{ url('/clss') }}" onclick="displayInfo('management', 'class')">Class</a></li>
+                <li><a href="#" onclick="displayInfo('management', 'add staff')">Add Staff</a></li>
+                <li><a href="#" onclick="displayInfo('management', 'reports')">Reports</a></li>
+                <li><a href="#" onclick="displayInfo('management', 'settings')">Settings</a></li>
+            </ul>
+        </li>
+    @endif
+
+    @if(Auth::user()->role === 'Parents'||Auth::user()->role === 'Institute'||Auth::user()->role === 'Management')
+        <li>
+            <a href="#parentsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Parents</a>
+            <ul class="collapse list-unstyled" id="parentsSubmenu">
+                <li><a href="{{ url('/parent') }}" onclick="displayInfo('parents', 'children')">Parent Profile</a></li>
+                <li><a href="#" onclick="displayInfo('parents', 'progress')">Progress</a></li>
+                <li><a href="#" onclick="displayInfo('parents', 'messages')">Messages</a></li>
+            </ul>
+        </li>
+    @endif
+</ul>
+</nav>
 
     <!-- Page Content -->
     <div id="content">
@@ -331,7 +346,7 @@ nav.close ~ .dashboard .top{
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
                 <!-- Other navbar content -->
-
+            
                 <!-- Logout Section -->
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto">
@@ -346,7 +361,6 @@ nav.close ~ .dashboard .top{
                 </div>
             </div>
         </nav>
-
         <div class="container-fluid">
             <div id="info-display">
                 <h2>Welcome to the Admin Dashboard</h2>
@@ -361,15 +375,6 @@ nav.close ~ .dashboard .top{
                 <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
             </div>
             <p>&copy; 2023 Your Company Name. All rights reserved.</p>
-        </div>
-        <div class="footer">
-            <p>Connect with us:</p>
-            <div class="social-icons">
-                <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
-                <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
-            </div>
-            <p>&copy; 2023 Top-Notch. All rights reserved.</p>
         </div>
     </div>
 </div>

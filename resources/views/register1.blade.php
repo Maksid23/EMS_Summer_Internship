@@ -24,67 +24,38 @@
         </ul>
     </div>
 @endif
-    <!-- Login form container -->
-    <form action="{{URL::to('registerUser')}}" method="GET">
-        @csrf
-      <h3>Registration Form</h3>
-
-     
-      <!-- Login option separator -->
-      
-
-      <!-- Email input box -->
-      
-      <div class="input_box">
-        <label for="name">Name</label>
-        <input type="string" name="name" placeholder="Enter Name" required />
-      </div>
-      <div class="input_box">
-        <label for="email">Email</label>
-        <input type="email" name="email" placeholder="Enter email address" required />
-      </div>
-
-      <!-- Paswwrod input box -->
-      <div class="input_box">
-        <div class="password_title">
-          <label for="password">Password</label>
-          <!-- <a href="#">Forgot Password?</a> -->
-        </div>
-        <input type="password" name="password" placeholder="Enter password" required />
-      </div> 
-      
-
-
-
-
-      
-      <!-- <label for="options">Choose an option:</label>
-      <div class="dropdown-container">
-        <select id="options" name="options" class="dropdown">
-            <option value="Super Admin">Super Admin</option>
-            <option value="Management">Management</option>
-            <option value="Faculty">Faculty</option>
+<form action="{{ route('register') }}" method="POST">
+    @csrf
+    <div class="input_box">
+        <label for="role">Role</label>
+        <select name="role" id="role" required>
+            <option value="" disabled selected>Select Role</option>
             <option value="Student">Student</option>
-            <option value="Parent">Parent</option>
+            <option value="Parents">Parents</option>
+            <option value="Faculty">Faculty</option>
+            <option value="Management">Management</option>
+            <option value="Institute">Institute</option>
         </select>
-    </div> -->
+    </div>
+    <div class="input_box">
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name" placeholder="Enter Name" required>
+    </div>
+    <div class="input_box">
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" placeholder="Enter Email" required>
+    </div>
+    <div class="input_box">
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" placeholder="Enter Password" required>
+    </div>
+    <div class="input_box">
+        <label for="password_confirmation">Confirm Password</label>
+        <input type="password" name="password_confirmation" id="password_confirmation" placeholder="Confirm Password" required>
+    </div>
+    <button type="submit">Register</button>
+</form>
 
-
-
-
-
-
-
-
-
-
-
-
-       <!-- Login button -->
-      <button type="submit" name="register">Submit</button>
-
-      <!-- <p class="sign_up">Don't have an account? <a href="#">Sign up</a></p> -->
-    </form>
   </div>
 </body>
 </html>

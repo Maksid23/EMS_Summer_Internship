@@ -45,34 +45,41 @@ public function loginUser(Request $data){
     return redirect('/login')->with('error', 'Invalid email or password or ID');
 }
 
-    public function registerUser(Request $request){
-        // Validate the request data
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8',
-        ]);
-    
-        try {
-            $newUser = new users();
-            $newUser->name = $validatedData['name'];
-            $newUser->email = $validatedData['email'];
-            // Hash the password for security
-            $newUser->password = Hash::make($validatedData['password']);
-    
-            if($newUser->save()){
-                return redirect('/login')->with('success', 'Registered successfully!');
-            } else {
-                // Debug statement to check if save() method returns false
-                dd('Failed to save user');
-            }
-        } catch (\Exception $e) {
-            // Log the error
-            Log::error('User registration failed: ' . $e->getMessage());
-            // Optionally, return an error response
-            return redirect('register1')->withErrors('Registration failed. Please try again.');
-        }   
+public function registerUser(Request $request){
+    // Validate the request data
+    $validatedData = $request->validate([
+        'role' => 'required|string|in:Student,Parents,Faculty,Management,Institute',
+        'name' => 'required|string|max:255',
+        'email' => 'required|string|email|max:255|unique:users',
+        'password' => 'required|string|min:8|confirmed',
+    ]);
+
+    try {
+        $newUser = new users(); // Using 'users' model
+        $newUser->role = $validatedData['role'];
+        $newUser->name = $validatedData['name'];
+        $newUser->email = $validatedData['email'];
+        // Hash the password for security
+        $newUser->password = Hash::make($validatedData['password']);
+        $newUser->email_verified_at = null; // Set to null if not using email verification
+
+        if($newUser->save()){
+            return redirect('/login')->with('success', 'Registered successfully!');
+        } else {
+            // Debug statement to check if save() method returns false
+            dd('Failed to save user');
+        }
+    } catch (\Exception $e) {
+        // Log the error
+        Log::error('User registration failed: ' . $e->getMessage());
+        // Optionally, return an error response
+        return redirect('register')->withErrors('Registration failed. Please try again.');
     }
+}
+
+
+
+
 
     public function logout()
     {
