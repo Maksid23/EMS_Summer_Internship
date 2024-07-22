@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('student_timetable', function (Blueprint $table) {
             $table->increments('stud_timetable')->primary(); // Primary Key
-            $table->unsignedBigInteger('student_id'); // Foreign Key (Student)
+            $table->unsignedBigInteger('institute_id');
+            $table->foreign('institute_id')->references('institute_id')->on('institute')->onDelete('cascade');
+                        $table->unsignedBigInteger('student_id'); // Foreign Key (Student)
             $table->unsignedBiginteger('class_id'); // Foreign Key (Management)
             $table->unsignedBiginteger('faculty_id'); // Foreign Key (Faculty)
             $table->unsignedBigInteger('course_id'); // Foreign Key (Super Admin)

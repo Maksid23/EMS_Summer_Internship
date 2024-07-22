@@ -161,3 +161,4 @@ Route::group(['prefix' => 'communication'], function() {
     Route::get('edit/{staff_id}', [communicationcontroller::class, 'edit']);
     Route::post('update', [communicationcontroller::class, 'update']);
 });
+
