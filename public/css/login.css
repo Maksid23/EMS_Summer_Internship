@@ -162,8 +162,15 @@ form .input_box label {
     margin-bottom: 8px;
 }
 
+form .input_box label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
 /* Input field styling */
-form .input_box input {
+form .input_box input,
+form .input_box select {
     width: 100%;
     height: 57px;
     border: 1px solid #DADAF2;
@@ -176,7 +183,8 @@ form .input_box input {
     transition: 0.2s ease;
 }
 
-form .input_box input:focus {
+form .input_box input:focus,
+form .input_box select:focus {
     border-color: #626cd6;
 }
 
@@ -188,6 +196,28 @@ form .input_box .password_title {
 
 form .input_box {
     position: relative;
+}
+
+/* Optional: Add custom arrow for select dropdown */
+form .input_box select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4.1 7"><path d="M2.4 3.5L0 6.6.7 7.3 3.4 3.8.7.3 0 1z" fill="%23626cd6"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 20px center;
+    background-size: 10px;
+}
+
+/* Optional: Style for older browsers */
+form .input_box select::-ms-expand {
+    display: none;
+}
+
+form .input_box .password_title {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
 }
 
 a {

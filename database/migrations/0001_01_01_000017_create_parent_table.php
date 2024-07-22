@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('parent', function (Blueprint $table) {
             $table->id('parent_id')->unsigned();
-            $table->string('parent_name',100);
+            $table->unsignedBigInteger('institute_id');
+            $table->foreign('institute_id')->references('institute_id')->on('institute')->onDelete('cascade');           
+             $table->string('parent_name',100);
             $table->string('contact_number',15);
             $table->string('parent_email',100);
             $table->text('address');

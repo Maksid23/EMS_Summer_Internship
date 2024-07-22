@@ -14,9 +14,10 @@ return new class extends Migration
         Schema::create('courses', function (Blueprint $table) {
 
             $table->id('course_id');
+            $table->unsignedBigInteger('institute_id');
+            $table->foreign('institute_id')->references('institute_id')->on('institute')->onDelete('cascade');
             $table->bigInteger('user_id')->unsigned();
             $table->string('course_name');
-            $table->foreign('user_id')->references('user_id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

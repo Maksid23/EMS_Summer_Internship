@@ -14,7 +14,9 @@ return new class extends Migration
         Schema::create('student_courses', function (Blueprint $table) {
             $table->bigIncrements('id'); // Assuming 'id' is an auto-incrementing primary key
             $table->unsignedBigInteger('student_id')->unsigned(); // Assuming student_id is a foreign key referencing another table
-            $table->unsignedBigInteger('course_id'); // Assuming course_id is a foreign key referencing another table
+            $table->unsignedBigInteger('institute_id');
+            $table->foreign('institute_id')->references('institute_id')->on('institute')->onDelete('cascade');           
+             $table->unsignedBigInteger('course_id'); // Assuming course_id is a foreign key referencing another table
 
             // Define foreign key constraints
             $table->foreign('student_id')->references('student_id')->on('student')->onDelete('cascade');

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Simple Laravel 11 CRUD</title>
+    <title>STAFF INFORMATION</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 </head>
@@ -56,7 +56,7 @@
         <thead>
             <tr>
                 <th>Staff ID</th>
-                <th>User ID</th>
+                <th>Institute ID</th>
                 <th>Staff Name</th>
                 <th>Contact Number</th>
                 <th>Email</th>
@@ -70,7 +70,7 @@
             @foreach ($user as $member)
                 <tr>
                     <td>{{ $member->staff_id }}</td>
-                    <td>{{ $member->user_id }}</td>
+                    <td>{{ $member->institute_id }}</td>
                     <td>{{ $member->staff_name }}</td>
                     <td>{{ $member->contact_number }}</td>
                     <td>{{ $member->email }}</td>

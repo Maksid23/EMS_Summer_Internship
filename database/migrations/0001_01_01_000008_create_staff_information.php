@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('staff_information', function (Blueprint $table) {
             $table->id('staff_id');
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('institute_id');
+            $table->foreign('institute_id')->references('institute_id')->on('institute')->onDelete('cascade');
             $table->string('staff_name',50);
             $table->enum('gender',["M","F","O"]);
             $table->unsignedBigInteger('contact_number');

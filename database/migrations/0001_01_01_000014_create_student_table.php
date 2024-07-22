@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('student', function (Blueprint $table) {
             $table->id('student_id');
-            $table->unsignedBigInteger('insti_id')->nullable(true);
+            $table->unsignedBigInteger('institute_id');
+            $table->foreign('institute_id')->references('institute_id')->on('institute')->onDelete('cascade');
             $table->string('student_name', 255);
             $table->date('dob');
             $table->string('gender', 10);
