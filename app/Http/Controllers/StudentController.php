@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\studnt;
+use App\Models\users;
+use Illuminate\Support\Facades\Hash;
 
 class StudentController extends Controller
 {
@@ -28,16 +30,22 @@ class StudentController extends Controller
             ]);
 
             $studnt = new studnt();
+            $users = new users();
             $studnt->student_id = $request->input('student_id');
             $studnt->student_name = $request->input('student_name');
+            $users->name = $request->input('student_name');
             $studnt->dob = $request->input('dob');
             $studnt->gender = $request->input('gender');
             $studnt->address = $request->input('address');
             $studnt->parent_guardian_contact_info = $request->input('parent_guardian_contact_info');
             $studnt->other_contact = $request->input('other_contact');
             $studnt->email_address = $request->input('email_address');
+            $users->email = $request->input('email_address');
+            $users->password = Hash::make($request->input('password'));
+            $users->role = 1;
             $studnt->class_id = $request->input('class_id');
             $studnt->save();
+            $users->save();
             return redirect()->back()->with('success', 'Student data stored successfully!');
     }
 

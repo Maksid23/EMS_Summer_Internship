@@ -201,6 +201,17 @@
           </span>
           {{-- <small id="helpId" class="text-muted">Help text</small> --}}
         </div>
+        <div class="form-group">
+          <label for="">Password</label>
+          <input type="password" name="password" id="" class="form-control" placeholder="" 
+           aria-describedby="helpId">
+          <span class="text-danger">
+            @error('email')
+            {{$message}}
+            @enderror
+          </span>
+          {{-- <small id="helpId" class="text-muted">Help text</small> --}}
+        </div>
         <a class="button" href="{{URL::to('student/view')}}" >Show Data</a>
         <button type="submit" class="btn-primary" name="save">
             Submit

@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('student', function (Blueprint $table) {
             $table->id('student_id');
+            $table->unsignedBigInteger('insti_id')->nullable(true);
             $table->string('student_name', 255);
             $table->date('dob');
             $table->string('gender', 10);

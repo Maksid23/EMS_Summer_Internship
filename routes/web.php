@@ -7,8 +7,12 @@ use App\Http\Controllers\institutecontroller;
 use App\Http\Controllers\FacultyController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\StaffController;
+use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ParentController;
-
+use App\Http\Controllers\Clsscontroller;
+use App\Http\Controllers\studenttimetablecontroller;
+use App\Http\Controllers\student_dashboard_Controller;
+use App\Http\Controllers\communicationcontroller;
 use App\Models\Student;
 use App\Models\Institute;
 
@@ -124,14 +128,62 @@ Route::post('/register', [FormController::class, 'submitForm'])->name('register'
 
 
 
-//testing for role based authentication
+Route::group(['prefix' => '/student_dashboard'], function () {
+   Route::get('/', [student_dashboard_Controller::class, 'index'])->name('dashboard.form');
+});
 
-// Route::group(['middleware' => 'teststaff'], function () {
-//    Route::get('/test/teststaff', [MainController::class, 'teststaff'])->name('test.staff');
+
+
+
+
+Route::group(['prefix' => 'clss'], function () {
+   Route::get('/', [Clsscontroller::class, 'index'])->name('clss.form');
+   Route::post('store', [Clsscontroller::class, 'insert'])->name('clss.store');
+   Route::get('view', [Clsscontroller::class, 'view'])->name('clss.view');
+   Route::get('delete/{class_id}', [Clsscontroller::class, 'delete'])->name('clss.delete');
+   Route::get('edit/{class_id}', [Clsscontroller::class, 'edit'])->name('clss.edit');
+   Route::post('update', [Clsscontroller::class, 'update'])->name('clss.update');
+});
+
+
+
+Route::group(['prefix'=> '/course'], function () {
+   Route::get('/courseview', [CourseController::class, 'view'])->name('course.view');
+   Route::get('/add', [CourseController::class, 'insertform']);
+   Route::post('/add_course', [CourseController::class, 'insert']);
+   Route::get('/delete/{course_id}', [CourseController::class, 'delete']);
+   Route::get('/edit/{course_id}', [Coursecontroller::class, 'edit']);
+   Route::post('/update', [coursecontroller::class, 'update']);
+});
+
+
+
+Route::group(['prefix' => '/parentdashboard'], function () {
+   Route::get('/', [ParentController::class, 'index1']);
+});
+
+// Route::group(['prefix'=> '/course'], function () {
+//    Route::get('/', [CourseController::class, 'view'])->name('course.view');
+//    Route::get('/add', [CourseController::class, 'insertform']);
+//    Route::post('/add_course', [CourseController::class, 'insert']);
+//    Route::get('/delete/{$course_id}', [CourseController::class, 'delete']);
 // });
 
+Route::group(['prefix' => '/studentTimetable'], function () {
+   Route::get('/', [studenttimetablecontroller::class, 'showstudtimeform']);
+   Route::post('store', [studenttimetablecontroller::class, 'storestudtimetable'])->name('timetable.store');
+   Route::get('show', [studenttimetablecontroller::class, 'showstudtime']);
+   Route::get('delete/{stud_timetable}', [studenttimetablecontroller::class, 'delete']);
+   Route::get('updateshow/{stud_timetable}', [studenttimetablecontroller::class, 'updateinfoview']);
+   Route::post('update', [studenttimetablecontroller::class, 'update']);
+});
 
-
-// Route::get('/test/testmanagment', [MainController::class, 'testmanagment'])->name('test.managment');
-
-
+//communication route
+Route::group(['prefix' => 'communication'], function() {
+    Route::get('/', [communicationcontroller::class, 'index'])->name('communication.form');
+    Route::post('store', [communicationcontroller::class, 'store']);
+    Route::get('view', [communicationcontroller::class, 'view']);
+    Route::get('delete/{staff_id}', [communicationcontroller::class, 'delete']);
+    Route::get('edit/{staff_id}', [communicationcontroller::class, 'edit']);
+    Route::post('update', [communicationcontroller::class, 'update']);
+});

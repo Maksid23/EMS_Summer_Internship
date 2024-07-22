@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use App\Models\Institute;
+use App\Models\studnt;
+use App\Models\Faculty;
 
 class FormController extends Controller
 {
@@ -12,9 +16,20 @@ class FormController extends Controller
      *
      * @return \Illuminate\View\View
      */
+ 
+
     public function showForm()
     {
-        return view('index');
+        $all = DB::select("select count(student_id) as student_count from student where insti_id = 2");
+        //dd($all);
+        $rowCount1 = $all[0]->student_count;
+        $rowCount2 = Faculty::count();
+        $rowCount3 = Institute::count();
+        return view('index', [
+            'rowCount1' => $rowCount1,
+            'rowCount2' => $rowCount2,
+            'rowCount3' => $rowCount3,
+        ]);
     }
 
     /**

@@ -15,7 +15,7 @@ class Authstudent
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(auth()->user() && auth()->user()->role == '1'){
+        if(auth()->user() && auth()->user()->role == '1' || auth()->user()->role == '4'){
             return $next($request);
         }
         return redirect('/');
