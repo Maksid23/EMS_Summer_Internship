@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\studnt;
 use App\Models\users;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class StudentController extends Controller
 {
@@ -31,6 +32,7 @@ class StudentController extends Controller
 
             $studnt = new studnt();
             $studnt->student_id = $request->input('student_id');
+            $studnt->institute_id = Auth::user()->institute_id;
             $studnt->student_name = $request->input('student_name');
             $studnt->dob = $request->input('dob');
             $studnt->gender = $request->input('gender');
@@ -43,12 +45,14 @@ class StudentController extends Controller
 
 
             $users = new users();
+            $users->institute_id = Auth::user()->institute_id;
             $users->name = $request->input('student_name');
             $users->email = $request->input('email_address');
             $users->password = Hash::make($request->input('password'));
-            $users->role = 1;
+            $users->role = 'Student';
             $users->save();
 
+            
             
             return redirect()->back()->with('success', 'Student data stored successfully!');
     }

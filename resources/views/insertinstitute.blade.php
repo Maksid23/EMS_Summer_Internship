@@ -53,6 +53,14 @@
           Please enter a valid email address.
         </div>
       </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" class="form-control" required>
+        <div class="invalid-feedback">
+          Please enter a valid password address.
+        </div>
+      </div>
       
 
       <button type="submit" class="btn btn-primary btn-block">Register</button>

@@ -1,4 +1,4 @@
-@extends('layouts.index')
+@extends('index')
 
 @section('content')
 <div class="container">
@@ -72,6 +72,14 @@
             <label for="faculty_email">Faculty Email Address</label>
             <input type="email" class="form-control" id="faculty_email" name="faculty_email" placeholder="Enter Email Address" required>
             @error('faculty_email')
+            <div class="error">{{ $message }}</div>
+            @enderror
+        </div>
+
+        <div class="form-group">
+            <label for="faculty_password">Faculty Password</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password" required>
+            @error('faculty_password')
             <div class="error">{{ $message }}</div>
             @enderror
         </div>

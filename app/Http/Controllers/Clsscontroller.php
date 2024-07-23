@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\clss;
+use Illuminate\Support\Facades\Auth;
 
 class Clsscontroller extends Controller
 {
@@ -23,6 +24,7 @@ class Clsscontroller extends Controller
 
         $class = new clss();
         $class->class_id = $request->input('class_id');
+        $class->institute_id = Auth::user()->institute_id;
         $class->staff_id = $request->input('staff_id');
         $class->location = $request->input('location');
 

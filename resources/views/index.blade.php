@@ -110,8 +110,87 @@
         .footer .social-icons a i {
             font-size: 20px;
         }
-        .btn-primary {
-            margin-top: 10px;
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .form-container {
+            background-color: #fff;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            /* Ensures padding does not affect overall width */
+        }
+
+        .form-group textarea {
+            height: 100px;
+            resize: vertical;
+            /* Allows vertical resizing, generally a good UX choice */
+        }
+
+        .form-group button[type="submit"] {
+            width: 100%;
+            padding: 10px 0;
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .form-group button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .form-container {
+                width: calc(100% - 40px);
+            }
+        }
+    
+
+        .button-link {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #ffffff;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .button-link:hover {
+            background-color: #0056b3;
         }
     </style>
 </head>
@@ -124,66 +203,60 @@
             <h3>Education Management System</h3>
         </div>
         <ul class="list-unstyled components">
-    @if(Auth::user()->role === 'Student')
-    <li class="active">
-            <a href="#studentSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Student</a>
-            <ul class="collapse list-unstyled" id="studentSubmenu">
-                <li><a href="{{ url('/student_dashboard') }}" onclick="displayInfo('student', 'student_dashboard')">Student Dashboard</a></li>
-                <li><a href="#" onclick="displayInfo('student', 'attendance')">Attendance</a></li>
-            </ul>
-        </li>
-    @endif
+            @if(Auth::user()->role === 'Student')
+            <li class="active">
+                <a href="#studentSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Student</a>
+                <ul class="collapse list-unstyled" id="studentSubmenu">
+                    <li><a href="{{ url('/student_dashboard') }}" onclick="displayInfo('student', 'student_dashboard')">Student Dashboard</a></li>
+                    <li><a href="#" onclick="displayInfo('student', 'attendance')">Attendance</a></li>
+                </ul>
+            </li>
+            @endif
 
-    @if(Auth::user()->role === 'Institute')
-        <li>
-            <a href="#instituteSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Institute</a>
-            <ul class="collapse list-unstyled" id="instituteSubmenu">
-                
-                <li><a href="{{ url('/institute/insertinstitute') }}" onclick="displayInfo('institute', 'profile')">Add Institute</a></li>
-                <li><a href="{{ url('/institute') }}" onclick="displayInfo('institute', 'view institute')">View Institute</a></li>
-                <!-- <li><a href="{{ url('/course') }}" onclick="displayInfo('institute', 'classes')">Course</a></li>
-                <li><a href="#" onclick="displayInfo('institute', 'schedule')">Schedule</a></li> -->
-            </ul>
-        </li>
-    @endif
+            @if(Auth::user()->role === 'Institute')
+            <li>
+                <a href="#instituteSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Institute</a>
+                <ul class="collapse list-unstyled" id="instituteSubmenu">
+                    <li><a href="{{ url('/institute/insertinstitute') }}" onclick="displayInfo('institute', 'profile')">Add Institute</a></li>
+                    <li><a href="{{ url('/institute') }}" onclick="displayInfo('institute', 'view institute')">View Institute</a></li>
+                </ul>
+            </li>
+            @endif
 
-    @if(Auth::user()->role === 'Faculty')    
-    <li>
-            <a href="#teacherSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Faculty</a>
-            <a href="#teacherSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Faculty</a>
-            <ul class="collapse list-unstyled" id="teacherSubmenu">
-                <li><a href="#" onclick="displayInfo('teacher', 'classes')">Classes</a></li>
-                <li><a href="#" onclick="displayInfo('teacher', 'schedule')">Schedule</a></li>
-            </ul>
-        </li>
-       
-    @endif
+            @if(Auth::user()->role === 'Faculty')
+            <li>
+                <a href="#teacherSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Faculty</a>
+                <ul class="collapse list-unstyled" id="teacherSubmenu">
+                    <li><a href="#" onclick="displayInfo('teacher', 'classes')">Classes</a></li>
+                    <li><a href="#" onclick="displayInfo('teacher', 'schedule')">Schedule</a></li>
+                </ul>
+            </li>
+            @endif
 
-    @if(Auth::user()->role === 'Management')
-        <li>
-            <a href="#managementSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Management</a>
-            <ul class="collapse list-unstyled" id="managementSubmenu">
-            <li><a href="{{ url('/student') }}" onclick="displayInfo('student', 'add_student')">Add Student</a></li>    
-            <li><a href="{{ url('/staff') }}" onclick="displayInfo('management', 'add_staff')">Add Staff </a></li>
-                <li><a href="{{ url('/clss') }}" onclick="displayInfo('management', 'add_class')">Add Class</a></li>
-                <li><a href="{{ url('/faculty') }}" onclick="displayInfo('management', 'add_faculty')">Add Faculty</a></li>
-                <li><a href="{{ url('/parent') }}" onclick="displayInfo('parents', 'children')">Add Parent </a></li>
-                <li><a href="#" onclick="displayInfo('management', 'settings')"></a></li>
-            </ul>
-        </li>
-    @endif
+            @if(Auth::user()->role === 'Management')
+            <li>
+                <a href="#managementSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Management</a>
+                <ul class="collapse list-unstyled" id="managementSubmenu">
+                    <li><a href="{{ url('/student') }}" onclick="displayInfo('student', 'add_student')">Add Student</a></li>
+                    <li><a href="{{ url('/staff') }}" onclick="displayInfo('management', 'add_staff')">Add Staff</a></li>
+                    <li><a href="{{ url('/clss') }}" onclick="displayInfo('management', 'add_class')">Add Class</a></li>
+                    <li><a href="{{ url('/faculty') }}" onclick="displayInfo('management', 'add_faculty')">Add Faculty</a></li>
+                    <li><a href="{{ url('/parent') }}" onclick="displayInfo('parents', 'children')">Add Parent</a></li>
+                </ul>
+            </li>
+            @endif
 
-    @if(Auth::user()->role === 'Parents')
-        <li>
-            <a href="#parentsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Parents</a>
-            <ul class="collapse list-unstyled" id="parentsSubmenu">
-                <li><a href="#" onclick="displayInfo('parents', 'progress')">Progress</a></li>
-                <li><a href="#" onclick="displayInfo('parents', 'messages')">Messages</a></li>
-            </ul>
-        </li>
-    @endif
-</ul>
-</nav>
+            @if(Auth::user()->role === 'Parents')
+            <li>
+                <a href="#parentsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Parents</a>
+                <ul class="collapse list-unstyled" id="parentsSubmenu">
+                    <li><a href="#" onclick="displayInfo('parents', 'progress')">Progress</a></li>
+                    <li><a href="#" onclick="displayInfo('parents', 'messages')">Messages</a></li>
+                </ul>
+            </li>
+            @endif
+        </ul>
+    </nav>
 
     <!-- Page Content -->
     <div id="content">
@@ -201,22 +274,22 @@
                     </ul>
                 </div>
             </div>
-        </nav>
-        
+        </nav> 
+
         <!-- Content will be injected here -->
         @yield('content')
-        
-        <!-- Footer -->
-        <div class="footer">
-            <p>Connect with us:</p>
-            <div class="social-icons">
-                <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
-                <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
-            </div>
-            <p>&copy; 2024 Top-Notch. All rights reserved.</p>
-        </div>
     </div>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+    <p>Connect with us:</p>
+    <div class="social-icons">
+        <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+    </div>
+    <p>&copy; 2024 Top-Notch. All rights reserved.</p>
 </div>
 
 <!-- Bootstrap JS and dependencies -->
