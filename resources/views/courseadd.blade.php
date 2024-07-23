@@ -62,9 +62,11 @@
 
       <div class="form-group">
         <label for="username">User ID</label>
-        <select name="user_id" id="user_id" class="custom-dropdown">
+        <select name="user_id" id="user_id" class="custom-dropdown" aria-placeholder="User-id">
+          <option value="" disabled selected>Select User-id</option>  
           @foreach ($users as $item)
-              <option value="{{"$item->user_id"}}">{{$item->user_id}}</option>
+              
+              <option value="{{"$item->id"}}">{{$item->id}}</option>
           @endforeach
         </select> 
         <div class="invalid-feedback">
