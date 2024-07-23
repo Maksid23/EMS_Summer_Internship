@@ -15,6 +15,5 @@ class Institute extends Model
         'institute_name',
         'address',
         'contact',
-        'email',
-    'password',];
+        'email',];
 }
