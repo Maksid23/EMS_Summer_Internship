@@ -298,11 +298,11 @@ label {
         <form action="{{ URL::to('student/store') }}" method="post">
                 @csrf
                 <div class="form-row">
-                    <div class="form-group col-md-6">
+                    {{-- <div class="form-group col-md-6">
                         <label for="student_id">Student ID</label>
                         <input type="text" name="student_id" class="form-control" placeholder="Enter Student ID" required>
                         <span class="text-danger">@error('student_id') {{$message}} @enderror</span>
-                    </div>
+                    </div> --}}
                     <div class="form-group col-md-6">
                         <label for="class_id">Class ID</label>
                         <input type="text" name="class_id" class="form-control" placeholder="Enter Class ID" required>

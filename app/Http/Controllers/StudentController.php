@@ -16,7 +16,7 @@ class StudentController extends Controller
     public function store(Request $request){
         $request->validate(
             [
-                'student_id' => 'required',
+                //'student_id' => 'required',
                 'student_name'=>'required',
                 'dob' => 'required|date',
                 'gender' => 'required',
@@ -28,7 +28,7 @@ class StudentController extends Controller
             ]);
 
             $studnt = new studnt();
-            $studnt->student_id = $request->input('student_id');
+            //$studnt->student_id = $request->input('student_id');
             $studnt->student_name = $request->input('student_name');
             $studnt->dob = $request->input('dob');
             $studnt->gender = $request->input('gender');
