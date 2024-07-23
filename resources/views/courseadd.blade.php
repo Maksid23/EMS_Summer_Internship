@@ -49,8 +49,17 @@
       <h2 class="text-center mb-4">Course Registration</h2>
       @csrf
       <div class="form-group">
-        <label for="username">Institute ID</label>
-        <input type="text" value="3" class="readonly-input" readonly>
+        <label for="username">institute ID</label>
+        <select name="institute_id" id="institute_id" class="custom-dropdown" aria-placeholder="User-id">
+          <option value="" disabled selected>Select Institute-id</option>  
+          @foreach ($institutes as $data)
+              
+              <option value="{{"$data->institute_id"}}">{{$data->institute_id}}</option>
+          @endforeach
+        </select> 
+        <div class="invalid-feedback">
+          Please enter a id.
+        </div>
       </div>
       <div class="form-group">
         <label for="username">Course ID</label>

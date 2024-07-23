@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\course;
 use App\Models\users;
+use App\Models\Institute;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
@@ -14,16 +15,17 @@ class CourseController extends Controller
     }
 
     public function insertform()
-    {   
+    {   $institutes= Institute::all();
         $users= new users();
         $users = users::all();
-        return view('courseadd',compact('users'));
+        return view('courseadd',compact('users','institutes'));
     }
 
     public function insert(Request $request)
     {
         $courses = new course();
-        $courses->course_name = $request->course_name;
+        $courses->course_id = $request->course_id;
+        $courses->institute_id = $request->institute_id;
         $courses->user_id= $request->user_id;
         $courses->course_name = $request->course_name;
         $courses->save();
