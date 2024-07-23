@@ -13,6 +13,12 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->alias([
             'disable_back_btn' => \App\Http\Middleware\DisableBackBtn::class,
+            'teststaff' => \App\Http\Middleware\teststaff::class,
+            'Authinstitute' => \App\Http\Middleware\Authinstitute::class,
+            'Authmanagement'=>App\Http\Middleware\Authmanagement::class,
+            'Authparent' => \App\Http\Middleware\Authparent::class,
+            'Authstudent'=>App\Http\Middleware\Authstudent::class,
+            'Authteacher'=>App\Http\Middleware\Authteacher::class,
         ]);
 
         $middleware->redirectTo(

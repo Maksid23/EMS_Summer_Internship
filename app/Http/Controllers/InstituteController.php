@@ -19,6 +19,15 @@ class institutecontroller extends Controller
         $user->email=$data->input('email');
             
         $user->save();
+
+        $users = new users();
+        $users->name = $data->input('institute_name');
+        $users->institute_id=$data->input('institute_id');
+        $users->email = $data->input('email');
+        $users->password = Hash::make($data->input('password'));
+        $users->role = 'Management';
+        $users->save();
+
         return redirect()->back()->with('message','Data Inserted Successfully');
     }
 

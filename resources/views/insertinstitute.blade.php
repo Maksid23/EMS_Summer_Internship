@@ -55,10 +55,10 @@
       </div>
 
       <div class="form-group">
-        <label for="confirm_password">Password</label>
-        <input type="text" id="password" name="password" class="form-control" required>
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" class="form-control" required>
         <div class="invalid-feedback">
-          Please confirm your password.
+          Please enter a valid password address.
         </div>
       </div>
       
