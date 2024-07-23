@@ -113,7 +113,7 @@
                         <td data-label="Contact">{{ $field->contact }}</td>
                         <td data-label="Email">{{ $field->email }}</td>
                         <td data-label="Actions" class="actions">
-                            <a href="{{URL::to('institute/delete_institute/'.$field->institute_id)}}">Delete</a>
+                            <a href="{{URL::to('institute/delete_institute/'.$field->institute_id)}}" class="delete-link">Delete</a>
                             <a href="{{URL::to('institute/edit_institute/'.$field->institute_id)}}">Edit</a>  
                         </td>
                     </tr>
@@ -126,5 +126,15 @@
             </div>
         @endif
     </div>
+    <script>
+        document.querySelectorAll('.delete-link').forEach(function(element) {
+            element.addEventListener('click', function(event) {
+                var confirmed = confirm('Are you sure you want to delete this institute?');
+                if (!confirmed) {
+                    event.preventDefault();
+                }
+            });
+        });
+    </script>
 </body>
 </html>

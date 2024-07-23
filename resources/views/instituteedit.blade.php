@@ -35,7 +35,7 @@
                 <h1>Edit Institute</h1>
             </div>
             <div class="card-body">
-                <form action="{{ URL::to('institute/update_institute/' . $user->institute_id) }}" method="POST">
+                <form id="editInstituteForm" action="{{ URL::to('institute/update_institute/' . $user->institute_id) }}" method="POST">
                     @csrf
                     {{-- @method('PUT') --}}
                     <div class="form-group">
@@ -66,5 +66,13 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.getElementById('editInstituteForm').addEventListener('submit', function(event) {
+            var confirmed = confirm('Are you sure you want to update the institute details?');
+            if (!confirmed) {
+                event.preventDefault();
+            }
+        });
+    </script>
 </body>
 </html>

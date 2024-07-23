@@ -127,7 +127,7 @@
                         <td data-label="User ID">{{ $field->user_id }}</td>
                         <td data-label="Course Name">{{ $field->course_name }}</td>
                         <td data-label="Actions" class="actions">
-                            <a href="{{URL::to('/course/delete/'.$field->course_id)}}">Delete</a>
+                            <a href="{{URL::to('/course/delete/'.$field->course_id)}}" class="delete-link">Delete</a>
                             <a href="{{URL::to('/course/edit/'.$field->course_id)}}">Edit</a>  
                         </td>
                     </tr>
@@ -140,5 +140,15 @@
             </div>
         @endif
     </div>
+    <script>
+        document.querySelectorAll('.delete-link').forEach(function(element) {
+            element.addEventListener('click', function(event) {
+                var confirmed = confirm('Are you sure you want to delete this course?');
+                if (!confirmed) {
+                    event.preventDefault();
+                }
+            });
+        });
+    </script>
 </body>
 </html>
