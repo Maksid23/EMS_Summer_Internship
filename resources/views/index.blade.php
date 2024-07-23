@@ -293,16 +293,18 @@ nav.close ~ .dashboard .top{
         <li>
             <a href="#instituteSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Institute</a>
             <ul class="collapse list-unstyled" id="instituteSubmenu">
-                <li><a href="{{ url('/institute') }}" onclick="displayInfo('institute', 'view institute')">View Institute</a></li>
+                
                 <li><a href="{{ url('/institute/insertinstitute') }}" onclick="displayInfo('institute', 'profile')">Add Institute</a></li>
-                <li><a href="{{ url('/course') }}" onclick="displayInfo('institute', 'classes')">Course</a></li>
-                <li><a href="#" onclick="displayInfo('institute', 'schedule')">Schedule</a></li>
+                <li><a href="{{ url('/institute') }}" onclick="displayInfo('institute', 'view institute')">View Institute</a></li>
+                <!-- <li><a href="{{ url('/course') }}" onclick="displayInfo('institute', 'classes')">Course</a></li>
+                <li><a href="#" onclick="displayInfo('institute', 'schedule')">Schedule</a></li> -->
             </ul>
         </li>
     @endif
 
     @if(Auth::user()->role === 'Faculty')    
     <li>
+            <a href="#teacherSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Faculty</a>
             <a href="#teacherSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Faculty</a>
             <ul class="collapse list-unstyled" id="teacherSubmenu">
                 <li><a href="#" onclick="displayInfo('teacher', 'classes')">Classes</a></li>
