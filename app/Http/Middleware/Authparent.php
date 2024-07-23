@@ -15,7 +15,7 @@ class Authparent
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(auth()->user() && auth()->user()->role == '5' || auth()->user()->role == '4'){
+        if(auth()->user() && auth()->user()->role == 'Parents' || auth()->user()->role == 'Management'){
             return $next($request);
         }
         return redirect('/');

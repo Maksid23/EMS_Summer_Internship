@@ -50,6 +50,7 @@ class MainController extends Controller
         if (Auth::attempt(['email' => $data->email, 'password' => $data->password])) {
             return redirect()->route('form');
         }
+        return redirect()->back()->with('error', 'Invalid email or password');
     }
 
 
@@ -60,7 +61,7 @@ class MainController extends Controller
             'institute_id' => 'required|unique:users|',
             'role' => 'string',
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+            'email' => 'required|string|email|max:255',
             'password' => 'required|string|min:8|confirmed',
         ]);
 
@@ -100,23 +101,23 @@ class MainController extends Controller
     {
         $redirect = '';
 
-        if (Auth::user() && Auth::user()->role == 1) {
+        if (Auth::user() && Auth::user()->role == 'Student') {
             $redirect = '/form/1';
         }
 
-        if (Auth::user() && Auth::user()->role == 2) {
+        if (Auth::user() && Auth::user()->role == 'Institute') {
             $redirect = '/form/2';
         }
 
-        if (Auth::user() && Auth::user()->role == 3) {
+        if (Auth::user() && Auth::user()->role == 'Faculty') {
             $redirect = '/form/3';
         }
 
-        if (Auth::user() && Auth::user()->role == 4) {
+        if (Auth::user() && Auth::user()->role == 'Management') {
             $redirect = '/form/4';
         }
 
-        if (Auth::user() && Auth::user()->role == 5) {
+        if (Auth::user() && Auth::user()->role == 'Parents') {
             $redirect = '/form/5';
         }
 

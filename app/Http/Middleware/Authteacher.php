@@ -15,7 +15,7 @@ class Authteacher
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(auth()->user() && auth()->user()->role == '3' || auth()->user()->role == '4'){
+        if(auth()->user() && auth()->user()->role == 'Faculty' || auth()->user()->role == 'Management'){
             return $next($request);
         }
         return redirect('/');

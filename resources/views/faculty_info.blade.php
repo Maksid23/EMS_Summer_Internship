@@ -166,7 +166,7 @@
                 <select class="form-control" id="faculty_gender" name="faculty_gender" required>
                     <option value="">Select Gender</option>
                     <option value="male">Male</option>
-                    <option value="female">Female</option>
+                    <option value="famale">Female</option>
                     <option value="other">Other</option>
                 </select>
             </div>

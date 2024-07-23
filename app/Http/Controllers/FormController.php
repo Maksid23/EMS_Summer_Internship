@@ -20,7 +20,7 @@ class FormController extends Controller
 
     public function showForm()
     {
-        $all = DB::select("select count(student_id) as student_count from student where insti_id = 2");
+        $all = DB::select("select count(student_id) as student_count from student where institute_id = 2");
         //dd($all);
         $rowCount1 = $all[0]->student_count;
         $rowCount2 = Faculty::count();

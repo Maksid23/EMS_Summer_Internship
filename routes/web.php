@@ -72,7 +72,7 @@ Route::group(['middleware' => 'disable_back_btn'], function () {
       });
    });
 
-   Route::group(['middleware' => 'Authinstitute'], function () {
+   //Route::group(['middleware' => 'Authinstitute'], function () {
       Route::get('/form/2', [FormController::class, 'showForm'])->name('form.2');
       Route::get('/institute', function () {
          $institute = Institute::all();
@@ -85,7 +85,7 @@ Route::group(['middleware' => 'disable_back_btn'], function () {
       Route::get('/institute/insertinstitute', function () {
          return view('insertinstitute');
       });
-   });
+   //});
 
    Route::group(['middleware' => 'Authparent'], function () {
       Route::get('/form/5', [FormController::class, 'showForm'])->name('form.5');

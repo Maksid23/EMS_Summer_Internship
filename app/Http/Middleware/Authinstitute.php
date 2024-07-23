@@ -15,7 +15,7 @@ class Authinstitute
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(auth()->user() && auth()->user()->role == '2'){
+        if(auth()->user() && auth()->user()->role == 'Institute'){
             return $next($request);
         }
         return redirect('/');
