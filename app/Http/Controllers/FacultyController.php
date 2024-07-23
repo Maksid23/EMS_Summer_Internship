@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-// use App\Models\User;
+use App\Models\users;
 use App\Models\Faculty;
-
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class FacultyController
 {
@@ -67,6 +68,7 @@ class FacultyController
 
         // Assign each field individually from the request input
         $faculty->faculty_id = $request->input('faculty_id');
+        $faculty->institute_id = Auth::user()->institute_id;
         $faculty->faculty_name = $request->input('faculty_name');
         $faculty->faculty_age = $request->input('faculty_age');
         $faculty->faculty_dob = $request->input('faculty_dob');
@@ -80,6 +82,14 @@ class FacultyController
         $faculty->faculty_experience = $request->input('faculty_experience');
         $faculty->faculty_designation = $request->input('faculty_designation');
         $faculty->faculty_department = $request->input('faculty_department');
+
+        $users = new users();
+        $users->name = $request->input('faculty_name');
+        $users->email = $request->input('faculty_email');
+        $users->institute_id = Auth::user()->institute_id;
+        $users->password = Hash::make($request->input('password'));
+        $users->role = 'Faculty';
+        $users->save();
 
         // Save the faculty data to the database
         $faculty->save();
