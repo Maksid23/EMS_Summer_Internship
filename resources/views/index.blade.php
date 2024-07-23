@@ -322,7 +322,7 @@ nav.close ~ .dashboard .top{
             <li><a href="{{ url('/staff') }}" onclick="displayInfo('management', 'add_staff')">Add Staff </a></li>
                 <li><a href="{{ url('/clss') }}" onclick="displayInfo('management', 'add_class')">Add Class</a></li>
                 <li><a href="{{ url('/faculty') }}" onclick="displayInfo('management', 'add_faculty')">Add Faculty</a></li>
-                <li><a href="#" onclick="displayInfo('management', 'reports')"></a></li>
+                <li><a href="{{ url('/parent') }}" onclick="displayInfo('parents', 'children')">Add Parent </a></li>
                 <li><a href="#" onclick="displayInfo('management', 'settings')"></a></li>
             </ul>
         </li>
@@ -332,7 +332,6 @@ nav.close ~ .dashboard .top{
         <li>
             <a href="#parentsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Parents</a>
             <ul class="collapse list-unstyled" id="parentsSubmenu">
-                <li><a href="{{ url('/parent') }}" onclick="displayInfo('parents', 'children')">Parent Profile</a></li>
                 <li><a href="#" onclick="displayInfo('parents', 'progress')">Progress</a></li>
                 <li><a href="#" onclick="displayInfo('parents', 'messages')">Messages</a></li>
             </ul>
@@ -388,7 +387,7 @@ nav.close ~ .dashboard .top{
         @if(Auth::user()->role === 'Management')
         <div class="container-fluid">
             <div id="info-display">
-                <h2>Welcome to the {{ Auth::user()->name }} Dashboard</h2>
+                <h2>Welcome to the Management Dashboard</h2>
                 <p>Select an option from the sidebar to view information.</p>
             </div>
         </div>
