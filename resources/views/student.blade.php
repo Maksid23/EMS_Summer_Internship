@@ -255,7 +255,7 @@ label {
             </ul>
         </li>
     @endif
-    @if(Auth::user()->role === 'Parents'||Auth::user()->role === 'Institute'||Auth::user()->role === 'Management')
+    <!-- @if(Auth::user()->role === 'Parents'||Auth::user()->role === 'Institute'||Auth::user()->role === 'Management')
         <li>
             <a href="#parentsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Parents</a>
             <ul class="collapse list-unstyled" id="parentsSubmenu">
@@ -264,7 +264,7 @@ label {
                 <li><a href="#" onclick="displayInfo('parents', 'messages')">Results</a></li>
             </ul>
         </li>
-    @endif
+    @endif -->
         </ul>
     </nav>
 
