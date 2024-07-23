@@ -66,7 +66,7 @@
           @foreach ($users as $item)
               <option value="{{"$item->user_id"}}">{{$item->user_id}}</option>
           @endforeach
-        </select>
+        </select> 
         <div class="invalid-feedback">
           Please enter a id.
         </div>
