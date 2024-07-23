@@ -53,9 +53,6 @@
           Please enter a valid email address.
         </div>
       </div>
-
-      
-
       
 
       <button type="submit" class="btn btn-primary btn-block">Register</button>

@@ -19,7 +19,9 @@ return new class extends Migration
         $table->string('email')->unique();
         $table->string('password');
         $table->timestamp('email_verified_at')->nullable(); // Add this field
+        $table->foreign('institute_id')->references('institute_id')->on('institute')->onDelete('cascade');
         $table->timestamps();
+        
     });
 }
 

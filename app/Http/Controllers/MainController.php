@@ -26,9 +26,6 @@ class MainController extends Controller
 
 
 public function loginUser(Request $data){
-
-
-
     if (Auth::attempt(['email' => $data->email, 'password' => $data->password])) {
         return redirect()->route('form');
     }
@@ -48,10 +45,10 @@ public function loginUser(Request $data){
 public function registerUser(Request $request){
     // Validate the request data
     $validatedData = $request->validate([
-        'institute_id'=>'required|unique:users|',
+        'institute_id'=>'required|exists:institute,institute_id',
         'role' => 'string',
-        'name' => 'required|string|max:255',
-        'email' => 'required|string|email|max:255|unique:users',
+        'name' => 'required|string|max:255|exists:institute,institute_name',
+        'email' => 'required|string|email|max:255|unique:users|exists:institute,email',
         'password' => 'required|string|min:8|confirmed',
     ]);
 
