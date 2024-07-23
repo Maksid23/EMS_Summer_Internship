@@ -279,11 +279,10 @@ nav.close ~ .dashboard .top{
         </div>
 
         <ul class="list-unstyled components">
-    @if(Auth::user()->role === 'Student'|| Auth::user()->role === 'Institute'||Auth::user()->role === 'Management'||Auth::user()->role === 'Faculty')
+    @if(Auth::user()->role === 'Student')
     <li class="active">
             <a href="#studentSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Student</a>
             <ul class="collapse list-unstyled" id="studentSubmenu">
-                <li><a href="{{ url('/student') }}" onclick="displayInfo('student', 'profile')">Profile</a></li>
                 <li><a href="{{ url('/student_dashboard') }}" onclick="displayInfo('student', 'student_dashboard')">Student Dashboard</a></li>
                 <li><a href="#" onclick="displayInfo('student', 'attendance')">Attendance</a></li>
             </ul>
@@ -302,11 +301,10 @@ nav.close ~ .dashboard .top{
         </li>
     @endif
 
-    @if(Auth::user()->role === 'Faculty'||Auth::user()->role === 'Institute'||Auth::user()->role === 'Management')    
+    @if(Auth::user()->role === 'Faculty')    
     <li>
-            <a href="#teacherSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Teacher</a>
+            <a href="#teacherSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Faculty</a>
             <ul class="collapse list-unstyled" id="teacherSubmenu">
-                <li><a href="{{ url('/faculty') }}" onclick="displayInfo('teacher', 'profile')">Faculty Profile</a></li>
                 <li><a href="#" onclick="displayInfo('teacher', 'classes')">Classes</a></li>
                 <li><a href="#" onclick="displayInfo('teacher', 'schedule')">Schedule</a></li>
             </ul>
@@ -314,20 +312,21 @@ nav.close ~ .dashboard .top{
        
     @endif
 
-    @if(Auth::user()->role === 'Management'||Auth::user()->role === 'Institute')
+    @if(Auth::user()->role === 'Management')
         <li>
             <a href="#managementSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Management</a>
             <ul class="collapse list-unstyled" id="managementSubmenu">
-                <li><a href="{{ url('/staff') }}" onclick="displayInfo('management', 'staff information')">Staff information</a></li>
-                <li><a href="{{ url('/clss') }}" onclick="displayInfo('management', 'class')">Class</a></li>
-                <li><a href="#" onclick="displayInfo('management', 'add staff')">Add Staff</a></li>
-                <li><a href="#" onclick="displayInfo('management', 'reports')">Reports</a></li>
-                <li><a href="#" onclick="displayInfo('management', 'settings')">Settings</a></li>
+            <li><a href="{{ url('/student') }}" onclick="displayInfo('student', 'add_student')">Add Student</a></li>    
+            <li><a href="{{ url('/staff') }}" onclick="displayInfo('management', 'add_staff')">Add Staff </a></li>
+                <li><a href="{{ url('/clss') }}" onclick="displayInfo('management', 'add_class')">Add Class</a></li>
+                <li><a href="{{ url('/faculty') }}" onclick="displayInfo('management', 'add_faculty')">Add Faculty</a></li>
+                <li><a href="#" onclick="displayInfo('management', 'reports')"></a></li>
+                <li><a href="#" onclick="displayInfo('management', 'settings')"></a></li>
             </ul>
         </li>
     @endif
 
-    @if(Auth::user()->role === 'Parents'||Auth::user()->role === 'Institute'||Auth::user()->role === 'Management')
+    @if(Auth::user()->role === 'Parents')
         <li>
             <a href="#parentsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Parents</a>
             <ul class="collapse list-unstyled" id="parentsSubmenu">
