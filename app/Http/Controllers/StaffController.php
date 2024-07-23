@@ -26,6 +26,7 @@ class StaffController extends Controller
     }
     public function insert(Request $request)
     {
+       // dd($request);
         // Validate the request data
         $validatedData = $request->validate([
             'staff_id' => 'required|numeric',
