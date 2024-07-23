@@ -114,6 +114,16 @@
                 @enderror
             </div>
             <div class="form-group">
+                <label for="gender">Gender:</label>
+                <select name="gender" class="form-control" required>
+                    <option value="">Select Gender</option>
+                    <option value="M" {{ old('gender') == 'M' ? 'selected' : '' }}>Male</option>
+                    <option value="F" {{ old('gender') == 'F' ? 'selected' : '' }}>Female</option>
+                    <option value="O" {{ old('gender') == 'O' ? 'selected' : '' }}>Other</option>
+                </select>
+                <span class="text-danger">@error('gender') {{$message}} @enderror</span>
+            </div>
+            <div class="form-group">
                 <label for="contact_number">Contact Number:</label>
                 <input type="text" id="contact_number" name="contact_number">
                 @error('contact_number')

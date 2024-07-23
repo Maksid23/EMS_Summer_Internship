@@ -1,8 +1,5 @@
 <?php
-
 namespace App\Http\Controllers;
-
-
 use Illuminate\Http\Request;
 use App\Models\staff;
 
@@ -44,6 +41,7 @@ class StaffController extends Controller
         $staff->staff_id = $validatedData['staff_id'];
         $staff->institute_id = $validatedData['institute_id'];
         $staff->staff_name = $validatedData['staff_name'];
+        $staff->staff_name = $validatedData['gender'];
         $staff->contact_number = $validatedData['contact_number'];
         $staff->email = $validatedData['email'];
         $staff->address = $validatedData['address'];
