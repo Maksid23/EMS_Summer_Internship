@@ -283,9 +283,9 @@ nav.close ~ .dashboard .top{
     <li class="active">
             <a href="#studentSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Student</a>
             <ul class="collapse list-unstyled" id="studentSubmenu">
-                <li><a href="{{ url('/student') }}" onclick="displayInfo('student', 'profile')">Profile</a></li>
-                <li><a href="{{ url('/student_dashboard') }}" onclick="displayInfo('student', 'student_dashboard')">Student Dashboard</a></li>
-                <li><a href="#" onclick="displayInfo('student', 'attendance')">Attendance</a></li>
+                <li><a href="{{ url('/student') }}" onclick="displayInfo('student', 'profile')">Add Student</a></li>
+                <li><a href="{{ url('/student_dashboard') }}" onclick="displayInfo('student', 'student_dashboard')">View Students</a></li>
+                <!-- <li><a href="#" onclick="displayInfo('student', 'attendance')">Attendance</a></li> -->
             </ul>
         </li>
     @endif
@@ -294,21 +294,22 @@ nav.close ~ .dashboard .top{
         <li>
             <a href="#instituteSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Institute</a>
             <ul class="collapse list-unstyled" id="instituteSubmenu">
-                <li><a href="{{ url('/institute') }}" onclick="displayInfo('institute', 'view institute')">View Institute</a></li>
+                
                 <li><a href="{{ url('/institute/insertinstitute') }}" onclick="displayInfo('institute', 'profile')">Add Institute</a></li>
-                <li><a href="{{ url('/course') }}" onclick="displayInfo('institute', 'classes')">Course</a></li>
-                <li><a href="#" onclick="displayInfo('institute', 'schedule')">Schedule</a></li>
+                <li><a href="{{ url('/institute') }}" onclick="displayInfo('institute', 'view institute')">View Institute</a></li>
+                <!-- <li><a href="{{ url('/course') }}" onclick="displayInfo('institute', 'classes')">Course</a></li>
+                <li><a href="#" onclick="displayInfo('institute', 'schedule')">Schedule</a></li> -->
             </ul>
         </li>
     @endif
 
     @if(Auth::user()->role === 'Faculty'||Auth::user()->role === 'Institute'||Auth::user()->role === 'Management')    
     <li>
-            <a href="#teacherSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Teacher</a>
+            <a href="#teacherSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Faculty</a>
             <ul class="collapse list-unstyled" id="teacherSubmenu">
-                <li><a href="{{ url('/faculty') }}" onclick="displayInfo('teacher', 'profile')">Faculty Profile</a></li>
-                <li><a href="#" onclick="displayInfo('teacher', 'classes')">Classes</a></li>
-                <li><a href="#" onclick="displayInfo('teacher', 'schedule')">Schedule</a></li>
+                <li><a href="{{ url('/faculty') }}" onclick="displayInfo('teacher', 'profile')">Add Faculty</a></li>
+                <li><a href="#" onclick="displayInfo('teacher', 'classes')">View Faculty</a></li>
+                <!-- <li><a href="#" onclick="displayInfo('teacher', 'schedule')">Schedule</a></li> -->
             </ul>
         </li>
        
@@ -318,11 +319,11 @@ nav.close ~ .dashboard .top{
         <li>
             <a href="#managementSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Management</a>
             <ul class="collapse list-unstyled" id="managementSubmenu">
-                <li><a href="{{ url('/staff') }}" onclick="displayInfo('management', 'staff information')">Staff information</a></li>
-                <li><a href="{{ url('/clss') }}" onclick="displayInfo('management', 'class')">Class</a></li>
-                <li><a href="#" onclick="displayInfo('management', 'add staff')">Add Staff</a></li>
+                <li><a href="{{ url('/staff') }}" onclick="displayInfo('management', 'staff information')">Add Staff</a></li>
+                <li><a href="{{ url('/clss') }}" onclick="displayInfo('management', 'class')">View Staff</a></li>
+                <!-- <li><a href="#" onclick="displayInfo('management', 'add staff')">Add Staff</a></li>
                 <li><a href="#" onclick="displayInfo('management', 'reports')">Reports</a></li>
-                <li><a href="#" onclick="displayInfo('management', 'settings')">Settings</a></li>
+                <li><a href="#" onclick="displayInfo('management', 'settings')">Settings</a></li> -->
             </ul>
         </li>
     @endif
@@ -331,9 +332,9 @@ nav.close ~ .dashboard .top{
         <li>
             <a href="#parentsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Parents</a>
             <ul class="collapse list-unstyled" id="parentsSubmenu">
-                <li><a href="{{ url('/parent') }}" onclick="displayInfo('parents', 'children')">Parent Profile</a></li>
-                <li><a href="{{ url('/parentdashboard') }}" onclick="displayInfo('parents', 'progress')">Parents Dashboard</a></li>
-                <li><a href="#" onclick="displayInfo('parents', 'messages')">Results</a></li>
+                <li><a href="{{ url('/parent') }}" onclick="displayInfo('parents', 'children')">Add Parent </a></li>
+                <li><a href="{{ url('/parentdashboard') }}" onclick="displayInfo('parents', 'progress')">View Parents </a></li>
+                <!-- <li><a href="#" onclick="displayInfo('parents', 'messages')">Results</a></li> -->
             </ul>
         </li>
     @endif
