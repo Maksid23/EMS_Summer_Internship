@@ -53,6 +53,14 @@
           Please enter a valid email address.
         </div>
       </div>
+
+      <div class="form-group">
+        <label for="confirm_password">Password</label>
+        <input type="text" id="password" name="password" class="form-control" required>
+        <div class="invalid-feedback">
+          Please confirm your password.
+        </div>
+      </div>
       
 
       <button type="submit" class="btn btn-primary btn-block">Register</button>
