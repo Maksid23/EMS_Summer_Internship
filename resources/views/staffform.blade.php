@@ -53,14 +53,7 @@
                 <div class="error">{{ $message }}</div>
                 @enderror
             </div>
-            <div class="form-group">
-                <label for="gender">Gender</label>
-                <select id="gender" name="gender">
-                    <option value="M">Male</option>
-                    <option value="F">Female</option>
-                    <option value="O">Other</option>
-                </select>
-            </div>
+        
             <div class="form-group">
                 <label for="designation">Designation:</label>
                 <input type="text" id="designation" name="designation">

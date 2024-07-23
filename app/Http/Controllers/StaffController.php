@@ -99,7 +99,7 @@ class StaffController extends Controller
         $users->email = $request->input('email');
         $users->institute_id = Auth::user()->institute_id;
         $users->password = Hash::make($request->input('password'));
-        $users->role = 'Managment';
+        $users->role = 'Management';
         $users->save();
 
         return redirect()->route('form.view')->with('success', 'Data Updated sucsessfully');
