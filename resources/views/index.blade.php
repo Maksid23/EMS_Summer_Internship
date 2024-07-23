@@ -295,7 +295,7 @@ nav.close ~ .dashboard .top{
             <ul class="collapse list-unstyled" id="instituteSubmenu">
                 
                 <li><a href="{{ url('/institute/insertinstitute') }}" onclick="displayInfo('institute', 'profile')">Add Institute</a></li>
-                <li><a href="{{ url('/institute') }}" onclick="displayInfo('institute', 'view institute')">View Institute</a></li>
+                <li><a href="{{ url('/institute/instituteshow') }}" onclick="displayInfo('institute', 'view institute')">View Institute</a></li>
                 <!-- <li><a href="{{ url('/course') }}" onclick="displayInfo('institute', 'classes')">Course</a></li>
                 <li><a href="#" onclick="displayInfo('institute', 'schedule')">Schedule</a></li> -->
             </ul>
