@@ -137,7 +137,8 @@ label {
         .button {
             position: absolute;
             right: 8px;
-            margin: 2px 12px;
+            top: 80px;
+            margin: 12px 12px;
             display: inline-block;
             padding: 10px 20px;
             font-size: 16px;
@@ -244,21 +245,26 @@ label {
         </div>
 
         <ul class="list-unstyled components">
-            <li class="active">
-                <a href="#studentSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Student</a>
-                <ul class="collapse list-unstyled" id="studentSubmenu">
-                    <li><a href="{{url('/student')}}" onclick="displayInfo('student', 'profile')">Add Student</a></li>
-                    <li><a href="{{url('/student/view')}}" onclick="displayInfo('student', 'grades')">View Student</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="#parentsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Parents</a>
-                <ul class="collapse list-unstyled" id="parentsSubmenu">
-                    <li><a href="{{url('/parent')}}" onclick="displayInfo('parents', 'children')">Parent Profile</a></li>
-                    <li><a href="{{url('/parentdashboard')}}" onclick="displayInfo('parents', 'progress')">Parent Dashboard</a></li>
-                    <li><a href="#" onclick="displayInfo('parents', 'messages')">Messages</a></li>
-                </ul>
-            </li>
+        @if(Auth::user()->role === 'Student'|| Auth::user()->role === 'Institute'||Auth::user()->role === 'Management'||Auth::user()->role === 'Faculty')
+    <li class="active">
+            <a href="#studentSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Student</a>
+            <ul class="collapse list-unstyled" id="studentSubmenu">
+                <li><a href="{{ url('/student') }}" onclick="displayInfo('student', 'profile')">Profile</a></li>
+                <li><a href="{{ url('/student_dashboard') }}" onclick="displayInfo('student', 'student_dashboard')">Student Dashboard</a></li>
+                <li><a href="#" onclick="displayInfo('student', 'attendance')">Attendance</a></li>
+            </ul>
+        </li>
+    @endif
+    @if(Auth::user()->role === 'Parents'||Auth::user()->role === 'Institute'||Auth::user()->role === 'Management')
+        <li>
+            <a href="#parentsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Parents</a>
+            <ul class="collapse list-unstyled" id="parentsSubmenu">
+                <li><a href="{{ url('/parent') }}" onclick="displayInfo('parents', 'children')">Parent Profile</a></li>
+                <li><a href="{{ url('/parentdashboard') }}" onclick="displayInfo('parents', 'progress')">Parents Dashboard</a></li>
+                <li><a href="#" onclick="displayInfo('parents', 'messages')">Results</a></li>
+            </ul>
+        </li>
+    @endif
         </ul>
     </nav>
 
