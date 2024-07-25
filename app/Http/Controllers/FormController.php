@@ -25,7 +25,7 @@ class FormController extends Controller
         $rowCount1 = $all[0]->student_count;
         $rowCount2 = Faculty::count();
         $rowCount3 = Institute::count();
-        return view('index', [
+        return view('welcome', [
             'rowCount1' => $rowCount1,
             'rowCount2' => $rowCount2,
             'rowCount3' => $rowCount3,

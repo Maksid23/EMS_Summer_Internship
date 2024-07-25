@@ -239,11 +239,11 @@
             <li>
                 <a href="#managementSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Management</a>
                 <ul class="collapse list-unstyled" id="managementSubmenu">
-                    <li><a href="{{ url('/student') }}" onclick="displayInfo('student', 'add_student')">Add Student</a></li>
-                    <li><a href="{{ url('/staff') }}" onclick="displayInfo('management', 'add_staff')">Add Staff</a></li>
-                    <li><a href="{{ url('/clss') }}" onclick="displayInfo('management', 'add_class')">Add Class</a></li>
-                    <li><a href="{{ url('/faculty') }}" onclick="displayInfo('management', 'add_faculty')">Add Faculty</a></li>
-                    <li><a href="{{ url('/parent') }}" onclick="displayInfo('parents', 'children')">Add Parent</a></li>
+                    <li><a href="{{ url('/student') }}" onclick="displayInfo('student', 'add_student')">Student</a></li>
+                    <li><a href="{{ url('/staff') }}" onclick="displayInfo('management', 'add_staff')">Staff</a></li>
+                    <li><a href="{{ url('/clss') }}" onclick="displayInfo('management', 'add_class')">Class</a></li>
+                    <li><a href="{{ url('/faculty') }}" onclick="displayInfo('management', 'add_faculty')">Faculty</a></li>
+                    <li><a href="{{ url('/parent') }}" onclick="displayInfo('parents', 'children')">Parent</a></li>
                 </ul>
             </li>
             @endif

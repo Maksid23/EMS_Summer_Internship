@@ -7,12 +7,18 @@ use App\Models\studnt;
 use App\Models\users;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class StudentController extends Controller
 {
     public function index() { 
+        $instituteId = Auth::user()->institute_id;
         $users = studnt::all();
-        return view('student', compact('users'));   
+        $classes = DB::table('class')
+        ->where('institute_id', $instituteId)
+        ->pluck('class_name', 'class_id')
+        ->toArray();
+        return view('student', compact('users','classes'));   
         
     }
 
@@ -26,8 +32,8 @@ class StudentController extends Controller
                 'address' => 'required',
                 'parent_guardian_contact_info' =>['required', 'regex:/^[0-9]{10}$/'],
                 'other_contact' => ['required', 'regex:/^[0-9]{10}$/'],
-                'email_address' => 'required|email',
-                'class_id' => 'required|exists:class,class_id'
+                'email_address' => 'required|unique:users,email',
+                'class_name' => 'required'
             ]);
 
             $studnt = new studnt();
@@ -40,7 +46,7 @@ class StudentController extends Controller
             $studnt->parent_guardian_contact_info = $request->input('parent_guardian_contact_info');
             $studnt->other_contact = $request->input('other_contact');
             $studnt->email_address = $request->input('email_address');
-            $studnt->class_id = $request->input('class_id');
+            $studnt->class_name = $request->input('class_name');
             $studnt->save();
 
 
@@ -69,7 +75,7 @@ class StudentController extends Controller
             $studnt->parent_guardian_contact_info = $data->input('parent_guardian_contact_info');
             $studnt->other_contact = $data->input('other_contact');
             $studnt->email_address = $data->input('email_address');
-            $studnt->class_id = $data->input('class_id');
+            $studnt->class_name = $data->input('class_name');
             $studnt->save();
             return redirect()->route('student.view')->with('success', 'Student data stored successfully!');
     }
@@ -87,7 +93,7 @@ class StudentController extends Controller
 
         // Additional logic or redirection after successful data deletion
 
-        return redirect()->back()->with('success', 'Comment deleted successfully!');
+        return redirect()->back()->with('success', 'Data deleted successfully!');
     }
 
     public function edit($student_id)

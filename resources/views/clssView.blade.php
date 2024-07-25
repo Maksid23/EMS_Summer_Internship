@@ -48,8 +48,8 @@
     <table>
         <thead>
             <tr>
-                <th>Class_id</th>
-                <th>Staff_id</th>
+                <th>Class Name</th>
+                <th>Class Teacher</th>
                 <th>Location </th>
                 <th>Delete</th>
                 <th>Edit</th>
@@ -60,7 +60,7 @@
             @foreach ($class as $member)
                 <tr>
                     <td>{{ $member->class_id }}</td>
-                    <td>{{ $member->staff_id  }}</td>
+                    <td>{{ $member->class_teacher  }}</td>
                     <td>{{ $member->location }}</td>
                     <td><a href="{{URL::to('clss/delete/'.$member->class_id)}}">
                         <button>Delete</button></a></td>
