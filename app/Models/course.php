@@ -13,6 +13,7 @@ class course extends Model
     protected $fillable = [
         'course_id',
         'user_id',
+        'institude_id',
         'course_name',
         'created_at',
         'updated_at',

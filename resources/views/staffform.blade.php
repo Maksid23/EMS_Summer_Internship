@@ -8,65 +8,77 @@
     <div class="form-container">
         <form action="{{ route('form.insert') }}" method="post">
             @csrf
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label for="staff_id">Staff ID:</label>
                 <input type="text" id="staff_id" name="staff_id">
                 @error('staff_id')
-                    <div class="error">{{ $message }}</div>
+                <div class="error">{{ $message }}</div>
                 @enderror
-            </div>
-            <div class="form-group">
-                <label for="institute_id">Institute ID:</label>
-                <input type="text" id="institute_id" name="institute_id">
-                @error('institute_id')
-                    <div class="error">{{ $message }}</div>
-                @enderror
-            </div>
+            </div> -->
             <div class="form-group">
                 <label for="staff_name">Staff Name:</label>
                 <input type="text" id="staff_name" name="staff_name">
                 @error('staff_name')
-                    <div class="error">{{ $message }}</div>
+                <div class="error">{{ $message }}</div>
                 @enderror
+            </div>
+            <div class="form-group">
+                <label for="gender">Gender:</label>
+                <select name="gender" class="form-control" required>
+                    <option value="">Select Gender</option>
+                    <option value="M" {{ old('gender') == 'M' ? 'selected' : '' }}>Male</option>
+                    <option value="F" {{ old('gender') == 'F' ? 'selected' : '' }}>Female</option>
+                    <option value="O" {{ old('gender') == 'O' ? 'selected' : '' }}>Other</option>
+                </select>
+                <span class="text-danger">@error('gender') {{$message}} @enderror</span>
             </div>
             <div class="form-group">
                 <label for="contact_number">Contact Number:</label>
                 <input type="text" id="contact_number" name="contact_number">
                 @error('contact_number')
-                    <div class="error">{{ $message }}</div>
+                <div class="error">{{ $message }}</div>
                 @enderror
             </div>
             <div class="form-group">
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email">
                 @error('email')
-                    <div class="error">{{ $message }}</div>
+                <div class="error">{{ $message }}</div>
                 @enderror
             </div>
             <div class="form-group">
                 <label for="address">Address:</label>
                 <textarea id="address" name="address"></textarea>
                 @error('address')
-                    <div class="error">{{ $message }}</div>
+                <div class="error">{{ $message }}</div>
                 @enderror
             </div>
+        
             <div class="form-group">
                 <label for="designation">Designation:</label>
                 <input type="text" id="designation" name="designation">
                 @error('designation')
-                    <div class="error">{{ $message }}</div>
+                <div class="error">{{ $message }}</div>
                 @enderror
             </div>
             <div class="form-group">
                 <label for="department">Department:</label>
                 <input type="text" id="department" name="department">
                 @error('department')
-                    <div class="error">{{ $message }}</div>
+                <div class="error">{{ $message }}</div>
                 @enderror
             </div>
 
             <div class="form-group">
-                <button type="submit" name="save">Submit</button>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password">
+                @error('password')
+                <div class="error">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="form-group">
+                <button type="submit" name="save" value="1">Submit</button>
             </div>
         </form>
     </div>

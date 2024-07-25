@@ -48,14 +48,14 @@
     <table>
         <thead>
             <tr>
-                <th>student_id</th>
-                <th>Class_ID</th>
-                <th>student_name </th>
+                <th>Student ID</th>
+                <th>Class Name</th>
+                <th>Student Name </th>
                 <th>DOB</th>
                 <th>Gender</th>
                 <th>Address</th>
-                <th>parent_guardian_contact_info</th>
-                <th>Other_Contact</th>
+                <th>Parent Contact Number</th>
+                <th>Other Contact</th>
                 <th>Email</th>
                 <th>Delete</th>
                 <th>Edit</th>
@@ -66,7 +66,7 @@
             @foreach ($studnt as $member)
                 <tr>
                     <td>{{ $member->student_id }}</td>
-                    <td>{{ $member->class_id  }}</td>
+                    <td>{{ $member->class_name  }}</td>
                     <td>{{ $member->student_name }}</td>
                     <td>{{ $member->dob }}</td>
                     <td>{{ $member->gender }}</td>

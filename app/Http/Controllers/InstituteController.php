@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Institute;
 use App\Models\users;
+use Illuminate\Support\Facades\Hash;
 
 class institutecontroller extends Controller
 {
@@ -16,7 +17,17 @@ class institutecontroller extends Controller
         $user->address=$data->input('address');
         $user->contact=$data->input('contact');
         $user->email=$data->input('email');
+            
         $user->save();
+
+        $users = new users();
+        $users->name = $data->input('institute_name');
+        $users->institute_id=$data->input('institute_id');
+        $users->email = $data->input('email');
+        $users->password = Hash::make($data->input('password'));
+        $users->role = 'Management';
+        $users->save();
+
         return redirect()->back()->with('message','Data Inserted Successfully');
     }
 
@@ -40,6 +51,6 @@ class institutecontroller extends Controller
         $user->contact=$data->input('contact');
         $user->email=$data->input('email');
         $user->save();
-        return redirect('/instituteshow')->with('message','Data Updated Successfully');
+        return redirect('/institute/instituteshow')->with('message','Data Updated Successfully');
     }
 }

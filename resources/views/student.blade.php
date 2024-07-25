@@ -35,15 +35,36 @@
 
 <form action="{{ URL::to('student/store') }}" method="post">
     @csrf
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
+@if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
+
     <div class="form-row">
-        <div class="form-group col-md-6">
+        {{-- <div class="form-group col-md-6">
             <label for="student_id">Student ID</label>
             <input type="text" name="student_id" class="form-control" placeholder="Enter Student ID" required>
             <span class="text-danger">@error('student_id') {{$message}} @enderror</span>
-        </div>
+        </div> --}}
         <div class="form-group col-md-6">
-            <label for="class_id">Class ID</label>
-            <input type="text" name="class_id" class="form-control" placeholder="Enter Class ID" required>
+            <label for="class_name">Class Name</label>
+            <select name="class_name" class="form-control" required>
+    <option value="">Select Class</option>
+    @foreach($classes as $class_id => $class_name)
+        <option value="{{ $class_name }}">{{ $class_name }}</option>
+    @endforeach
+</select>
             <span class="text-danger">@error('class_id') {{$message}} @enderror</span>
         </div>
     </div>
@@ -82,12 +103,12 @@
     <div class="form-row">
         <div class="form-group col-md-6">
             <label for="parent_guardian_contact_info">Parent/Guardian Contact Info</label>
-            <input type="text" name="parent_guardian_contact_info" class="form-control" placeholder="Enter Contact Info" required>
+            <input type="tel" name="parent_guardian_contact_info" class="form-control" placeholder="Enter Contact Info" maxlength="10" required>
             <span class="text-danger">@error('parent_guardian_contact_info') {{$message}} @enderror</span>
         </div>
         <div class="form-group col-md-6">
             <label for="other_contact">Other Contact</label>
-            <input type="text" name="other_contact" class="form-control" placeholder="Enter Other Contact" required>
+            <input type="tel" name="other_contact" class="form-control" placeholder="Enter Other Contact" maxlength="10"required >
             <span class="text-danger">@error('other_contact') {{$message}} @enderror</span>
         </div>
     </div>
@@ -96,6 +117,12 @@
         <label for="email_address">Email</label>
         <input type="email" name="email_address" class="form-control" placeholder="Enter Email" required>
         <span class="text-danger">@error('email_address') {{$message}} @enderror</span>
+    </div>
+
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" name="password" class="form-control" placeholder="Enter Password" required>
+        <span class="text-danger">@error('password') {{$message}} @enderror</span>
     </div>
 
     <button type="submit" class="btn-primary" name="save">Submit</button>

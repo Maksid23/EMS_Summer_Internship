@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\clss;
+use Illuminate\Support\Facades\Auth;
 
 class Clsscontroller extends Controller
 {
@@ -12,35 +13,33 @@ class Clsscontroller extends Controller
         return view('clss');
     }
 
-    public function insert(Request $request)
-    {
-        $request->validate([
-            'class_id' => 'required|numeric',
-            'staff_id' => 'required|numeric|exists:staff_information,staff_id',
-            'location' => 'required|string|max:255'
-
-        ]);
-
-        $class = new clss();
-        $class->class_id = $request->input('class_id');
-        $class->staff_id = $request->input('staff_id');
-        $class->location = $request->input('location');
-
-        $class->save();
-        return redirect()->back()->with('success', 'Data Added sucsess full');
-    }
+        public function insert(Request $request)
+        {
+            $request->validate([
+                'class_name' => 'required|max:12',
+                'class_teacher' => 'required|exists:faculty_info,faculty_name',
+                'location' => 'required'
+            ]);
+            $user = auth()->user(); 
+            $class = new clss();
+            $class->institute_id= $user->institute_id;
+            $class->class_name = $request->input('class_name');
+            $class->class_teacher = $request->input('class_teacher');
+            $class->location = $request->input('location');
+            $class->save();
+            return redirect()->back()->with('success', 'Data Added sucsess full');
+        }
 
     //UPDATE
     public function update(Request $data){
 
         $class = clss::find($data->input('update_id'));;
-        $class->class_id = $data->input('class_id');
-        $class->staff_id = $data->input('staff_id');
+        $class->class_name = $data->input('class_name');
+        $class->class_teacher = $data->input('class_teacher');
         $class->location = $data->input('location');
         $class->save();
         return redirect()->route('clss.view')->with('success', 'Student data stored successfully!');
-}
-
+    }    
 //view    
 public function view(){
     $class = clss::all();

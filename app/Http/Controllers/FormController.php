@@ -16,10 +16,13 @@ class FormController extends Controller
      *
      * @return \Illuminate\View\View
      */
+ 
 
     public function showForm()
     {
-        $rowCount1 = studnt::count();
+        $all = DB::select("select count(student_id) as student_count from student where institute_id = 2");
+        //dd($all);
+        $rowCount1 = $all[0]->student_count;
         $rowCount2 = Faculty::count();
         $rowCount3 = Institute::count();
         return view('welcome', [
@@ -27,7 +30,6 @@ class FormController extends Controller
             'rowCount2' => $rowCount2,
             'rowCount3' => $rowCount3,
         ]);
-        
     }
 
     /**
@@ -52,4 +54,5 @@ class FormController extends Controller
         // Redirect back to the form page with a success message
         return redirect()->route('form')->with('success', 'Form submitted successfully!');
     }
+    
 }

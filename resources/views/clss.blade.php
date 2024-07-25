@@ -74,13 +74,29 @@
             <h2>Submit Your Details</h2>
             <form action="{{ route('clss.store') }}" method="POST">
                 @csrf
+                @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
+@if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
+
                 <div class="form-group">
-                    <label for="class_id">Class_ID</label>
-                    <input type="text" class="form-control" id="class_id" name="class_id" required>
+                    <label for="class_name">Class Name</label>
+                    <input type="text" class="form-control" id="class_name" name="class_name" required>
                 </div>
                 <div class="form-group">
-                    <label for="staff_id">Staff_ID</label>
-                    <input type="text" class="form-control" id="staff_id" name="staff_id" required>
+                    <label for="class_teacher">Class Teacher</label>
+                    <input type="text" class="form-control" id="class_teacher" name="class_teacher" required>
                 </div>
                 <div class="form-group">
                     <label for="location">Location</label>

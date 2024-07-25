@@ -16,7 +16,6 @@ return new class extends Migration
             $table->unsignedBigInteger('institute_id');
             $table->foreign('institute_id')->references('institute_id')->on('institute')->onDelete('cascade');
                         $table->unsignedBigInteger('student_id'); // Foreign Key (Student)
-            $table->unsignedBiginteger('class_id'); // Foreign Key (Management)
             $table->unsignedBiginteger('faculty_id'); // Foreign Key (Faculty)
             $table->unsignedBigInteger('course_id'); // Foreign Key (Super Admin)
             $table->string('day', 100);
@@ -26,7 +25,6 @@ return new class extends Migration
             
             // Setting up foreign key constraints
             $table->foreign('student_id')->references('student_id')->on('student')->onDelete('cascade');
-            $table->foreign('class_id')->references('class_id')->on('class')->onDelete('cascade');
             $table->foreign('faculty_id')->references('faculty_id')->on('faculty_info')->onDelete('cascade');
             $table->foreign('course_id')->references('course_id')->on('courses')->onDelete('cascade');
 

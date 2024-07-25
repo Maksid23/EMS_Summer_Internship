@@ -67,14 +67,14 @@
                 <form action="{{route('clss.update')}}" method="POST">
                     @csrf
                     <div class="form-group">
-                        <label for="class_id">Class_ID</label>
-                        <input type="text" class="form-control" id="class_id" name="class_id" 
+                        <label for="class_id">Class Name</label>
+                        <input type="text" class="form-control" id="class_id" name="class_name" 
                         value="{{$class->class_id}}" required>
                     </div>
                     <div class="form-group">
-                        <label for="staff_id">Staff_ID</label>
-                        <input type="text" class="form-control" id="staff_id" name="staff_id" 
-                        value="{{$class->staff_id}}"  required>
+                        <label for="staff_id">Class Teacher</label>
+                        <input type="text" class="form-control" id="staff_id" name="class_teacher" 
+                        value="{{$class->class_teacher}}"  required>
                     </div>
                     <div class="form-group">
                         <label for="location">Location</label>
