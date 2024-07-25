@@ -192,6 +192,31 @@
         .button-link:hover {
             background-color: #0056b3;
         }
+
+        /* view css */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            border-radius: 5px;
+        }
+        thead {
+            background-color: #007BFF;
+            color: #FFFFFF;
+        }
+        th,
+        td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        tbody tr:nth-child(odd) {
+            background-color: #F2F2F2;
+        }
+        tbody tr:hover {
+            background-color: #ddd;
+        }
     </style>
 </head>
 <body>
@@ -239,11 +264,11 @@
             <li>
                 <a href="#managementSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Management</a>
                 <ul class="collapse list-unstyled" id="managementSubmenu">
-                    <li><a href="{{ url('/student') }}" onclick="displayInfo('student', 'add_student')">Student</a></li>
-                    <li><a href="{{ url('/staff') }}" onclick="displayInfo('management', 'add_staff')">Staff</a></li>
-                    <li><a href="{{ url('/clss') }}" onclick="displayInfo('management', 'add_class')">Class</a></li>
-                    <li><a href="{{ url('/faculty') }}" onclick="displayInfo('management', 'add_faculty')">Faculty</a></li>
-                    <li><a href="{{ url('/parent') }}" onclick="displayInfo('parents', 'children')">Parent</a></li>
+                    <li><a href="{{ url('/student/view') }}" onclick="displayInfo('student', 'add_student')">Student</a></li>
+                    <li><a href="{{ url('/staff/form/view') }}" onclick="displayInfo('management', 'add_staff')">Staff</a></li>
+                    <li><a href="{{ url('/clss/view') }}" onclick="displayInfo('management', 'add_class')">Class</a></li>
+                    <li><a href="{{ url('/faculty/show') }}" onclick="displayInfo('management', 'add_faculty')">Faculty</a></li>
+                    <li><a href="{{ url('/parent/show') }}" onclick="displayInfo('parents', 'children')">Parent</a></li>
                 </ul>
             </li>
             @endif

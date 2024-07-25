@@ -95,8 +95,13 @@
                     <input type="text" class="form-control" id="class_name" name="class_name" required>
                 </div>
                 <div class="form-group">
-                    <label for="class_teacher">Class Teacher</label>
-                    <input type="text" class="form-control" id="class_teacher" name="class_teacher" required>
+                <label for="class_teacher">Class Teacher</label>
+                    <select class="form-control" id="class_teacher" name="class_teacher" required>
+                        <option value="">Select Class Teacher</option>
+                        @foreach($facultyNames as $faculty_id => $faculty_name)
+                            <option value="{{ $faculty_name }}">{{ $faculty_name }}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="location">Location</label>

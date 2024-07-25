@@ -5,12 +5,18 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\clss;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class Clsscontroller extends Controller
 {
     public function index()
     {
-        return view('clss');
+        $instituteId = Auth::user()->institute_id;
+        $facultyNames = DB::table('faculty_info')
+        ->where('institute_id', $instituteId)
+        ->pluck('faculty_name', 'faculty_id')
+        ->toArray();
+        return view('clss', compact('facultyNames'));
     }
 
         public function insert(Request $request)
@@ -42,7 +48,8 @@ class Clsscontroller extends Controller
     }    
 //view    
 public function view(){
-    $class = clss::all();
+    $userInstituteId = Auth::user()->institute_id;
+    $class = clss::where('institute_id', $userInstituteId)->get();
     return view('clssView', compact('class'));
 }
 
@@ -53,12 +60,17 @@ public function delete($class_id)
 
     // Additional logic or redirection after successful data deletion
 
-    return redirect()->back()->with('success', 'Comment deleted successfully!');
+    return redirect()->back()->with('success', 'Data deleted successfully!');
 }
 
 public function edit($class_id)
 {
     $class = clss::find($class_id);
-    return view('clssEdit', compact('class'));
+    $instituteId = Auth::user()->institute_id;
+        $facultyNames = DB::table('faculty_info')
+        ->where('institute_id', $instituteId)
+        ->pluck('faculty_name', 'faculty_id')
+        ->toArray();
+    return view('clssEdit', compact('class','facultyNames'));
 }
 }

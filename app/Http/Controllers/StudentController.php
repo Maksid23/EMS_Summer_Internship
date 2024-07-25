@@ -30,8 +30,8 @@ class StudentController extends Controller
                 'dob' => 'required|date',
                 'gender' => 'required',
                 'address' => 'required',
-                'parent_guardian_contact_info' =>['required', 'regex:/^[0-9]{10}$/'],
-                'other_contact' => ['required', 'regex:/^[0-9]{10}$/'],
+                'parent_guardian_contact_info' =>'required|regex:/^[0-9]{10}$/|distinct|numeric',
+                'other_contact' => 'required|regex:/^[0-9]{10}$/|distinct|numeric|different:parent_guardian_contact_info',
                 'email_address' => 'required|unique:users,email',
                 'class_name' => 'required'
             ]);
@@ -66,8 +66,20 @@ class StudentController extends Controller
 //UPDATE
        public function update(Request $data){
 
+        $data->validate(
+            [
+                //'student_id' => 'required',
+                'student_name'=>'required',
+                'dob' => 'required|date',
+                'gender' => 'required',
+                'address' => 'required',
+                'parent_guardian_contact_info' =>'required|regex:/^[0-9]{10}$/|distinct|numeric',
+                'other_contact' => 'required|regex:/^[0-9]{10}$/|distinct|numeric|different:parent_guardian_contact_info',
+                'class_name' => 'required'
+            ]);
+
             $studnt = studnt::find($data->input('update_id'));;
-            $studnt->student_id = $data->input('student_id');
+           // $studnt->student_id = $data->input('student_id');
             $studnt->student_name = $data->input('student_name');
             $studnt->dob = $data->input('dob');
             $studnt->gender = $data->input('gender');
@@ -77,7 +89,7 @@ class StudentController extends Controller
             $studnt->email_address = $data->input('email_address');
             $studnt->class_name = $data->input('class_name');
             $studnt->save();
-            return redirect()->route('student.view')->with('success', 'Student data stored successfully!');
+            return redirect()->route('student.view')->with('success', ' Data updated successfully!');
     }
 
 //view    
