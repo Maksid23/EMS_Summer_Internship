@@ -66,7 +66,7 @@
     </style>
 </head>
 <body>
-<table>
+    <table>
         <thead>
             <tr>
                 <th>Parent ID</th>
@@ -88,12 +88,19 @@
                 <td>{{ $item->parent_email }}</td>
                 <td>{{ $item->address }}</td>
                 <td>{{ $item->relationship_to_student }}</td>
-                <td><a href="{{ URL::to('parent/deleteRecord/'.$item->parent_id) }}">Delete</a></td>
+                <td><a href="{{ URL::to('parent/deleteRecord/'.$item->parent_id) }}" onclick="return confirmDelete()">Delete</a></td>
                 <td><a href="{{ URL::to('parent/updateRecord/'.$item->parent_id) }}">Edit</a></td>
             </tr>
             @endforeach
         </tbody>
     </table>
     <a class="button" href="{{ URL::to('parent') }}">Back</a>
+
+    <script>
+        function confirmDelete() {
+            return confirm('Are you sure you want to delete this record?');
+        }
+        
+    </script>
 </body>
 </html>

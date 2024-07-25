@@ -72,23 +72,23 @@
     <div class="row form-container">
         <div class="col-md-6 offset-md-3">
             <h2>Submit Your Details</h2>
-            <form action="{{ route('clss.store') }}" method="POST">
+            <form id="submissionForm" action="{{ route('clss.store') }}" method="POST">
                 @csrf
                 @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
 
-@if (session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
-    </div>
-@endif
+                @if (session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
 
                 <div class="form-group">
                     <label for="class_name">Class Name</label>
@@ -102,8 +102,14 @@
                     <label for="location">Location</label>
                     <input type="text" class="form-control" id="location" name="location" required>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary" onclick="return confirmSubmission()">Submit</button>
             </form>
         </div>
     </div>
+
+    <script>
+        function confirmSubmission() {
+            return confirm('Are you sure you want to submit this form?');
+        }
+    </script>
 @endsection

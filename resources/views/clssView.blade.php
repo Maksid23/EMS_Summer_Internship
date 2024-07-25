@@ -62,7 +62,7 @@
                     <td>{{ $member->class_id }}</td>
                     <td>{{ $member->class_teacher  }}</td>
                     <td>{{ $member->location }}</td>
-                    <td><a href="{{URL::to('clss/delete/'.$member->class_id)}}">
+                    <td><a href="{{URL::to('clss/delete/'.$member->class_id)}}" onclick="return confirm('Are you sure you want to delete this record?');">
                         <button>Delete</button></a></td>
                     <td><a href="{{URL::to('clss/edit/'.$member->class_id)}}"><button>Edit</button></a></td>
                     

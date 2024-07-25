@@ -45,49 +45,47 @@
 </head>
 <body>
   <div class="container">
-    <form action="{{URL::to('course/add_course')}}" method="post" class="needs-validation" novalidate>
+    <form action="{{URL::to('course/add_course')}}" method="post" class="needs-validation" novalidate onsubmit="return confirmSubmit()">
       <h2 class="text-center mb-4">Course Registration</h2>
       @csrf
       <div class="form-group">
-        <label for="username">institute ID</label>
-        <select name="institute_id" id="institute_id" class="custom-dropdown" aria-placeholder="User-id">
-          <option value="" disabled selected>Select Institute-id</option>  
+        <label for="institute_id">Institute ID</label>
+        <select name="institute_id" id="institute_id" class="custom-dropdown" aria-placeholder="Institute ID">
+          <option value="" disabled selected>Select Institute ID</option>  
           @foreach ($institutes as $data)
-              
-              <option value="{{"$data->institute_id"}}">{{$data->institute_id}}</option>
+              <option value="{{ $data->institute_id }}">{{ $data->institute_id }}</option>
           @endforeach
         </select> 
         <div class="invalid-feedback">
-          Please enter a id.
+          Please select an institute ID.
         </div>
       </div>
       <div class="form-group">
-        <label for="username">Course ID</label>
-        <input type="integer" id="course_id" name="course_id" class="form-control" required>
+        <label for="course_id">Course ID</label>
+        <input type="number" id="course_id" name="course_id" class="form-control" required>
         <div class="invalid-feedback">
-          Please enter a id.
+          Please enter a course ID.
         </div>
       </div>
 
       <div class="form-group">
-        <label for="username">User ID</label>
-        <select name="user_id" id="user_id" class="custom-dropdown" aria-placeholder="User-id">
-          <option value="" disabled selected>Select User-id</option>  
+        <label for="user_id">User ID</label>
+        <select name="user_id" id="user_id" class="custom-dropdown" aria-placeholder="User ID">
+          <option value="" disabled selected>Select User ID</option>  
           @foreach ($users as $item)
-              
-              <option value="{{"$item->id"}}">{{$item->id}}</option>
+              <option value="{{ $item->id }}">{{ $item->id }}</option>
           @endforeach
         </select> 
         <div class="invalid-feedback">
-          Please enter a id.
+          Please select a user ID.
         </div>
       </div>
 
       <div class="form-group">
-        <label for="username">Course Name</label>
+        <label for="course_name">Course Name</label>
         <input type="text" id="course_name" name="course_name" class="form-control" required>
         <div class="invalid-feedback">
-          Please enter name.
+          Please enter a course name.
         </div>
       </div>
       <button type="submit" class="btn btn-primary btn-block">Register</button>
@@ -128,5 +126,11 @@
       {{ session()->get('message') }}
     </div>
     @endif
+
+  <script>
+    function confirmSubmit() {
+      return confirm('Are you sure you want to submit this form?');
+    }
+  </script>
 </body>
 </html>

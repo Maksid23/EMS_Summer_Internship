@@ -6,8 +6,6 @@
     <title>Student Info View</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-</head>
-<body>
     <style>
         table {
             width: 100%;
@@ -33,6 +31,13 @@
             background-color: #ddd;
         }
     </style>
+    <script>
+        function confirmDelete() {
+            return confirm('Are you sure you want to delete this record?');
+        }
+    </script>
+</head>
+<body>
     <div class="row justify-content-center mt-4">
         <div class="col-md-10 d-flex justify-content-end">
             <a href="{{ route('student.form') }}" class="btn btn-dark">Back</a>
@@ -59,7 +64,6 @@
                 <th>Email</th>
                 <th>Delete</th>
                 <th>Edit</th>
-                
             </tr>
         </thead>
         <tbody>
@@ -74,16 +78,19 @@
                     <td>{{ $member->parent_guardian_contact_info }}</td>
                     <td>{{ $member->other_contact }}</td>
                     <td>{{ $member->email_address }}</td>
-                    <td><a href="{{URL::to('student/delete/'.$member->student_id)}}">
-                        <button>Delete</button></a></td>
-                    <td><a href="{{URL::to('student/edit/'.$member->student_id)}}"><button>Edit</button></a></td>
-                    
                     <td>
+                        <a href="{{URL::to('student/delete/'.$member->student_id)}}" onclick="return confirmDelete()">
+                            <button>Delete</button>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{URL::to('student/edit/'.$member->student_id)}}">
+                            <button>Edit</button>
+                        </a>
                     </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
-    </div>
 </body>
 </html>

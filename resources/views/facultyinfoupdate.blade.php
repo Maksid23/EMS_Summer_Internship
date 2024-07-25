@@ -31,7 +31,6 @@
 
         table {
             border: 2px solid black;
-           
             width: 100%;
         }
 
@@ -55,7 +54,7 @@
 <body>
     <div class="container">
         <h2 class="form-title">Edit Faculty Details</h2>
-        <form method="POST" action="{{ URL::to('/faculty/update') ;}}">
+        <form id="faculty-form" method="POST" action="{{ URL::to('/faculty/update') ;}}">
             @csrf
             <div class="form-group">
                 <label for="faculty_id">Faculty ID</label>
@@ -134,19 +133,27 @@
             
             <input type="hidden" name="update_id" value="{{$faculty->faculty_id}}">
 
-            <button type="submit" class="btn btn-primary" name="save">Update</button>
+            <button type="button" class="btn btn-primary" onclick="confirmUpdate()">Update</button>
         </form>
     </div>
 
     <br><br>
     <hr>
     <hr>
-  
 
     <!-- Bootstrap JS and dependencies -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        function confirmUpdate() {
+            var form = document.getElementById('faculty-form');
+            if (confirm('Are you sure you want to update these details?')) {
+                form.submit();
+            }
+        }
+    </script>
 </body>
 
 </html>

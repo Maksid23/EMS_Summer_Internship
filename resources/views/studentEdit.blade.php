@@ -39,10 +39,15 @@
       }
     </style>
 
+    <script>
+      function confirmSubmit() {
+        return confirm('Are you sure you want to submit this form?');
+      }
+    </script>
 
   </head>
   <body>
-      <form action="{{ route('student.update') }}" method="post">
+      <form action="{{ route('student.update') }}" method="post" onsubmit="return confirmSubmit()">
       @csrf
     <div class="container">
         <h1 class="text-center">Registration</h1>
@@ -112,7 +117,6 @@
         @enderror
     </span>
 </div>
-
 
         <div class="form-group">
           <label for="">Address</label>

@@ -103,15 +103,15 @@
         <a class="button" href="{{ URL::to('parent/show') }}">Show Parent Info</a>
     </div>
 
-    <form action="{{ URL::to('parent/insertRecord') }}" method="POST">
+    <form id="parentForm" action="{{ URL::to('parent/insertRecord') }}" method="POST">
         @csrf
-        <div class="form-group">
+        <!-- <div class="form-group">
             <label for="parent_id">Parent ID:</label>
             <input type="text" name="parent_id" id="parent_id" placeholder="Enter ID" required />
             @error('parent_id')
                 <div class="error">{{ $message }}</div>
             @enderror
-        </div>
+        </div> -->
         <div class="form-group">
             <label for="parent_name">Parent Name:</label>
             <input type="text" name="parent_name" id="parent_name" placeholder="Enter Name" required />
@@ -121,7 +121,7 @@
         </div>
         <div class="form-group">
             <label for="contact_number">Contact Number:</label>
-            <input type="text" name="contact_number" id="contact_number" placeholder="Enter Contact Number" required />
+            <input type="text" maxlength="10" name="contact_number" id="contact_number" placeholder="Enter Contact Number" required />
             @error('contact_number')
                 <div class="error">{{ $message }}</div>
             @enderror
@@ -147,7 +147,13 @@
                 <div class="error">{{ $message }}</div>
             @enderror
         </div>
-        <input type="submit" name="save" value="Save Record" />
+        <input type="submit" name="save" value="Save Record" onclick="return confirmSubmit()" />
     </form>
     <a class="button" href="{{ URL::to('/form') }}">Back</a>
+
+    <script>
+        function confirmSubmit() {
+            return confirm('Are you sure you want to submit this form?');
+        }
+    </script>
 @endsection
