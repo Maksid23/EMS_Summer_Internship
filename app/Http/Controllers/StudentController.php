@@ -94,7 +94,8 @@ class StudentController extends Controller
 
 //view    
     public function view(){
-        $studnt = studnt::all();
+        $userInstituteId = Auth::user()->institute_id;
+        $studnt = studnt::where('institute_id', $userInstituteId)->get();
         return view('studentview', compact('studnt'));
     }
 
@@ -110,7 +111,12 @@ class StudentController extends Controller
 
     public function edit($student_id)
     {
+        $instituteId = Auth::user()->institute_id;
         $studnt = studnt::find($student_id);
-        return view('studentEdit', compact('studnt'));
+        $classes = DB::table('class')
+        ->where('institute_id', $instituteId)
+        ->pluck('class_name', 'class_id')
+        ->toArray();
+        return view('studentEdit', compact('studnt','classes'));
     }
 }

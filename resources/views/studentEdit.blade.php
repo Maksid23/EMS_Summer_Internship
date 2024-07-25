@@ -9,11 +9,14 @@
                 
                 
                 <div class="form-group col-md-6">
-                    <label for="class_name">Class Name</label>
-                    <input type="text" name="class_name" class="form-control" value="{{$studnt->class_name}}" aria-describedby="helpId">
-                    <span class="text-danger">
-                        @error('class_name') {{$message}} @enderror
-                    </span>
+                <label for="class_name">Class Name</label>
+            <select name="class_name" class="form-control" required>
+    <option value="">Select Class</option>
+    @foreach($classes as $class_id => $class_name)
+        <option value="{{ $class_name }}">{{ $class_name }}</option>
+    @endforeach
+</select>
+            <span class="text-danger">@error('class_id') {{$message}} @enderror</span>
                 </div>
             
                 
