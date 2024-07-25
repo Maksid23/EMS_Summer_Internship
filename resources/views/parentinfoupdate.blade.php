@@ -69,18 +69,24 @@
 <body>
     <div class="container">
         <h1>Edit Details</h1>
-        <form action="{{ URL::to('/parent/update') }}" method="POST">
+        <form id="editForm" action="{{ URL::to('/parent/update') }}" method="POST">
             @csrf
-            Parent ID:<input type="text" name="parent_id" value="{{ $parent->parent_id }}" placeholder="Enter ID" />
+            <!-- Parent ID:<input type="text" name="parent_id" value="{{ $parent->parent_id }}" placeholder="Enter ID" /> -->
             Parent Name:<input type="text" name="parent_name" value="{{ $parent->parent_name }}" placeholder="Enter name" />
-            Contact Number:<input type="text" name="contact_number" value="{{ $parent->contact_number }}" placeholder="Enter contact number" />
+            Contact Number:<input type="text" maxlength="10" name="contact_number" value="{{ $parent->contact_number }}" placeholder="Enter contact number" />
             Email:<input type="text" name="parent_email" value="{{ $parent->parent_email }}" placeholder="Enter email" />
             Address:<input type="text" name="address" value="{{ $parent->address }}" placeholder="Enter address" />
             Relation:<input type="text" name="relationship_to_student" value="{{ $parent->relationship_to_student }}" placeholder="F/M/G" />
-            <input type="hidden" name="update_id" value="{{$parent->parent_id}}" />
-            <input type="submit" name="save" value="Update Record" />
+            <input type="hidden" name="update_id" value="{{ $parent->parent_id }}" />
+            <input type="submit" name="save" value="Update Record" onclick="return confirmSubmit()" />
         </form>
     </div>
+
+    <script>
+        function confirmSubmit() {
+            return confirm('Are you sure you want to update this record?');
+        }
+    </script>
 </body>
 
 </html>

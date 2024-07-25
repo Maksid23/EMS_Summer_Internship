@@ -28,7 +28,6 @@
                 <th>Email</th>
                 <th>Delete</th>
                 <th>Edit</th>
-                
             </tr>
         </thead>
         <tbody>

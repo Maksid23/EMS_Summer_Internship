@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-md-6 offset-md-3">
                 <h2>Submit Your Details</h2>
-                <form action="{{route('clss.update')}}" method="POST">
+                <form id="updateForm" action="{{route('clss.update')}}" method="POST" onsubmit="return confirmSubmission()">
                     @csrf
                     <div class="form-group">
                         <label for="class_name">Class Name</label>

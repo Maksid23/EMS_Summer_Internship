@@ -33,7 +33,7 @@
 
 <a class="button btn btn-info" href="{{ URL::to('student/view') }}">Show Data</a>
 
-<form action="{{ URL::to('student/store') }}" method="post">
+<form action="{{ URL::to('student/store') }}" method="post" onsubmit="return confirmSubmit()">
     @csrf
     @if ($errors->any())
     <div class="alert alert-danger">
@@ -127,4 +127,10 @@
 
     <button type="submit" class="btn-primary" name="save">Submit</button>
 </form>
+
+<script>
+    function confirmSubmit() {
+        return confirm('Are you sure you want to submit this form?');
+    }
+</script>
 @endsection

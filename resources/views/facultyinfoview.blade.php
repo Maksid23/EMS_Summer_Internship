@@ -71,57 +71,39 @@
             font-size: 16px;
             font-weight: bold;
             color: #fff;
-            /* Text color */
             background-color: #007BFF;
-            /* Background color */
             border: none;
             border-radius: 5px;
-            /* Rounded corners */
             text-align: center;
             text-decoration: none;
             cursor: pointer;
             transition: background-color 0.3s ease, transform 0.2s ease;
-            /* Smooth transition effects */
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            /* Subtle shadow */
             position: fixed;
-            /* Fixed position */
             top: 30px;
-            /* Distance from top */
             right: 70px;
-            /* Distance from right */
             z-index: 1000;
-            /* Ensures the button is on top */
         }
 
-        /* Hover effect */
         .button:hover {
             background-color: violet;
-            /* Darker shade on hover */
             transform: translateY(-2px);
-            /* Slight lift on hover */
         }
 
-        /* Active effect */
         .button:active {
             background-color: green;
-            /* Even darker shade on click */
             transform: translateY(0);
-            /* Reset lift effect */
         }
 
-        /* Focus effect */
         .button:focus {
             outline: none;
-            /* Remove default focus outline */
             box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
-            /* Custom focus outline */
         }
     </style>
 </head>
 
 <body>
-     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <!-- Brand/logo -->
         <a class="navbar-brand" href="#">EMS</a>
 
@@ -185,7 +167,7 @@
                 <td> {{ $item->faculty_designation}} </td>
                 <td> {{ $item->faculty_department}} </td>
                 <td>
-                    <a href=" {{URL::to('faculty/delete/'.$item->faculty_id)}} ">Delete</a>
+                    <a href="{{URL::to('faculty/delete/'.$item->faculty_id)}}" onclick="return confirmDelete()">Delete</a>
                 </td>
                 <td>
                     <a href="{{URL::to('faculty/updateshow/'.$item->faculty_id)}}">Update</a>
@@ -194,6 +176,12 @@
             @endforeach
         </tbody>
     </table>
+
+    <script>
+        function confirmDelete() {
+            return confirm('Are you sure you want to delete this faculty member?');
+        }
+    </script>
 </body>
 
 </html>

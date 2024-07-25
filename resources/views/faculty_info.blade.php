@@ -94,7 +94,7 @@
             {{ session('success') }}
         </div>
         @endif
-        <form method="POST" action="{{ route('faculty.store') }}">
+        <form method="POST" action="{{ route('faculty.store') }}" onsubmit="return confirm('Are you sure you want to submit this form?');">
             @csrf
             <div class="form-group">
                 <label for="faculty_id">Faculty ID</label>
