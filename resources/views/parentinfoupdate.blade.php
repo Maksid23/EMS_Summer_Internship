@@ -71,7 +71,7 @@
         <h1>Edit Details</h1>
         <form id="editForm" action="{{ URL::to('/parent/update') }}" method="POST">
             @csrf
-            <!-- Parent ID:<input type="text" name="parent_id" value="{{ $parent->parent_id }}" placeholder="Enter ID" /> -->
+            Parent ID:<input type="text" name="parent_id" value="{{ $parent->parent_id }}" placeholder="Enter ID" />
             Parent Name:<input type="text" name="parent_name" value="{{ $parent->parent_name }}" placeholder="Enter name" />
             Contact Number:<input type="text" maxlength="10" name="contact_number" value="{{ $parent->contact_number }}" placeholder="Enter contact number" />
             Email:<input type="text" name="parent_email" value="{{ $parent->parent_email }}" placeholder="Enter email" />

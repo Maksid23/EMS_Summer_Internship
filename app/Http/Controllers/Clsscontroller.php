@@ -19,33 +19,48 @@ class Clsscontroller extends Controller
         return view('clss', compact('facultyNames'));
     }
 
-        public function insert(Request $request)
-        {
-            $request->validate([
-                'class_name' => 'required|max:12',
-                'class_teacher' => 'required|exists:faculty_info,faculty_name',
-                'location' => 'required'
-            ]);
-            $user = auth()->user(); 
-            $class = new clss();
-            $class->institute_id= $user->institute_id;
-            $class->class_name = $request->input('class_name');
-            $class->class_teacher = $request->input('class_teacher');
-            $class->location = $request->input('location');
-            $class->save();
-            return redirect()->back()->with('success', 'Data Added sucsess full');
-        }
+    public function insert(Request $request)
+    {
+        $request->validate([
+            'class_name' => 'required|max:12|unique:class,class_name',
+            'class_teacher' => [
+                'required',
+                'exists:faculty_info,faculty_name',
+                function ($attribute, $value, $fail) {
+                    if (clss::where('class_teacher', $value)->exists()) {
+                        $fail('The selected class teacher is already assigned to another class.');
+                    }
+                }
+            ],
+            'location' => 'required'
+        ]);
+    
+        $user = auth()->user();
+        $class = new clss();
+        $class->institute_id = $user->institute_id;
+        $class->class_name = $request->input('class_name');
+        $class->class_teacher = $request->input('class_teacher');
+        $class->location = $request->input('location');
+        $class->save();
+    
+        return redirect()->back()->with('success', 'Data Added successfully');
+    }
+    
 
     //UPDATE
-    public function update(Request $data){
+    public function update(Request $data)
+{
+    $class = clss::find($data->input('update_id'));
 
-        $class = clss::find($data->input('update_id'));;
-        $class->class_name = $data->input('class_name');
-        $class->class_teacher = $data->input('class_teacher');
-        $class->location = $data->input('location');
-        $class->save();
-        return redirect()->route('clss.view')->with('success', 'Student data stored successfully!');
-    }    
+    $class->class_name = $data->input('class_name');
+    $class->class_teacher = $data->input('class_teacher');
+    $class->location = $data->input('location');
+    $class->save();
+
+    return redirect()->route('clss.view')->with('success', 'Class data updated successfully!');
+}
+
+
 //view    
 public function view(){
     $userInstituteId = Auth::user()->institute_id;

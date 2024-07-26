@@ -31,7 +31,7 @@
                     <td>{{ $member->class_name }}</td>
                     <td>{{ $member->class_teacher  }}</td>
                     <td>{{ $member->location }}</td>
-                    <td><a href="{{URL::to('clss/delete/'.$member->class_id)}}" onclick="return confirm('Are you sure you want to delete this record?');">
+                    <td><a href="{{URL::to('clss/delete/'.$member->class_id)}}" onclick="return confirmDelete()">
                         <button>Delete</button></a></td>
                     <td><a href="{{URL::to('clss/edit/'.$member->class_id)}}"><button>Edit</button></a></td>
                 </tr>
@@ -39,4 +39,10 @@
         </tbody>
     </table>
     </div>
+    <script>
+        function confirmDelete() {
+            return confirm('Are you sure you want to delete this record?');
+        }
+        
+    </script>
 @endsection

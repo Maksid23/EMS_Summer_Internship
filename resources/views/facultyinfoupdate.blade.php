@@ -54,7 +54,7 @@
 <body>
     <div class="container">
         <h2 class="form-title">Edit Faculty Details</h2>
-        <form id="faculty-form" method="POST" action="{{ URL::to('/faculty/update') ;}}">
+        <form id="faculty-form" method="POST" action="{{ URL::to('/faculty/update') }}">
             @csrf
             <div class="form-group">
                 <label for="faculty_id">Faculty ID</label>
@@ -78,11 +78,11 @@
 
             <div class="form-group">
                 <label for="faculty_gender">Faculty Gender</label>
-                <select class="form-control" id="faculty_gender" name="faculty_gender" value="{{$faculty->faculty_gender}}" required>
+                <select class="form-control" id="faculty_gender" name="faculty_gender" required>
                     <option value="">Select Gender</option>
-                    <option value="male" {{$faculty->faculty_gender}}>Male</option>
-                    <option value="female" {{$faculty->faculty_gender}}>Female</option>
-                    <option value="other" {{$faculty->faculty_gender}}>Other</option>
+                    <option value="male" {{ $faculty->faculty_gender == 'male' ? 'selected' : '' }}>Male</option>
+                    <option value="female" {{ $faculty->faculty_gender == 'female' ? 'selected' : '' }}>Female</option>
+                    <option value="other" {{ $faculty->faculty_gender == 'other' ? 'selected' : '' }}>Other</option>
                 </select>
             </div>
 
@@ -93,7 +93,7 @@
 
             <div class="form-group">
                 <label for="faculty_address">Faculty Address</label>
-                <textarea class="form-control" id="faculty_address" name="faculty_address" value="{{$faculty->faculty_address}}" rows="3" placeholder="Enter Address" required>{{$faculty->faculty_address}}</textarea>
+                <textarea class="form-control" id="faculty_address" name="faculty_address" rows="3" placeholder="Enter Address" required>{{$faculty->faculty_address}}</textarea>
             </div>
 
             <div class="form-group">
@@ -118,7 +118,7 @@
 
             <div class="form-group">
                 <label for="faculty_experience">Faculty Experience</label>
-                <textarea class="form-control" id="faculty_experience" name="faculty_experience" value="{{$faculty->faculty_experience}}" rows="3" placeholder="Enter Experience" required>{{$faculty->faculty_experience}}</textarea>
+                <textarea class="form-control" id="faculty_experience" name="faculty_experience" rows="3" placeholder="Enter Experience" required>{{$faculty->faculty_experience}}</textarea>
             </div>
 
             <div class="form-group">

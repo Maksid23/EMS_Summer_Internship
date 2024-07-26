@@ -1,45 +1,6 @@
-<!doctype html>
-<html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>STAFF INFORMATION</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-</head>
-
-<body>
-    <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            border-radius: 5px;
-        }
-
-        thead {
-            background-color: #007bff;
-            color: #ffffff;
-        }
-
-        th,
-        td {
-            padding: 10px;
-            border: 1px solid #ddd;
-            text-align: left;
-        }
-
-        tbody tr:nth-child(odd) {
-            background-color: #f2f2f2;
-        }
-
-        tbody tr:hover {
-            background-color: #ddd;
-        }
-    </style>
-    <div class="row justify-content-center mt-4">
+@extends('index')
+@section('content')
+<div class="row justify-content-center mt-4">
         <div class="col-md-10 d-flex justify-content-end">
             <a href="{{ route('form.index') }}" class="btn btn-dark">Create</a>
         </div>
@@ -91,6 +52,4 @@
 
     </div>
 
-</body>
-
-</html>
+@endsection

@@ -1,92 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Faculty Info Form</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-    <style>
-        body {
-            background-color: #E4E9F7;
-            padding: 20px;
-            font-family: Arial, sans-serif;
-        }
-        .container {
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            max-width: 600px;
-            margin: 90px auto;
-        }
-        .form-title {
-            margin-bottom: 20px;
-            color: #4070F4;
-            text-align: center;
-        }
-        .form-group label {
-            font-weight: bold;
-        }
-        input[type="text"], input[type="number"], input[type="date"], input[type="email"], select, textarea {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        button[type="submit"], .button {
-            display: inline-block;
-            padding: 10px 20px;
-            font-size: 16px;
-            font-weight: bold;
-            text-align: center;
-            text-decoration: none;
-            color: #ffffff;
-            background-color: #4070F4;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-            border: none;
-            cursor: pointer;
-        }
-        button[type="submit"]:hover, .button:hover {
-            background-color: #3357C4;
-        }
-        .error {
-            color: red;
-            font-size: 12px;
-            margin-top: -10px;
-            margin-bottom: 10px;
-        }
-        nav .navbar-nav .nav-link {
-            color: #fff;
-        }
-        nav .navbar-nav .nav-link:hover {
-            color: #ccc;
-        }
-    </style>
-</head>
-<body>
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-        <!-- Brand/logo -->
-        <a class="navbar-brand" href="#">EMS</a>
-        <!-- Links -->
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" href="{{ URL::to('form') }}">Dashboard</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ URL::to('faculty/show') }}">Show Faculty Info</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ URL::to('faculty') }}">Add Faculty Info</a>
-            </li>
-        </ul>
-    </nav>
+@extends('index')
+@section('content')
+
     <div class="container">
         <h2 class="form-title">Faculty Form</h2>
         @if (session('success'))
@@ -94,7 +8,7 @@
             {{ session('success') }}
         </div>
         @endif
-        <form method="POST" action="{{ route('faculty.store') }}" onsubmit="return confirm('Are you sure you want to submit this form?');">
+        <form method="POST" action="{{ route('faculty.store') }}" onsubmit="return confirmSubmission();">
             @csrf
             <div class="form-group">
                 <label for="faculty_id">Faculty ID</label>
@@ -199,5 +113,10 @@
             <button type="submit" class="btn btn-primary" name="save">Submit</button>
         </form>
     </div>
-</body>
-</html>
+
+    <script>
+        function confirmSubmission() {
+            return confirm('Are you sure you want to submit this form?');
+        }
+    </script>
+@endsection

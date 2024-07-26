@@ -3,23 +3,20 @@
 @section('content')
     <div class="container">
         <h1>Update Student Information</h1>
-        <form action="{{ route('student.update') }}" method="post">
+        <form id="update-form" action="{{ route('student.update') }}" method="post">
             @csrf
             <div class="form-row">
-                
-                
                 <div class="form-group col-md-6">
-                <label for="class_name">Class Name</label>
-            <select name="class_name" class="form-control" required>
-    <option value="">Select Class</option>
-    @foreach($classes as $class_id => $class_name)
-        <option value="{{ $class_name }}">{{ $class_name }}</option>
-    @endforeach
-</select>
-            <span class="text-danger">@error('class_id') {{$message}} @enderror</span>
+                    <label for="class_name">Class Name</label>
+                    <select name="class_name" class="form-control" required>
+                        <option value="">Select Class</option>
+                        @foreach($classes as $class_id => $class_name)
+                            <option value="{{ $class_name }}">{{ $class_name }}</option>
+                        @endforeach
+                    </select>
+                    <span class="text-danger">@error('class_id') {{$message}} @enderror</span>
                 </div>
             
-                
                 <div class="form-group col-md-6">
                     <label for="student_name">Student Name</label>
                     <input type="text" name="student_name" class="form-control" value="{{$studnt->student_name}}" aria-describedby="helpId">
@@ -61,7 +58,7 @@
                 </div>
                 <div class="form-group col-md-6">
                     <label for="parent_guardian_contact_info">Parent/Guardian Contact Info</label>
-                    <input type="tel" name="parent_guardian_contact_info" class="form-control" value="{{$studnt->parent_guardian_contact_info}}"maxlength="10" aria-describedby="helpId">
+                    <input type="tel" name="parent_guardian_contact_info" class="form-control" value="{{$studnt->parent_guardian_contact_info}}" maxlength="10" aria-describedby="helpId">
                     <span class="text-danger">
                         @error('parent_guardian_contact_info') {{$message}} @enderror
                     </span>
@@ -71,7 +68,7 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="other_contact">Other Contact</label>
-                    <input type="tel" name="other_contact" class="form-control" value="{{$studnt->other_contact}}"maxlength="10" aria-describedby="helpId">
+                    <input type="tel" name="other_contact" class="form-control" value="{{$studnt->other_contact}}" maxlength="10" aria-describedby="helpId">
                     <span class="text-danger">
                         @error('other_contact') {{$message}} @enderror
                     </span>
@@ -86,7 +83,15 @@
             </div>
 
             <input type="hidden" name="update_id" value="{{$studnt->student_id}}">
-            <button type="submit" class="btn-primary" name="save">UPDATE</button>
+            <button type="button" class="btn btn-primary" onclick="confirmUpdate()">UPDATE</button>
         </form>
     </div>
+
+    <script>
+        function confirmUpdate() {
+            if (confirm('Are you sure you want to update this student information?')) {
+                document.getElementById('update-form').submit();
+            }
+        }
+    </script>
 @endsection

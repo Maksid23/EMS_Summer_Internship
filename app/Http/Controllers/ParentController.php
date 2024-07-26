@@ -62,7 +62,7 @@ class ParentController extends Controller
         ]);
 
         $parent = parents::find($data->input('update_id'));
-       // $parent->parent_id = $data->input('parent_id');
+        // $parent->parent_id = $data->input('parent_id');
         $parent->parent_name = $data->input('parent_name');
         $parent->contact_number=$data->input('contact_number');
         $parent->parent_email=$data->input('parent_email');

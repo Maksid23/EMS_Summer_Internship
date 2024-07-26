@@ -8,13 +8,21 @@
     <div class="form-container">
         <form action="{{ route('form.insert') }}" method="post">
             @csrf
-            <!-- <div class="form-group">
-                <label for="staff_id">Staff ID:</label>
-                <input type="text" id="staff_id" name="staff_id">
-                @error('staff_id')
-                <div class="error">{{ $message }}</div>
-                @enderror
-            </div> -->
+            @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
+@if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
             <div class="form-group">
                 <label for="staff_name">Staff Name:</label>
                 <input type="text" id="staff_name" name="staff_name">
