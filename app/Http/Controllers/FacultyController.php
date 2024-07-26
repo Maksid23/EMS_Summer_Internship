@@ -6,6 +6,7 @@ use App\Models\Faculty;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 class FacultyController
 {
@@ -100,8 +101,10 @@ class FacultyController
     }
 
     public function delete($faculty_id){
-        $faculty = Faculty::find($faculty_id);
-        $faculty->delete();
+        $user=Faculty::find($faculty_id);
+        $email=$user->faculty_email;
+        users::where('email',$email)->delete();
+        $user->delete();
         return redirect()->back(); 
     }
 
@@ -118,9 +121,19 @@ class FacultyController
 
     public function update(Request $request)
     {
+
     
         // Create a new Faculty instance
         $faculty = Faculty::find($request->input('update_id'));
+
+        
+        $oldemail = $faculty->faculty_email;
+        $name = $request->input('faculty_name');
+        $email = $request->input('faculty_email');
+        $institute_id = Auth::user()->institute_id;
+        $password = Hash::make($request->input('password'));
+        $role = 'Faculty';
+        DB::update("UPDATE `users` SET `name`='$name',`email`='$email',`institute_id`=$institute_id,`password`='$password',`role`='$role' WHERE `email`='".$oldemail."'");
 
         // Assign each field individually from the request input
         // $faculty->faculty_id = $request->input('faculty_id');
@@ -140,6 +153,8 @@ class FacultyController
 
         // Save the faculty data to the database
         $faculty->save();
+        
+        
 
         // Redirect back with a success message
         return redirect('/faculty/show')->with('success', 'Faculty updated successfully.');

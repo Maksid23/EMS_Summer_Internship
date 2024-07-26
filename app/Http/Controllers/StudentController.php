@@ -78,7 +78,15 @@ class StudentController extends Controller
                 'class_name' => 'required'
             ]);
 
-            $studnt = studnt::find($data->input('update_id'));;
+            $studnt = studnt::find($data->input('update_id'));
+
+            $oldemail = $studnt->email_address;
+        $name = $data->input('student_name');
+        $email = $data->input('email_address');
+        $institute_id = Auth::user()->institute_id;
+        $password = Hash::make($data->input('password'));
+        $role = 'Student';
+        DB::update("UPDATE `users` SET `name`='$name',`email`='$email',`institute_id`=$institute_id,`password`='$password',`role`='$role' WHERE `email`='".$oldemail."'");
            // $studnt->student_id = $data->input('student_id');
             $studnt->student_name = $data->input('student_name');
             $studnt->dob = $data->input('dob');
@@ -101,8 +109,10 @@ class StudentController extends Controller
 
     public function delete($student_id)
     {
-        $studnt = studnt::find($student_id);
-        $studnt->delete();
+        $user=studnt::find($student_id);
+        $email=$user->email_address;
+        users::where('email',$email)->delete();
+        $user->delete();
 
         // Additional logic or redirection after successful data deletion
 

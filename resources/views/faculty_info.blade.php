@@ -4,6 +4,7 @@
 
 @section('content')
     <h2 class="form-title">Faculty Form</h2>
+    <a href="{{ URL::to('faculty/show') }}"> Show Faculty Info </a>
     @if (session('success'))
     <div class="alert alert-success">
         {{ session('success') }}

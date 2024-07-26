@@ -51,7 +51,7 @@
 @section('content')
     <div class="container">
         <h2 class="form-title">Edit Faculty Details</h2>
-        <form id="faculty-form" method="POST" action="{{ URL::to('/faculty/update') }}">
+        <form id="faculty-form" method="POST" action="{{ URL::to('/faculty/update') }}" onsubmit="return confirmUpdate()">
             @csrf
             <!-- <div class="form-group">
                 <label for="faculty_id">Faculty ID</label>
@@ -77,9 +77,9 @@
                 <label for="faculty_gender">Faculty Gender</label>
                 <select class="form-control" id="faculty_gender" name="faculty_gender" required>
                     <option value="">Select Gender</option>
-                    <option value="male" {{ $faculty->faculty_gender == 'male' ? 'selected' : '' }}>Male</option>
-                    <option value="female" {{ $faculty->faculty_gender == 'female' ? 'selected' : '' }}>Female</option>
-                    <option value="other" {{ $faculty->faculty_gender == 'other' ? 'selected' : '' }}>Other</option>
+                    <option value="male" {{ old('faculty_gender',$faculty->faculty_gender) == 'male' ? 'selected' : '' }}>Male</option>
+                    <option value="female" {{ old('faculty_gender',$faculty->faculty_gender) == 'female' ? 'selected' : '' }}>Female</option>
+                    <option value="other" {{ old('faculty_gender',$faculty->faculty_gender) == 'other' ? 'selected' : '' }}>Other</option>
                 </select>
             </div>
 
@@ -130,13 +130,20 @@
             
             <input type="hidden" name="update_id" value="{{ $faculty->faculty_id }}">
 
-            <button type="button" class="btn btn-primary" onclick="confirmUpdate()">Update</button>
+            <button type="submit" class="btn btn-primary" name="save">Update</button>
         </form>
     </div>
 
     <br><br>
     <hr>
     <hr>
+
+    <script>
+        function confirmUpdate() {
+            return confirm('Are you sure you want to update this faculty member?');
+        }
+    </script>
+
 @endsection
 
 @section('scripts')

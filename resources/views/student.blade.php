@@ -77,7 +77,8 @@
         </div>
         <div class="form-group col-md-6">
             <label for="dob">DOB</label>
-            <input type="date" name="dob" class="form-control" required>
+            <input type="date" name="dob" id="dob" class="form-control" required>
+            <span id="dob_feedback" style="color: red;"></span>
             <span class="text-danger">@error('dob') {{$message}} @enderror</span>
         </div>
     </div>
@@ -103,12 +104,14 @@
     <div class="form-row">
         <div class="form-group col-md-6">
             <label for="parent_guardian_contact_info">Parent/Guardian Contact Info</label>
-            <input type="tel" name="parent_guardian_contact_info" class="form-control" placeholder="Enter Contact Info" maxlength="10" required>
+            <input type="tel" name="parent_guardian_contact_info" id="parent_guardian_contact_info" class="form-control" placeholder="Enter Contact Info" maxlength="10" required>
+            <span id="phone_feedback" style="color: red;"></span>
             <span class="text-danger">@error('parent_guardian_contact_info') {{$message}} @enderror</span>
         </div>
         <div class="form-group col-md-6">
             <label for="other_contact">Other Contact</label>
-            <input type="tel" name="other_contact" class="form-control" placeholder="Enter Other Contact" maxlength="10"required >
+            <input type="tel" name="other_contact" id="other_contact" class="form-control" placeholder="Enter Other Contact" maxlength="10"required >
+            <span id="phone_feedback" style="color: red;"></span>
             <span class="text-danger">@error('other_contact') {{$message}} @enderror</span>
         </div>
     </div>
@@ -132,5 +135,48 @@
     function confirmSubmit() {
         return confirm('Are you sure you want to submit this form?');
     }
+    document.getElementById('dob').addEventListener('input', function() {
+            var dobInput = document.getElementById('dob');
+            var dobFeedback = document.getElementById('dob_feedback');
+            var dob = new Date(dobInput.value);
+            var today = new Date();
+            var age = today.getFullYear() - dob.getFullYear();
+            var monthDiff = today.getMonth() - dob.getMonth();
+            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dob.getDate())) {
+                age--;
+            }
+            if (age < 6) {
+                dobFeedback.textContent = 'You must be at least 6 years old.';
+            } else {
+                dobFeedback.textContent = '';
+            }
+        });
+        document.getElementById('parent_guardian_contact_info').addEventListener('input', function() {
+            var phoneInput = document.getElementById('parent_guardian_contact_info');
+            var phoneFeedback = document.getElementById('phone_feedback');
+            var phone = phoneInput.value;
+            // Allow only digits
+            if (/^\d*$/.test(phone)) {
+                phoneFeedback.textContent = '';
+            } else {
+                phoneFeedback.textContent = 'Please enter only digits.';
+                phoneInput.value = phone.replace(/\D/g, ''); // Remove non-numeric characters
+            }
+        });
+        document.getElementById('other_contact').addEventListener('input', function() {
+            var phoneInput = document.getElementById('other_contact');
+            var phoneFeedback = document.getElementById('phone_feedback');
+            var phone = phoneInput.value;
+            // Allow only digits
+            if (/^\d*$/.test(phone)) {
+                phoneFeedback.textContent = '';
+            } else {
+                phoneFeedback.textContent = 'Please enter only digits.';
+                phoneInput.value = phone.replace(/\D/g, ''); // Remove non-numeric characters
+            }
+        });
+       
+       
+    
 </script>
 @endsection

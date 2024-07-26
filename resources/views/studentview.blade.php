@@ -32,6 +32,7 @@
         </thead>
         <tbody>
             @foreach ($studnt as $member)
+            @if($member->institute_id == Auth::user()->institute_id)
                 <tr>
                     <td>{{ $member->student_id }}</td>
                     <td>{{ $member->class_name  }}</td>
@@ -46,6 +47,7 @@
                         <button>Delete</button></a></td>
                     <td><a href="{{ URL::to('student/edit/'.$member->student_id) }}"><button>Edit</button></a></td>
                 </tr>
+                @endif
             @endforeach
         </tbody>
     </table>

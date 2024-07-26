@@ -5,6 +5,7 @@ use App\Models\staff;
 use App\Models\users;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class StaffController extends Controller
 {
@@ -32,7 +33,7 @@ class StaffController extends Controller
             'staff_name' => 'required|string|max:255',
             'gender' => 'required', 
             'contact_number' => 'required', 
-            'email' => 'required|email|max:255',
+            'email' => 'required|email|max:255|unique:staff_information,email',
             'address' => 'required|string|max:255',
             'designation' => 'required|string|max:255',
             'department' => 'required|string|max:255',
@@ -56,7 +57,7 @@ class StaffController extends Controller
         $users->email = $request->input('email');
         $users->institute_id = Auth::user()->institute_id;
         $users->password = Hash::make($request->input('password'));
-        $users->role = 'Managment';
+        $users->role = 'Management';
         $users->save();
         return redirect()->route('form.view')->with('success', 'Data Added sucsessfully');
     }
@@ -84,6 +85,18 @@ class StaffController extends Controller
             'department' => 'required|string|max:255',
         ]);
         $staff = staff::find($request->input('update_id'));
+
+
+
+        $oldemail = $staff->email;
+        $name = $request->input('staff_name');
+        $email = $request->input('email');
+        $institute_id = Auth::user()->institute_id;
+        $password = Hash::make($request->input('password'));
+        $role = 'Managment';
+        DB::update("UPDATE `users` SET `name`='$name',`email`='$email',`institute_id`=$institute_id,`password`='$password',`role`='$role' WHERE `email`='".$oldemail."'");
+
+
         $staff->institute_id = Auth::user()->institute_id;
         $staff->staff_name = $validatedData['staff_name'];
         $staff->gender = $validatedData['gender'];
@@ -94,13 +107,6 @@ class StaffController extends Controller
         $staff->department = $validatedData['department'];
         $staff->save();
 
-        $users = new users();
-        $users->name = $request->input('staff_name');
-        $users->email = $request->input('email');
-        $users->institute_id = Auth::user()->institute_id;
-        $users->password = Hash::make($request->input('password'));
-        $users->role = 'Management';
-        $users->save();
 
         return redirect()->route('form.view')->with('success', 'Data Updated sucsessfully');
     }

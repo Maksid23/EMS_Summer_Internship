@@ -30,6 +30,7 @@
     </thead>
     <tbody>
         @foreach ($user as $member)
+            @if($member->institute_id == Auth::user()->institute_id)
             <tr>
                 <td>{{ $member->staff_id }}</td>
                 <td>{{ $member->institute_id }}</td>
@@ -44,6 +45,7 @@
                     <a href="{{ route('view.destroy',$member->staff_id)}}" class="btn btn-danger delete-btn">Delete</a>
                 </td>
             </tr>
+            @endif
         @endforeach
     </tbody>
 </table>

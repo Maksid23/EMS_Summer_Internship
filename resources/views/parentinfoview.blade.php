@@ -15,6 +15,7 @@
         </thead>
         <tbody>
             @foreach($parents as $item)
+            @if($item->institute_id == Auth::user()->institute_id)
             <tr>
                 <td>{{ $item->parent_id }}</td>
                 <td>{{ $item->parent_name }}</td>
@@ -25,6 +26,7 @@
                 <td><a href="{{ URL::to('parent/deleteRecord/'.$item->parent_id) }}" onclick="return confirmDelete()">Delete</a></td>
                 <td><a href="{{ URL::to('parent/updateRecord/'.$item->parent_id) }}">Edit</a></td>
             </tr>
+            @endif
             @endforeach
         </tbody>
     </table>

@@ -36,6 +36,7 @@
         </thead>
         <tbody>
             @foreach ($faculties as $item)
+            @if($item->institute_id == Auth::user()->institute_id)
             <tr>
                 <td> {{ $item->faculty_id}} </td>
                 <td> {{ $item->faculty_name}} </td>
@@ -58,6 +59,7 @@
                     <a href="{{URL::to('faculty/updateshow/'.$item->faculty_id)}}">Update</a>
                 </td>
             </tr>
+            @endif
             @endforeach
         </tbody>
     </table>

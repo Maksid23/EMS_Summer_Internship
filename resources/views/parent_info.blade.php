@@ -122,6 +122,7 @@
         <div class="form-group">
             <label for="contact_number">Contact Number:</label>
             <input type="text" maxlength="10" name="contact_number" id="contact_number" placeholder="Enter Contact Number" required />
+            <span id="phone_feedback" style="color: red;"></span>
             @error('contact_number')
                 <div class="error">{{ $message }}</div>
             @enderror
@@ -167,5 +168,17 @@
         function confirmSubmit() {
             return confirm('Are you sure you want to submit this form?');
         }
+        document.getElementById('contact_number').addEventListener('input', function() {
+            var phoneInput = document.getElementById('contact_number');
+            var phoneFeedback = document.getElementById('phone_feedback');
+            var phone = phoneInput.value;
+            // Allow only digits
+            if (/^\d*$/.test(phone)) {
+                phoneFeedback.textContent = '';
+            } else {
+                phoneFeedback.textContent = 'Please enter only digits.';
+                phoneInput.value = phone.replace(/\D/g, ''); // Remove non-numeric characters
+            }
+        });
     </script>
 @endsection
