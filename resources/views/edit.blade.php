@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="form-container">
-        <form action="{{ route('form.update')}}" method="post">
+        <form id="update-form" action="{{ route('form.update') }}" method="post">
             @csrf
             <div class="form-group">
                 <label for="staff_id">Staff ID:</label>
@@ -171,3 +171,13 @@
         }
     </style>
 @endsection
+
+@push('scripts')
+    <script>
+        document.getElementById('update-form').addEventListener('submit', function(e) {
+            if (!confirm('Are you sure you want to update this information?')) {
+                e.preventDefault();
+            }
+        });
+    </script>
+@endpush

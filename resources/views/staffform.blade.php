@@ -6,23 +6,24 @@
 
 @section('content')
     <div class="form-container">
-        <form action="{{ route('form.insert') }}" method="post">
+        <form id="staffForm" action="{{ route('form.insert') }}" method="post">
             @csrf
             @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
 
-@if (session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
-    </div>
-@endif
+            @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
+
             <div class="form-group">
                 <label for="staff_name">Staff Name:</label>
                 <input type="text" id="staff_name" name="staff_name">
@@ -61,7 +62,7 @@
                 <div class="error">{{ $message }}</div>
                 @enderror
             </div>
-        
+
             <div class="form-group">
                 <label for="designation">Designation:</label>
                 <input type="text" id="designation" name="designation">
@@ -91,7 +92,7 @@
         </form>
     </div>
     <div class="form-group" style="text-align: center;">
-        <a href="/staff/form/view" class="button-link">View Data</a>
+        <a href="/staff/form/view" class="button-link" id="viewDataLink">View Data</a>
     </div>
 @endsection
 
@@ -100,6 +101,7 @@
         .form-container {
             background-color: #e9f7f9;
             border: 1px solid #cce5e5;
+            padding: 20px;
         }
 
         .form-group label {
@@ -119,5 +121,27 @@
         .form-group button[type="submit"]:hover {
             background-color: #138496;
         }
+
+        .error {
+            color: red;
+        }
     </style>
+@endpush
+
+@push('scripts')
+    <script>
+        // Confirm before form submission
+        document.getElementById('staffForm').addEventListener('submit', function(e) {
+            if (!confirm('Are you sure you want to submit the form?')) {
+                e.preventDefault();
+            }
+        });
+
+        // Confirm before navigating to view data
+        document.getElementById('viewDataLink').addEventListener('click', function(e) {
+            if (!confirm('Are you sure you want to view the data?')) {
+                e.preventDefault();
+            }
+        });
+    </script>
 @endpush
