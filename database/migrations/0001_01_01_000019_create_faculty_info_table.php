@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('institute_id');
             $table->foreign('institute_id')->references('institute_id')->on('institute')->onDelete('cascade');
                         $table->string('faculty_name', 100);
-            $table->integer('faculty_age');
+            // $table->integer('faculty_age');
             $table->date('faculty_dob');
             $table->enum('faculty_gender', ['Male', 'Female', 'Other']);
             $table->string('faculty_contact', 11);

@@ -25,14 +25,8 @@ return new class extends Migration
             $table->string('other_contact', 255);
             $table->string('email_address', 255);
             $table->timestamps();
-
-
-            $table->unsignedBigInteger('class_id'); // Assuming class_id is a foreign key
-            // Add any other columns you need
-
-            // Define foreign key constraint (if applicable)
-            $table->foreign('class_id')->references('class_id')->on('class')->onDelete('cascade');
-        });
+            $table->unsignedBigInteger('class_name'); 
+          });
     }
 
     /**

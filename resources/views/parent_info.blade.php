@@ -1,9 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parents Page</title>
+@extends('index')
+
+@section('title', 'Parents Page')
+
+@push('styles')
     <style>
         body {
             background-color: #E4E9F7;
@@ -65,7 +64,7 @@
         }
         .container {
             position: absolute;
-            Right: 30px;
+            right: 30px;
             background-color: #4070F4;
             padding: 0px;
             border-radius: 9px;
@@ -75,7 +74,6 @@
             margin: 10px 0;
         }
         .button {
-            
             display: inline-block;
             padding: 10px 20px;
             font-size: 16px;
@@ -86,9 +84,7 @@
             background-color: #4070F4; /* Button background color */
             border-radius: 5px;
             transition: background-color 0.3s;
-           
         }
-
         .button:hover {
             background-color: #3050C4; /* Button hover color */
         }
@@ -98,51 +94,91 @@
             margin-top: -10px;
             margin-bottom: 10px;
         }
-
     </style>
-</head>
-<body>
+@endpush
+
+@section('content')
     <h1>Parents Page</h1>
     <div class="container">
         <a class="button" href="{{ URL::to('parent/show') }}">Show Parent Info</a>
     </div>
 
-    <form action="{{ URL::to('parent/insertRecord') }}" method="POST">
+    <form id="parentForm" action="{{ URL::to('parent/insertRecord') }}" method="POST">
         @csrf
-        Parent ID:<input type="text" name="parent_id" placeholder="Enter ID" required />
-        @error('parent_id')
-            <div class="error">{{ $message }}</div>
-        @enderror
-        <br>
-        Parent Name:<input type="text" name="parent_name" placeholder="Enter Name" required />
-        @error('parent_name')
-            <div class="error">{{ $message }}</div>
-        @enderror
-        <br>
-        Contact Number:<input type="text" name="contact_number" placeholder="Enter Contact Number" required />
-        @error('contact_number')
-            <div class="error">{{ $message }}</div>
-        @enderror
-        <br>
-        Email:<input type="text" name="parent_email" placeholder="Enter Email" required />
-        @error('parent_email')
-            <div class="error">{{ $message }}</div>
-        @enderror
-        <br>
-        Address:<input type="text" name="address" placeholder="Enter Address" required />
-        @error('address')
-            <div class="error">{{ $message }}</div>
-        @enderror
-        <br>
-        Relation:<input type="text" name="relationship_to_student" placeholder="F/M/G" required />
-        @error('relationship_to_student')
-            <div class="error">{{ $message }}</div>
-        @enderror
-        <br>
-        <input type="submit" name="save" value="Save Record" />
+        <!-- <div class="form-group">
+            <label for="parent_id">Parent ID:</label>
+            <input type="text" name="parent_id" id="parent_id" placeholder="Enter ID" required />
+            @error('parent_id')
+                <div class="error">{{ $message }}</div>
+            @enderror
+        </div> -->
+        <div class="form-group">
+            <label for="parent_name">Parent Name:</label>
+            <input type="text" name="parent_name" id="parent_name" placeholder="Enter Name" required />
+            @error('parent_name')
+                <div class="error">{{ $message }}</div>
+            @enderror
+        </div>
+        <div class="form-group">
+            <label for="contact_number">Contact Number:</label>
+            <input type="text" maxlength="10" name="contact_number" id="contact_number" placeholder="Enter Contact Number" required />
+            <span id="phone_feedback" style="color: red;"></span>
+            @error('contact_number')
+                <div class="error">{{ $message }}</div>
+            @enderror
+        </div>
+        <div class="form-group">
+            <label for="parent_email">Email:</label>
+            <input type="text" name="parent_email" id="parent_email" placeholder="Enter Email" required />
+            @error('parent_email')
+                <div class="error">{{ $message }}</div>
+            @enderror
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" name="password" minlength="5" id="password" placeholder="password" required />
+            @error('password')
+                <div class="error">{{ $message }}</div>
+            @enderror
+        </div>
+        <!-- <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password" placeholder="password" required />
+        </div> -->
+        <div class="form-group">
+            <label for="address">Address:</label>
+            <input type="text" name="address" id="address" placeholder="Enter Address" required />
+            @error('address')
+                <div class="error">{{ $message }}</div>
+            @enderror
+        </div>
+        <div class="form-group">
+            <label for="relationship_to_student">Relation:</label>
+            <input type="text" name="relationship_to_student" id="relationship_to_student" placeholder="F/M/G" required />
+            @error('relationship_to_student')
+                <div class="error">{{ $message }}</div>
+            @enderror
+        </div>
+        
+        <input type="submit" name="save" value="Save Record" onclick="return confirmSubmit()" />
     </form>
     <a class="button" href="{{ URL::to('/form') }}">Back</a>
-</body>
-</html>
 
-
+    <script>
+        function confirmSubmit() {
+            return confirm('Are you sure you want to submit this form?');
+        }
+        document.getElementById('contact_number').addEventListener('input', function() {
+            var phoneInput = document.getElementById('contact_number');
+            var phoneFeedback = document.getElementById('phone_feedback');
+            var phone = phoneInput.value;
+            // Allow only digits
+            if (/^\d*$/.test(phone)) {
+                phoneFeedback.textContent = '';
+            } else {
+                phoneFeedback.textContent = 'Please enter only digits.';
+                phoneInput.value = phone.replace(/\D/g, ''); // Remove non-numeric characters
+            }
+        });
+    </script>
+@endsection

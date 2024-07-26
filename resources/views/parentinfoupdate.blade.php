@@ -1,10 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('index')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Details</title>
+@section('content')
+    <div class="container">
+        <h1>Edit Details</h1>
+        <form id="editForm" action="{{ URL::to('/parent/update') }}" method="POST">
+            @csrf
+            <div class="form-group">
+                <label for="parent_id">Parent ID:</label>
+                <input type="text" name="parent_id" class="form-control" value="{{ $parent->parent_id }}" placeholder="Enter ID" />
+            </div>
+            <div class="form-group">
+                <label for="parent_name">Parent Name:</label>
+                <input type="text" name="parent_name" class="form-control" value="{{ $parent->parent_name }}" placeholder="Enter name" />
+            </div>
+            <div class="form-group">
+                <label for="contact_number">Contact Number:</label>
+                <input type="text" maxlength="10" name="contact_number" class="form-control" value="{{ $parent->contact_number }}" placeholder="Enter contact number" />
+            </div>
+            <div class="form-group">
+                <label for="parent_email">Email:</label>
+                <input type="text" name="parent_email" class="form-control" value="{{ $parent->parent_email }}" placeholder="Enter email" />
+            </div>
+            <div class="form-group">
+                <label for="address">Address:</label>
+                <input type="text" name="address" class="form-control" value="{{ $parent->address }}" placeholder="Enter address" />
+            </div>
+            <div class="form-group">
+                <label for="relationship_to_student">Relation:</label>
+                <input type="text" name="relationship_to_student" class="form-control" value="{{ $parent->relationship_to_student }}" placeholder="F/M/G" />
+            </div>
+            <input type="hidden" name="update_id" value="{{ $parent->parent_id }}" />
+            <button type="submit" class="btn btn-primary" onclick="return confirmSubmit()">Update Record</button>
+        </form>
+    </div>
+
+    <script>
+        function confirmSubmit() {
+            return confirm('Are you sure you want to update this record?');
+        }
+    </script>
+@endsection
+
+@section('styles')
     <style>
         body {
             background-color: #E4E9F7;
@@ -33,22 +70,25 @@
             margin-bottom: 20px;
         }
 
-        form {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
+        .form-group {
+            margin-bottom: 15px;
         }
 
-        input[type="text"],
-        input[type="hidden"] {
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input {
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
             outline: none;
             font-size: 16px;
+            width: 100%;
         }
 
-        input[type="submit"] {
+        .btn-primary {
             padding: 10px;
             border: none;
             border-radius: 5px;
@@ -58,29 +98,11 @@
             font-size: 16px;
             font-weight: bold;
             transition: background-color 0.3s;
+            width: 100%;
         }
 
-        input[type="submit"]:hover {
+        .btn-primary:hover {
             background-color: #3057c4;
         }
     </style>
-</head>
-
-<body>
-    <div class="container">
-        <h1>Edit Details</h1>
-        <form action="{{ URL::to('/parent/update') }}" method="POST">
-            @csrf
-            Parent ID:<input type="text" name="parent_id" value="{{ $parent->parent_id }}" placeholder="Enter ID" />
-            Parent Name:<input type="text" name="parent_name" value="{{ $parent->parent_name }}" placeholder="Enter name" />
-            Contact Number:<input type="text" name="contact_number" value="{{ $parent->contact_number }}" placeholder="Enter contact number" />
-            Email:<input type="text" name="parent_email" value="{{ $parent->parent_email }}" placeholder="Enter email" />
-            Address:<input type="text" name="address" value="{{ $parent->address }}" placeholder="Enter address" />
-            Relation:<input type="text" name="relationship_to_student" value="{{ $parent->relationship_to_student }}" placeholder="F/M/G" />
-            <input type="hidden" name="update_id" value="{{$parent->parent_id}}" />
-            <input type="submit" name="save" value="Update Record" />
-        </form>
-    </div>
-</body>
-
-</html>
+@endsection

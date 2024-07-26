@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-// use App\Models\User;
+use App\Models\users;
 use App\Models\Faculty;
-
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 class FacultyController
 {
@@ -46,16 +48,17 @@ class FacultyController
     {
         // Validate the incoming request data
         $validatedData = $request->validate([
-            'faculty_id' => 'required|unique:faculty_info,faculty_id',
+            // 'faculty_id' => 'required|unique:faculty_info,faculty_id',
             'faculty_name' => 'required|string|max:255',
-            'faculty_age' => 'required|integer',
+            // 'faculty_age' => 'required|integer',
             'faculty_dob' => 'required|date',
             'faculty_gender' => 'required|string',
             'faculty_contact' => 'required|string|max:10',
             'faculty_address' => 'required|string|max:500',
             'faculty_email' => 'required|email|max:255|unique:faculty_info,faculty_email',
             'faculty_qualification' => 'required|string|max:255',
-            'faculty_doj' => 'required|date',
+            'faculty_doj' => 'required|date|after_or_equal:today',
+            'faculty_doj.after_or_equal' => 'The date of joining must be today or in the future.',
             'faculty_specializations' => 'required|string|max:500',
             'faculty_experience' => 'required|string|max:255',
             'faculty_designation' => 'required|string|max:255',
@@ -66,9 +69,10 @@ class FacultyController
         $faculty = new Faculty();
 
         // Assign each field individually from the request input
-        $faculty->faculty_id = $request->input('faculty_id');
+        // $faculty->faculty_id = $request->input('faculty_id');
+        $faculty->institute_id = Auth::user()->institute_id;
         $faculty->faculty_name = $request->input('faculty_name');
-        $faculty->faculty_age = $request->input('faculty_age');
+        // $faculty->faculty_age = $request->input('faculty_age');
         $faculty->faculty_dob = $request->input('faculty_dob');
         $faculty->faculty_gender = $request->input('faculty_gender');
         $faculty->faculty_contact = $request->input('faculty_contact');
@@ -81,6 +85,14 @@ class FacultyController
         $faculty->faculty_designation = $request->input('faculty_designation');
         $faculty->faculty_department = $request->input('faculty_department');
 
+        $users = new users();
+        $users->name = $request->input('faculty_name');
+        $users->email = $request->input('faculty_email');
+        $users->institute_id = Auth::user()->institute_id;
+        $users->password = Hash::make($request->input('password'));
+        $users->role = 'Faculty';
+        $users->save();
+
         // Save the faculty data to the database
         $faculty->save();
 
@@ -89,8 +101,10 @@ class FacultyController
     }
 
     public function delete($faculty_id){
-        $faculty = Faculty::find($faculty_id);
-        $faculty->delete();
+        $user=Faculty::find($faculty_id);
+        $email=$user->faculty_email;
+        users::where('email',$email)->delete();
+        $user->delete();
         return redirect()->back(); 
     }
 
@@ -107,14 +121,24 @@ class FacultyController
 
     public function update(Request $request)
     {
+
     
         // Create a new Faculty instance
         $faculty = Faculty::find($request->input('update_id'));
 
+        
+        $oldemail = $faculty->faculty_email;
+        $name = $request->input('faculty_name');
+        $email = $request->input('faculty_email');
+        $institute_id = Auth::user()->institute_id;
+        $password = Hash::make($request->input('password'));
+        $role = 'Faculty';
+        DB::update("UPDATE `users` SET `name`='$name',`email`='$email',`institute_id`=$institute_id,`password`='$password',`role`='$role' WHERE `email`='".$oldemail."'");
+
         // Assign each field individually from the request input
-        $faculty->faculty_id = $request->input('faculty_id');
+        // $faculty->faculty_id = $request->input('faculty_id');
         $faculty->faculty_name = $request->input('faculty_name');
-        $faculty->faculty_age = $request->input('faculty_age');
+        // $faculty->faculty_age = $request->input('faculty_age');
         $faculty->faculty_dob = $request->input('faculty_dob');
         $faculty->faculty_gender = $request->input('faculty_gender');
         $faculty->faculty_contact = $request->input('faculty_contact');
@@ -129,6 +153,8 @@ class FacultyController
 
         // Save the faculty data to the database
         $faculty->save();
+        
+        
 
         // Redirect back with a success message
         return redirect('/faculty/show')->with('success', 'Faculty updated successfully.');

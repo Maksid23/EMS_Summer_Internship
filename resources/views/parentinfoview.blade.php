@@ -1,72 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        body {
-            background-color: #E4E9F7;
-            color: #333;
-            font-family: Arial, sans-serif;
-        }
-        h1 {
-            color: #4070F4;
-            text-align: center;
-        }
-        form {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            max-width: 400px;
-            margin: 20px auto;
-        }
-        input[type="text"], input[type="submit"] {
-            width: 95%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        input[type="submit"] {
-            background-color: #4070F4;
-            color: #fff;
-            border: none;
-            cursor: pointer;
-        }
-        input[type="submit"]:hover {
-            background-color: #3357C4;
-        }
-        table {
-            width: 80%;
-            margin: 20px auto;
-            border-collapse: collapse;
-        }
-        th, td {
-            padding: 10px;
-            text-align: left;
-            border: 1px solid #ccc;
-        }
-        th {
-            background-color: #4070F4;
-            color: #fff;
-        }
-        td {
-            background-color: #fff;
-        }
-        a {
-            color: #4070F4;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-    </style>
-</head>
-<body>
-<table>
+@extends('index')
+@section('content')
+    <table>
         <thead>
             <tr>
                 <th>Parent ID</th>
@@ -81,6 +15,7 @@
         </thead>
         <tbody>
             @foreach($parents as $item)
+            @if($item->institute_id == Auth::user()->institute_id)
             <tr>
                 <td>{{ $item->parent_id }}</td>
                 <td>{{ $item->parent_name }}</td>
@@ -88,12 +23,19 @@
                 <td>{{ $item->parent_email }}</td>
                 <td>{{ $item->address }}</td>
                 <td>{{ $item->relationship_to_student }}</td>
-                <td><a href="{{ URL::to('parent/deleteRecord/'.$item->parent_id) }}">Delete</a></td>
+                <td><a href="{{ URL::to('parent/deleteRecord/'.$item->parent_id) }}" onclick="return confirmDelete()">Delete</a></td>
                 <td><a href="{{ URL::to('parent/updateRecord/'.$item->parent_id) }}">Edit</a></td>
             </tr>
+            @endif
             @endforeach
         </tbody>
     </table>
-    <a class="button" href="{{ URL::to('parent') }}">Back</a>
-</body>
-</html>
+    <a class="button" href="{{ URL::to('parent') }}">Add parent</a>
+
+    <script>
+        function confirmDelete() {
+            return confirm('Are you sure you want to delete this record?');
+        }
+        
+    </script>
+@endsection

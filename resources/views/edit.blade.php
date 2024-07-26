@@ -1,8 +1,86 @@
-<!DOCTYPE html>
-<html>
+@extends('index')
 
-<head>
-    <title>Enhanced Form and Table</title>
+@section('content')
+    <div class="form-container">
+        <form id="update-form" action="{{ route('form.update') }}" method="post">
+            @csrf
+            <div class="form-group">
+                <label for="staff_id">Staff ID:</label>
+                <input value="{{ old('staff_id', $user->staff_id) }}" type="text" id="staff_id" name="staff_id" required>
+                @error('staff_id')
+                <div class="error">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="form-group">
+                <label for="staff_name">Staff Name:</label>
+                <input value="{{ old('staff_name', $user->staff_name) }}" type="text" id="staff_name" name="staff_name" required>
+                @error('staff_name')
+                <div class="error">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="form-group">
+                <label for="gender">Gender:</label>
+                <select id="gender" name="gender" required>
+                    <option value="">Select Gender</option>
+                    <option value="M" {{ old('gender', $user->gender) == 'M' ? 'selected' : '' }}>Male</option>
+                    <option value="F" {{ old('gender', $user->gender) == 'F' ? 'selected' : '' }}>Female</option>
+                    <option value="O" {{ old('gender', $user->gender) == 'O' ? 'selected' : '' }}>Other</option>
+                </select>
+                @error('gender')
+                <div class="error">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="form-group">
+                <label for="contact_number">Contact Number:</label>
+                <input value="{{ old('contact_number', $user->contact_number) }}" type="text" id="contact_number" name="contact_number" required>
+                @error('contact_number')
+                <div class="error">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input value="{{ old('email', $user->email) }}" type="email" id="email" name="email" required>
+                @error('email')
+                <div class="error">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="form-group">
+                <label for="address">Address:</label>
+                <textarea id="address" name="address" required>{{ old('address', $user->address) }}</textarea>
+                @error('address')
+                <div class="error">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="form-group">
+                <label for="designation">Designation:</label>
+                <input value="{{ old('designation', $user->designation) }}" type="text" id="designation" name="designation" required>
+                @error('designation')
+                <div class="error">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="form-group">
+                <label for="department">Department:</label>
+                <input value="{{ old('department', $user->department) }}" type="text" id="department" name="department" required>
+                @error('department')
+                <div class="error">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <!-- Hidden input field to store the user ID -->
+            <input type="hidden" name="update_id" value="{{ $user->staff_id }}">
+
+            <div class="form-group">
+                <button type="submit" name="save">Update</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="form-group" style="text-align: center;">
+        <a href="/staff/form/view" class="button-link">View Data</a>
+    </div>
+@endsection
+
+@section('styles')
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -21,31 +99,31 @@
         }
 
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
             font-weight: bold;
         }
 
         .form-group input[type="text"],
         .form-group input[type="email"],
-        .form-group textarea {
-            width: 100%;
+        .form-group textarea,
+        .form-group select {
+            width: calc(100% - 22px);
             padding: 10px;
             margin-top: 5px;
             border: 1px solid #ccc;
             border-radius: 4px;
             box-sizing: border-box;
-            /* Ensures padding does not affect overall width */
+            font-size: 16px;
         }
 
         .form-group textarea {
             height: 100px;
             resize: vertical;
-            /* Allows vertical resizing, generally a good UX choice */
         }
 
         .form-group button[type="submit"] {
@@ -64,13 +142,6 @@
             background-color: #0056b3;
         }
 
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .form-container {
-                width: calc(100% - 40px);
-            }
-        }
-
         .button-link {
             display: inline-block;
             padding: 10px 20px;
@@ -85,86 +156,28 @@
         .button-link:hover {
             background-color: #0056b3;
         }
+
+        .error {
+            color: #dc3545;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .form-container {
+                width: calc(100% - 40px);
+            }
+        }
     </style>
-</head>
+@endsection
 
-<body>
-    <div class="form-container">
-        <form action="{{ route('form.update')}}" method="post">
-            @csrf
-            <div class="form-group">
-                <label for="staff_id">Staff ID:</label>
-                <input value="{{ old('staff_id',$user->staff_id) }}" type="text" id="staff_id" name="staff_id">
-                @error('staff_id')
-                    <div class="error">{{ $message }}</div>
-                @enderror
-            </div>
-            <div class="form-group">
-                <label for="user_id">User ID:</label>
-                <input value="{{ old('user_id',$user->user_id) }}" type="text" id="user_id" name="user_id">
-                @error('user_id')
-                    <div class="error">{{ $message }}</div>
-                @enderror
-            </div>
-            <div class="form-group">
-                <label for="staff_name">Staff Name:</label>
-                <input value="{{ old('staff_name',$user->staff_name) }}" type="text" id="staff_name" name="staff_name">
-                @error('staff_name')
-                    <div class="error">{{ $message }}</div>
-                @enderror
-            </div>
-            <div class="form-group">
-                <label for="contact_number">Contact Number:</label>
-                <input value="{{ old('contact_number',$user->contact_number) }}" type="text" id="contact_number" name="contact_number">
-                @error('contact_number')
-                    <div class="error">{{ $message }}</div>
-                @enderror
-            </div>
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input value="{{ old('email',$user->email) }}" type="email" id="email" name="email">
-                @error('email')
-                    <div class="error">{{ $message }}</div>
-                @enderror
-            </div>
-            <div class="form-group">
-                <label for="address">Address:</label>
-                <textarea value="{{ old('address',$user->address) }}" id="address" name="address">{{ old('address',$user->address) }}</textarea>
-                @error('address')
-                    <div class="error">{{ $message }}</div>
-                @enderror
-            </div>
-            <div class="form-group">
-                <label for="designation">Designation:</label>
-                <input value="{{ old('designation',$user->designation) }}" type="text" id="designation" name="designation">
-                @error('designation')
-                    <div class="error">{{ $message }}</div>
-                @enderror
-            </div>
-            <div class="form-group">
-                <label for="department">Department:</label>
-                <input value="{{ old('department',$user->department) }}" type="text" id="department" name="department">
-                @error('department')
-                    <div class="error">{{ $message }}</div>
-                @enderror
-            </div>
-
-            <!-- // Add a hidden input field to store the user ID -->
-            <input type="hidden" name="update_id" value="{{ $user->staff_id }}"> 
-
-            <div class="form-group">
-                <button type="submit" name="save">Update</button>
-            </div>
-        </form>
-
-
-    </div>
-    <div class="form-group" style="text-align: center;">
-        <a href="/staff/form/view" class="button-link">View Data</a>
-    </div>
-
-
-
-</body>
-
-</html>
+@push('scripts')
+    <script>
+        document.getElementById('update-form').addEventListener('submit', function(e) {
+            if (!confirm('Are you sure you want to update this information?')) {
+                e.preventDefault();
+            }
+        });
+    </script>
+@endpush

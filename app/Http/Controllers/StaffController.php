@@ -1,10 +1,11 @@
 <?php
-
 namespace App\Http\Controllers;
-
-
 use Illuminate\Http\Request;
 use App\Models\staff;
+use App\Models\users;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class StaffController extends Controller
 {
@@ -26,13 +27,13 @@ class StaffController extends Controller
     }
     public function insert(Request $request)
     {
+        //dd($request->all());
         // Validate the request data
         $validatedData = $request->validate([
-            'staff_id' => 'required|numeric',
-            'institute_id' => 'required|numeric',
             'staff_name' => 'required|string|max:255',
-            'contact_number' => 'required',
-            'email' => 'required|email|max:255',
+            'gender' => 'required', 
+            'contact_number' => 'required', 
+            'email' => 'required|email|max:255|unique:staff_information,email',
             'address' => 'required|string|max:255',
             'designation' => 'required|string|max:255',
             'department' => 'required|string|max:255',
@@ -40,16 +41,25 @@ class StaffController extends Controller
 
         // Create a new Staff record and save it to the database
         $staff = new staff();
-        $staff->staff_id = $validatedData['staff_id'];
-        $staff->institute_id = $validatedData['institute_id'];
+        //$staff->staff_id = $request->input('staff_id');
+        $staff->institute_id = Auth::user()->institute_id;
         $staff->staff_name = $validatedData['staff_name'];
+        $staff->gender = $validatedData['gender'];
         $staff->contact_number = $validatedData['contact_number'];
         $staff->email = $validatedData['email'];
         $staff->address = $validatedData['address'];
         $staff->designation = $validatedData['designation'];
         $staff->department = $validatedData['department'];
         $staff->save();
-        return redirect()->route('form.view')->with('success', 'Data Added sucsessfull');
+
+        $users = new users();
+        $users->name = $request->input('staff_name');
+        $users->email = $request->input('email');
+        $users->institute_id = Auth::user()->institute_id;
+        $users->password = Hash::make($request->input('password'));
+        $users->role = 'Management';
+        $users->save();
+        return redirect()->route('form.view')->with('success', 'Data Added sucsessfully');
     }
     public function view()
     {
@@ -66,31 +76,46 @@ class StaffController extends Controller
     public function update(Request $request)
     {
         $validatedData = $request->validate([
-            'staff_id' => 'required|numeric',
-            'institute_id' => 'required|numeric',
             'staff_name' => 'required|string|max:255',
-            'contact_number' => 'required',
+            'gender' => 'required', 
+            'contact_number' => 'required', 
             'email' => 'required|email|max:255',
             'address' => 'required|string|max:255',
             'designation' => 'required|string|max:255',
             'department' => 'required|string|max:255',
         ]);
         $staff = staff::find($request->input('update_id'));
-        $staff->staff_id = $validatedData['staff_id'];
-        $staff->institute_id = $validatedData['institute_id'];
+
+
+
+        $oldemail = $staff->email;
+        $name = $request->input('staff_name');
+        $email = $request->input('email');
+        $institute_id = Auth::user()->institute_id;
+        $password = Hash::make($request->input('password'));
+        $role = 'Managment';
+        DB::update("UPDATE `users` SET `name`='$name',`email`='$email',`institute_id`=$institute_id,`password`='$password',`role`='$role' WHERE `email`='".$oldemail."'");
+
+
+        $staff->institute_id = Auth::user()->institute_id;
         $staff->staff_name = $validatedData['staff_name'];
+        $staff->gender = $validatedData['gender'];
         $staff->contact_number = $validatedData['contact_number'];
         $staff->email = $validatedData['email'];
         $staff->address = $validatedData['address'];
         $staff->designation = $validatedData['designation'];
         $staff->department = $validatedData['department'];
         $staff->save();
+
+
         return redirect()->route('form.view')->with('success', 'Data Updated sucsessfully');
     }
 
     public function destroy($staff_id)
     {
         $user=staff::find($staff_id);
+        $email=$user->email;
+        users::where('email',$email)->delete();
         $user->delete();
         return redirect()->route('form.view')->with('success', 'Data Deleted sucsessfully');
     }

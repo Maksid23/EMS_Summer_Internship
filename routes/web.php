@@ -39,7 +39,6 @@ Route::get('/register1', [MainController::class, 'register1']);
 Route::post('/registerUser', [MainController::class, 'registerUser'])->name('register');
 
 
-
 // Route to display the form
 // Route::post('/register', [FormController::class, 'submitForm'])->name('register');
 
