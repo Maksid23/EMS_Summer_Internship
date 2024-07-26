@@ -134,6 +134,17 @@
             @enderror
         </div>
         <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" name="password" minlength="5" id="password" placeholder="password" required />
+            @error('password')
+                <div class="error">{{ $message }}</div>
+            @enderror
+        </div>
+        <!-- <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password" placeholder="password" required />
+        </div> -->
+        <div class="form-group">
             <label for="address">Address:</label>
             <input type="text" name="address" id="address" placeholder="Enter Address" required />
             @error('address')
@@ -147,6 +158,7 @@
                 <div class="error">{{ $message }}</div>
             @enderror
         </div>
+        
         <input type="submit" name="save" value="Save Record" onclick="return confirmSubmit()" />
     </form>
     <a class="button" href="{{ URL::to('/form') }}">Back</a>

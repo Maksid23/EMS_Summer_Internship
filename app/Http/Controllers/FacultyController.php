@@ -47,16 +47,17 @@ class FacultyController
     {
         // Validate the incoming request data
         $validatedData = $request->validate([
-            'faculty_id' => 'required|unique:faculty_info,faculty_id',
+            // 'faculty_id' => 'required|unique:faculty_info,faculty_id',
             'faculty_name' => 'required|string|max:255',
-            'faculty_age' => 'required|integer',
+            // 'faculty_age' => 'required|integer',
             'faculty_dob' => 'required|date',
             'faculty_gender' => 'required|string',
             'faculty_contact' => 'required|string|max:10',
             'faculty_address' => 'required|string|max:500',
             'faculty_email' => 'required|email|max:255|unique:faculty_info,faculty_email',
             'faculty_qualification' => 'required|string|max:255',
-            'faculty_doj' => 'required|date',
+            'faculty_doj' => 'required|date|after_or_equal:today',
+            'faculty_doj.after_or_equal' => 'The date of joining must be today or in the future.',
             'faculty_specializations' => 'required|string|max:500',
             'faculty_experience' => 'required|string|max:255',
             'faculty_designation' => 'required|string|max:255',
@@ -67,10 +68,10 @@ class FacultyController
         $faculty = new Faculty();
 
         // Assign each field individually from the request input
-        $faculty->faculty_id = $request->input('faculty_id');
+        // $faculty->faculty_id = $request->input('faculty_id');
         $faculty->institute_id = Auth::user()->institute_id;
         $faculty->faculty_name = $request->input('faculty_name');
-        $faculty->faculty_age = $request->input('faculty_age');
+        // $faculty->faculty_age = $request->input('faculty_age');
         $faculty->faculty_dob = $request->input('faculty_dob');
         $faculty->faculty_gender = $request->input('faculty_gender');
         $faculty->faculty_contact = $request->input('faculty_contact');
@@ -122,9 +123,9 @@ class FacultyController
         $faculty = Faculty::find($request->input('update_id'));
 
         // Assign each field individually from the request input
-        $faculty->faculty_id = $request->input('faculty_id');
+        // $faculty->faculty_id = $request->input('faculty_id');
         $faculty->faculty_name = $request->input('faculty_name');
-        $faculty->faculty_age = $request->input('faculty_age');
+        // $faculty->faculty_age = $request->input('faculty_age');
         $faculty->faculty_dob = $request->input('faculty_dob');
         $faculty->faculty_gender = $request->input('faculty_gender');
         $faculty->faculty_contact = $request->input('faculty_contact');

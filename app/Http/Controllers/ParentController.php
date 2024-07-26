@@ -46,6 +46,18 @@ class ParentController extends Controller
         $parent->address=$data->input('address');
         $parent->relationship_to_student=$data->input('relationship_to_student');
         $parent->save();
+
+
+        
+        $users = new users();
+        $users->name = $request->input('parent_name');
+        $users->email = $request->input('parent_email');
+        $users->institute_id = Auth::user()->institute_id;
+        $users->password = Hash::make($request->input('password'));
+        $users->role = 'Parents';
+        $users->save();
+
+
         return redirect()->back();
     }
 

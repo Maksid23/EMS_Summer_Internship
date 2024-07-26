@@ -18,7 +18,7 @@
             <tr>
                 <th>faculty_id</th>
                 <th>faculty_name</th>
-                <th>faculty_age</th>
+                <!-- <th>faculty_age</th> -->
                 <th>faculty_dob</th>
                 <th>faculty_gender</th>
                 <th>faculty_contact</th>
@@ -39,7 +39,7 @@
             <tr>
                 <td> {{ $item->faculty_id}} </td>
                 <td> {{ $item->faculty_name}} </td>
-                <td> {{ $item->faculty_age}} </td>
+                <!-- <td> {{ $item->faculty_age}} </td> -->
                 <td> {{ $item->faculty_dob}} </td>
                 <td> {{ $item->faculty_gender}} </td>
                 <td> {{ $item->faculty_contact}} </td>

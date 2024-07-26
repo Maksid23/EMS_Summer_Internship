@@ -53,20 +53,20 @@
         <h2 class="form-title">Edit Faculty Details</h2>
         <form id="faculty-form" method="POST" action="{{ URL::to('/faculty/update') }}">
             @csrf
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label for="faculty_id">Faculty ID</label>
                 <input type="text" class="form-control" id="faculty_id" name="faculty_id" value="{{ $faculty->faculty_id }}" placeholder="Enter Faculty ID" required>
-            </div>
+            </div> -->
 
             <div class="form-group">
                 <label for="faculty_name">Faculty Name</label>
                 <input type="text" class="form-control" id="faculty_name" name="faculty_name" value="{{ $faculty->faculty_name }}" placeholder="Enter Faculty Name" required>
             </div>
 
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label for="faculty_age">Faculty Age</label>
                 <input type="number" class="form-control" id="faculty_age" name="faculty_age" value="{{ $faculty->faculty_age }}" placeholder="Enter Faculty Age" required>
-            </div>
+            </div> -->
 
             <div class="form-group">
                 <label for="faculty_dob">Faculty Date of Birth</label>
