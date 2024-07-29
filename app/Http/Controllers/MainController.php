@@ -52,7 +52,8 @@ class MainController extends Controller
     public function loginUser(Request $data)
     {
         if (Auth::attempt(['email' => $data->email, 'password' => $data->password])) {
-            return redirect()->route('form');
+            $route = $this->redirectDash();
+            return redirect($route);
         }
         return redirect()->back()->with('error', 'Invalid email or password');
     }
@@ -114,7 +115,7 @@ class MainController extends Controller
         }
 
         if (Auth::user() && Auth::user()->role == 'Faculty') {
-            $redirect = '/form/3';
+            $redirect = '/faculty_dashboard';
         }
 
         if (Auth::user() && Auth::user()->role == 'Management') {
