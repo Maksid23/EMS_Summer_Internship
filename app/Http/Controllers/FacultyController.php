@@ -47,7 +47,7 @@ class FacultyController
     public function storeFaculty(Request $request)
     {
         // Validate the incoming request data
-        $validatedData = $request->validate([
+        $request->validate([
             // 'faculty_id' => 'required|unique:faculty_info,faculty_id',
             'faculty_name' => 'required|string|max:255',
             // 'faculty_age' => 'required|integer',
@@ -121,6 +121,20 @@ class FacultyController
 
     public function update(Request $request)
     {
+        $request->validate([
+            'faculty_name' => 'required|string|max:255',
+            'faculty_dob' => 'required|date',
+            'faculty_gender' => 'required|string',
+            'faculty_contact' => 'required|string|max:10',
+            'faculty_address' => 'required|string|max:500',
+            'faculty_email' => 'required|email|max:255|unique:users,email',
+            'faculty_qualification' => 'required|string|max:255',
+            'faculty_doj' => 'required|date',
+            'faculty_specializations' => 'required|string|max:500',
+            'faculty_experience' => 'required|string|max:255',
+            'faculty_designation' => 'required|string|max:255',
+            'faculty_department' => 'required|string|max:255',
+        ]);
 
     
         // Create a new Faculty instance
