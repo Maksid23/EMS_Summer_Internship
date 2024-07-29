@@ -20,7 +20,7 @@
             <th>Staff ID</th>
             <th>Institute ID</th>
             <th>Staff Name</th>
-            <th>Age</th>
+            <th>Gender</th>
             <th>Contact Number</th>
             <th>Email</th>
             <th>Address</th>
