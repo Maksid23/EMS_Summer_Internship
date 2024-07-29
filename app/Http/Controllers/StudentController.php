@@ -74,6 +74,7 @@ class StudentController extends Controller
                 'gender' => 'required',
                 'address' => 'required',
                 'parent_guardian_contact_info' =>'required|regex:/^[0-9]{10}$/|distinct|numeric',
+                'email_address' => 'required|unique:users,email',
                 'other_contact' => 'required|regex:/^[0-9]{10}$/|distinct|numeric|different:parent_guardian_contact_info',
                 'class_name' => 'required'
             ]);
