@@ -24,7 +24,6 @@ class student_dashboard_Controller extends Controller
         $other_contact = $student_id->other_contact;
         $email_address = $student_id->email_address;
          
-        
         return view('studentdashboard',
          compact('class_name', 
          'institute_id', 
