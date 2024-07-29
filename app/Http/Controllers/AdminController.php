@@ -34,7 +34,7 @@ class AdminController extends Controller
         $users->password = Hash::make($data->input('password'));
         $users->role = 'Institute';
         $users->save();
-        return redirect('/login')->with('message','Admin Inserted Successfully');
+        return redirect('/login')->with('success','Super Admin Inserted Successfully');
     }
     public function delete($institute_id){
         $user=Institute::find($institute_id);

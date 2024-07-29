@@ -25,7 +25,7 @@
   <a href="{{ URL::to('/login') }}" class="btn btn-secondary btn-back">Back</a>
   <div class="container">
     <form action="{{ URL::to('admin/insert_institute') }}" method="post" class="needs-validation" novalidate>
-      <h2 class="text-center mb-4">Institute Registration</h2>
+      <h2 class="text-center mb-4">Super Admin Registration</h2>
       @csrf
       {{-- <div class="form-group">
         <label for="username">Institute ID</label>
@@ -33,8 +33,8 @@
         <span style="color: red">@error('institute_id'){{ $message }} @enderror</span>
       </div> --}}
       <div class="form-group">
-        <label for="institute_name">Institute Name</label>
-        <input type="text" id="institute_name" value="{{ old('institute_name') }}" name="institute_name" class="form-control" required placeholder="Enter institute name">
+        <label for="institute_name">Super Admin Name</label>
+        <input type="text" id="institute_name" value="{{ old('institute_name') }}" name="institute_name" class="form-control" required placeholder="Super Admin institute name">
         <span style="color: red">@error('institute_name'){{ $message }} @enderror</span>
         <div class="invalid-feedback">
           Please enter an institute name.
