@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('class', function (Blueprint $table) {
             $table->id('class_id');
-            $table->text('class_name');
+            $table->string('class_name');
             $table->text('class_teacher');
             $table->unsignedBigInteger('institute_id');
             $table->foreign('institute_id')->references('institute_id')->on('institute')->onDelete('cascade');
