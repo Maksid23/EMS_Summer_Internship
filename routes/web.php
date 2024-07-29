@@ -18,6 +18,7 @@ use App\Http\Controllers\communicationcontroller;
 use App\Models\Student;
 use App\Models\Institute;
 
+Route::get('/', [MainController::class, 'loadLogin']);
 
 Route::group(['middleware' => 'disable_back_btn'], function () {
    Route::group(['middleware' => 'guest'], function () {

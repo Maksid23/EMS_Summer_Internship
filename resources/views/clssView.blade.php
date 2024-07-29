@@ -29,7 +29,7 @@
                 <tr>
                     
                     <td>{{ $member->class_name }}</td>
-                    <td>{{ $member->class_teacher  }}</td>
+                    <td>{{ $faculty_name = DB::table('faculty_info')->where('faculty_id', $member->faculty_id)->value('faculty_name')  }}</td>
                     <td>{{ $member->location }}</td>
                     <td><a href="{{URL::to('clss/delete/'.$member->class_id)}}" onclick="return confirmDelete()">
                         <button>Delete</button></a></td>

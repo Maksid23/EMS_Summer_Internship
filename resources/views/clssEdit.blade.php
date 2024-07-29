@@ -12,11 +12,11 @@
                         <input type="text" class="form-control" id="class_name" name="class_name" value="{{ $class->class_name }}" required>
                     </div>
                     <div class="form-group">
-                        <label for="class_teacher">Class Teacher</label>
-                        <select class="form-control" id="class_teacher" name="class_teacher" required>
-                            <option value="">Select Class Teacher</option>
+                        <label for="faculty_id">Class Teacher</label>
+                        <select class="form-control" id="faculty_id" name="faculty_id" required>
+                            <option value="{{$class->faculty_id}}">Select Class Teacher</option>
                             @foreach($facultyNames as $faculty_id => $faculty_name)
-                                <option value="{{ $faculty_name }}">{{ $faculty_name }}</option>
+                                <option value="{{ $faculty_id || old('$faculty_id') }}">{{ $faculty_name }}</option>
                             @endforeach
                         </select>
                     </div>
