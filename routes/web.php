@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\StudentController;
@@ -98,8 +99,15 @@ Route::group(['prefix' => 'clss'], function () {
 
 Route::group(['prefix'=> 'institute'], function () {
    Route::get('/instituteshow', function () {
-      $institute = Institute::all();
-      return view('instituteshow', compact('institute'));
+      $institutes = DB::table('institute')
+            ->leftJoin('users', 'institute.institute_id', '=', 'users.institute_id')
+            ->where(function($query) {
+                $query->whereNull('users.role')
+                      ->orWhere('users.role', '!=', 'Institute');
+            })
+            ->select('institute.*')
+            ->get();
+     return view('instituteshow', compact('institutes'));
    });
    Route::post('/insert_institute', [institutecontroller::class, 'insert']);
    Route::get('/delete_institute/{institute_id}', [institutecontroller::class, 'delete']);
@@ -108,7 +116,7 @@ Route::group(['prefix'=> 'institute'], function () {
    Route::get('/insertinstitute', function () {
       return view('insertinstitute');
    });
-   });
+});
 
 Route::group(['prefix'=> '/course'], function () {
    Route::get('/courseview', [CourseController::class, 'view'])->name('course.view');

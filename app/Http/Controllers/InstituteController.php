@@ -34,7 +34,7 @@ class institutecontroller extends Controller
         $users->password = Hash::make($data->input('password'));
         $users->role = 'Management';
         $users->save();
-        return redirect('/login')->with('message','Data Inserted Successfully');
+        return redirect('/institute/instituteshow')->with('message','Data Inserted Successfully');
     }
     public function delete($institute_id){
         $user=Institute::find($institute_id);
