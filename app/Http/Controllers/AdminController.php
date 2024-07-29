@@ -24,8 +24,8 @@ class AdminController extends Controller
         $user->address=$data->input('address');
         $user->contact=$data->input('contact');
         $user->email=$data->input('email');
-        // $user->password=$data->input('password');
         $user->save();
+        
         $id=$user->institute_id;
         $users = new users();
         $users->name = $data->input('institute_name');
