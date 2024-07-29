@@ -55,7 +55,7 @@ class FacultyController
             'faculty_gender' => 'required|string',
             'faculty_contact' => 'required|string|max:10',
             'faculty_address' => 'required|string|max:500',
-            'faculty_email' => 'required|email|max:255|unique:faculty_info,faculty_email',
+            'faculty_email' => 'required|unique:users,email',
             'faculty_qualification' => 'required|string|max:255',
             'faculty_doj' => 'required|date|after_or_equal:today',
             'faculty_doj.after_or_equal' => 'The date of joining must be today or in the future.',
