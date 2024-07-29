@@ -23,20 +23,21 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($institute as $field)
-                <tr>
-                    <td data-label="Institute ID">{{ $field->institute_id }}</td>
-                    <td data-label="Institute Name">{{ $field->institute_name }}</td>
-                    <td data-label="Address">{{ $field->address }}</td>
-                    <td data-label="Contact">{{ $field->contact }}</td>
-                    <td data-label="Email">{{ $field->email }}</td>
-                    <td data-label="Actions" class="actions">
-                        <a href="{{URL::to('institute/delete_institute/'.$field->institute_id)}}" class="delete-link">Delete</a>
-                        <a href="{{URL::to('institute/edit_institute/'.$field->institute_id)}}">Edit</a>
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
+    @foreach($institutes as $field)
+    <tr>
+            <td data-label="Institute ID">{{ $field->institute_id }}</td>
+            <td data-label="Institute Name">{{ $field->institute_name }}</td>
+            <td data-label="Address">{{ $field->address }}</td>
+            <td data-label="Contact">{{ $field->contact }}</td>
+            <td data-label="Email">{{ $field->email }}</td>
+            <td data-label="Actions" class="actions">
+                <a href="{{ URL::to('institute/delete_institute/'.$field->institute_id) }}" class="delete-link">Delete</a>
+                <a href="{{ URL::to('institute/edit_institute/'.$field->institute_id) }}">Edit</a>
+            </td>
+        </tr>
+    @endforeach
+</tbody>
+
     </table>
 @endsection
 

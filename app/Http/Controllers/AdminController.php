@@ -4,10 +4,10 @@ use Illuminate\Http\Request;
 use App\Models\Institute;
 use App\Models\users;
 use Illuminate\Support\Facades\Hash;
-class institutecontroller extends Controller
+class AdminController extends Controller
 {
     public function insertform(){
-        return view("insertinstitute");
+        return view("admininsert");
     }
     public function insert(Request $data){
         $data->validate([
@@ -24,17 +24,17 @@ class institutecontroller extends Controller
         $user->address=$data->input('address');
         $user->contact=$data->input('contact');
         $user->email=$data->input('email');
-        // $user->password=$data->input('password');
         $user->save();
+        
         $id=$user->institute_id;
         $users = new users();
         $users->name = $data->input('institute_name');
         $users->institute_id=$id;
         $users->email = $data->input('email');
         $users->password = Hash::make($data->input('password'));
-        $users->role = 'Management';
+        $users->role = 'Institute';
         $users->save();
-        return redirect('/institute/instituteshow')->with('message','Data Inserted Successfully');
+        return redirect('/login')->with('success','Super Admin Inserted Successfully');
     }
     public function delete($institute_id){
         $user=Institute::find($institute_id);
