@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FormController;
@@ -166,3 +167,7 @@ Route::group(['prefix' => 'communication'], function() {
     Route::post('update', [communicationcontroller::class, 'update']);
 });
 
+Route::post('admin/insert_institute', [AdminController::class, 'insert']);
+Route::get('admin/insertinstitute', function () {
+   return view('admininsert');
+});
