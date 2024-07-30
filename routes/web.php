@@ -7,6 +7,7 @@ use App\Http\Controllers\FormController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\institutecontroller;
 use App\Http\Controllers\FacultyController;
+use App\Http\Controllers\FacultyDashboardController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\CourseController;
@@ -63,6 +64,10 @@ Route::group(['prefix' => '/faculty'], function () {
    Route::get('updateshow/{faculty_id}', [FacultyController::class, 'updateinfoview']);
    Route::post('update', [FacultyController::class, 'update']);
    Route::get('show', [FacultyController::class, 'showFaculty'])->name('show.faculty');
+});
+
+Route::group(['prefix' => '/faculty_dashboard'], function () {
+   Route::get('/', [FacultyDashboardController::class, 'index'])->name('faculty.dashboard');
 });
 
 Route::group(['prefix' => '/student_dashboard'], function () {
