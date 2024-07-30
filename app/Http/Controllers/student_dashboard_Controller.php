@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\clss;
 use App\Models\studnt;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -13,9 +14,9 @@ class student_dashboard_Controller extends Controller
         $email = Auth::user()->email;
         // $pwd = Auth::user()->password;
         $student = studnt::where('email_address', $email)->first();
-        
+        $clss = clss::all();
         $student_id = $student->student_id;
-        $class_name = $student->class_id;
+        $class_id = $student->class_id;
         $institute_id = $student->institute_id;
         $student_name = $student->student_name;
         $dob = $student->dob;
@@ -29,7 +30,7 @@ class student_dashboard_Controller extends Controller
             'studentdashboard',
             compact(
                 'student_id',
-                'class_name',
+                'class_id',
                 'institute_id',
                 'student_name',
                 'dob',
@@ -37,7 +38,8 @@ class student_dashboard_Controller extends Controller
                 'address',
                 'parent_guardian_contact_info',
                 'other_contact',
-                'email_address'
+                'email_address',
+                'clss'
             )
         );
     }

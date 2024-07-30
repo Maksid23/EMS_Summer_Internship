@@ -86,7 +86,7 @@
             <table>
                 <tr>
                     <th>Class Name</th>
-                    <td>{{$class_name}}</td>
+                    <td>{{$class_name = DB::table('class')->where('class_id', $class_id)->value('class_name')}}</td>
                 </tr>
                 <tr>
                     <th>Institute ID</th>
