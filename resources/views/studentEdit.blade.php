@@ -6,16 +6,19 @@
         <form id="update-form" action="{{ route('student.update') }}" method="post">
             @csrf
             <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="class_id">Class Name</label>
-                    <select name="class_id" class="form-control" value="{{ old('class_id')}}"required>
-                        <option value="">Select Class</option>
-                        @foreach($classes as $class_id => $class_name)
-                            <option value="{{ $class_id }}">{{ $class_name }}</option>
-                        @endforeach
-                    </select>
-                    <span class="text-danger">@error('class_id') {{$message}} @enderror</span>
-                </div>
+            <div class="form-group col-md-6">
+    <label for="class_id">Class Name</label>
+    <select name="class_id" class="form-control" required>
+        <option value="">Select Class</option>
+        @foreach($classes as $class_id => $class_name)
+            <option value="{{ $class_id }}" {{ old('class_id', $stored_class_id) == $class_id ? 'selected' : '' }}>
+                {{ $class_name }}
+            </option>
+        @endforeach
+    </select>
+    <span class="text-danger">@error('class_id') {{$message}} @enderror</span>
+</div>
+
             
                 <div class="form-group col-md-6">
                     <label for="student_name">Student Name</label>
@@ -35,16 +38,17 @@
                     </span>
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="gender">Gender</label>
-                    <select name="gender" class="form-control"  value="{{ old('class_id')}}"aria-describedby="helpId">
-                        <option value="">Select Gender</option>
-                        <option value="male" {{ old('gender') == 'male' ? 'selected' : '' }}>Male</option>
-                        <option value="female" {{ old('gender') == 'female' ? 'selected' : '' }}>Female</option>
-                        <option value="other" {{ old('gender') == 'other' ? 'selected' : '' }}>Other</option>
-                    </select>
-                    <span class="text-danger">
-                        @error('gender') {{$message}} @enderror
-                    </span>
+                <label for="gender">Gender</label>
+<select name="gender" class="form-control" aria-describedby="helpId">
+    <option value="">Select Gender</option>
+    <option value="male" {{ old('gender', $studnt->gender) == 'male' ? 'selected' : '' }}>Male</option>
+    <option value="female" {{ old('gender', $studnt->gender) == 'female' ? 'selected' : '' }}>Female</option>
+    <option value="other" {{ old('gender', $studnt->gender) == 'other' ? 'selected' : '' }}>Other</option>
+</select>
+<span class="text-danger">
+    @error('gender') {{$message}} @enderror
+</span>
+
                 </div>
             </div>
 
