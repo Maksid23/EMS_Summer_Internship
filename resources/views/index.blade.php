@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Education Management System</title>
     <!-- Bootstrap CSS -->
+    @stack('styles')
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
@@ -282,13 +283,15 @@
                 @endif
 
                 @if (Auth::user()->role === 'Faculty')
-                <li class="active">
-                    <a href="#teacherSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Faculty</a>
-                    <ul class="collapse list-unstyled" id="teacherSubmenu">
-                        <li><a href="{{ url('/faculty_dashboard') }}" onclick="displayInfo('teacher', 'classes')">Show Info</a></li>
-                        <li><a href="{{ url('/student/view') }}" onclick="displayInfo('teacher', 'schedule')">Student Info</a></li>
-                    </ul>
-                </li>
+                    <li class="active">
+                        <a href="#teacherSubmenu" data-toggle="collapse" aria-expanded="false"
+                            class="dropdown-toggle">Faculty</a>
+                        <ul class="collapse list-unstyled" id="teacherSubmenu">
+                            <li><a href="{{ url('/faculty_dashboard') }}"
+                                    onclick="displayInfo('teacher', 'classes')">Show Info</a></li>
+                            <li><a href="{{ url('/faculty_dashboard/showstudent') }}" onclick="displayInfo('teacher', 'schedule')">Show Students</a></li>
+                        </ul>
+                    </li>
                 @endif
 
                 @if (Auth::user()->role === 'Management')

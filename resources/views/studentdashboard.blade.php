@@ -119,10 +119,6 @@
                     <th>Email Address</th>
                     <td>{{$email_address}}</td>
                 </tr>
-                <tr>
-                    <th>Password</th>
-                    <td>12345</td>
-                </tr>
             </table>
         </div>
     </main>
