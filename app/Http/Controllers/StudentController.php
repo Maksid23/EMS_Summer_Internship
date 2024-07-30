@@ -89,7 +89,6 @@ class StudentController extends Controller
                 'gender' => 'required',
                 'address' => 'required',
                 'parent_guardian_contact_info' => 'required|regex:/^[0-9]{10}$/|distinct|numeric',
-                'email_address' => 'required|unique:users,email',
                 'other_contact' => 'required|regex:/^[0-9]{10}$/|distinct|numeric|different:parent_guardian_contact_info',
                 'class_id' => 'required'
             ]
@@ -101,9 +100,9 @@ class StudentController extends Controller
         $name = $data->input('student_name');
         $email = $data->input('email_address');
         $institute_id = Auth::user()->institute_id;
-        $password = Hash::make($data->input('password'));
+        //$password = Hash::make($data->input('password'));
         $role = 'Student';
-        DB::update("UPDATE `users` SET `name`='$name',`email`='$email',`institute_id`=$institute_id,`password`='$password',`role`='$role' WHERE `email`='" . $oldemail . "'");
+        DB::update("UPDATE `users` SET `name`='$name',`email`='$email',`institute_id`=$institute_id,`role`='$role' WHERE `email`='" . $oldemail . "'");
         // $studnt->student_id = $data->input('student_id');
         $studnt->student_name = $data->input('student_name');
         $studnt->dob = $data->input('dob');
@@ -112,7 +111,7 @@ class StudentController extends Controller
         $studnt->parent_guardian_contact_info = $data->input('parent_guardian_contact_info');
         $studnt->other_contact = $data->input('other_contact');
         $studnt->email_address = $data->input('email_address');
-        $studnt->class_name = $data->input('class_id');
+        $studnt->class_id = $data->input('class_id');
         $studnt->save();
         return redirect()->route('student.view')->with('success', ' Data updated successfully!');
     }
