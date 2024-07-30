@@ -119,21 +119,23 @@
     </form>
     <script>
         document.getElementById('faculty_dob').addEventListener('input', function() {
-            var dobInput = document.getElementById('faculty_dob');
-            var dobFeedback = document.getElementById('dob_feedback');
-            var dob = new Date(dobInput.value);
-            var today = new Date();
-            var age = today.getFullYear() - dob.getFullYear();
-            var monthDiff = today.getMonth() - dob.getMonth();
-            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dob.getDate())) {
-                age--;
-            }
-            if (age < 18) {
-                dobFeedback.textContent = 'You must be at least 18 years old.';
-            } else {
-                dobFeedback.textContent = '';
-            }
-        });
+    var dobInput = document.getElementById('faculty_dob');
+    var dobFeedback = document.getElementById('dob_feedback');
+    var dob = new Date(dobInput.value);
+    var today = new Date();
+    var age = today.getFullYear() - dob.getFullYear();
+    var monthDiff = today.getMonth() - dob.getMonth();
+    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dob.getDate())) {
+        age--;
+    }
+    if (age < 18) {
+        dobFeedback.textContent = 'You must be at least 18 years old.';
+        dobInput.setCustomValidity('You must be at least 18 years old.'); // Prevent form submission
+    } else {
+        dobFeedback.textContent = '';
+        dobInput.setCustomValidity(''); // Allow form submission
+    }
+});
         function validateAge() {
             var ageInput = document.getElementById('faculty_age');
             var ageFeedback = document.getElementById('age_feedback');
