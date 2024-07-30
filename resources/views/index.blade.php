@@ -281,7 +281,7 @@
                     <a href="#teacherSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Faculty</a>
                     <ul class="collapse list-unstyled" id="teacherSubmenu">
                         <li><a href="{{ url('/faculty_dashboard') }}" onclick="displayInfo('teacher', 'classes')">Show Info</a></li>
-                        <li><a href="#" onclick="displayInfo('teacher', 'schedule')">Schedule</a></li>
+                        <li><a href="{{ url('/student/view') }}" onclick="displayInfo('teacher', 'schedule')">Student Info</a></li>
                     </ul>
                 </li>
                 @endif
