@@ -69,6 +69,8 @@ Route::group(['prefix' => '/faculty'], function () {
 Route::group(['prefix' => '/faculty_dashboard'], function () {
    Route::get('/', [FacultyDashboardController::class, 'index'])->name('faculty.dashboard');
    Route::get('/showstudent', [FacultyDashboardController::class, 'showstudent'])->name('show.student');
+   Route::get('updateshow/{faculty_id}', [FacultyDashboardController::class, 'updateinfoview']);
+   Route::post('update', [FacultyDashboardController::class, 'update']);
 });
 
 Route::group(['prefix' => '/student_dashboard'], function () {
