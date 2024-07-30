@@ -113,6 +113,16 @@
             @enderror
         </div> -->
         <div class="form-group">
+        <label for="class_name">Student ID</label>
+            <select name="student_id" class="form-control" required>
+    <option value="">Select Class</option>
+    @foreach($classes as $student_id => $student_name)
+        <option value="{{ $student_id }}">{{ $student_id }}</option>
+    @endforeach
+</select>
+            <span class="text-danger">@error('class_id') {{$message}} @enderror</span>
+        </div>
+        <div class="form-group">
             <label for="parent_name">Parent Name:</label>
             <input type="text" name="parent_name" id="parent_name" placeholder="Enter Name" required />
             @error('parent_name')

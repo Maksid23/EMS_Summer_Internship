@@ -16,11 +16,12 @@ class MainController extends Controller
     // public function admin(){
     //     return view('admin');
     // }
-    public function welcome(){
-        return view('welcome');
+
+    public function redirctToLogin()
+    {
+            $route = '/login';
+            return redirect($route);
     }
-
-
     public function login()
     {
         return view('login');
