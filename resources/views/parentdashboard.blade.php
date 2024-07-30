@@ -78,7 +78,7 @@
     <header class="header">
         <h1>Welcome, {{$parent_name}}</h1>
     </header>
-   
+    
     <main class="main-content">
         <div class="card">
             <h2>Parent Information</h2>

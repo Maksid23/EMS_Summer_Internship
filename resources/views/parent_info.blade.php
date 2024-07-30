@@ -99,8 +99,13 @@
 
 @section('content')
     <h1>Parents Page</h1>
-    <div class="container">
+    <!-- <div class="container">
         <a class="button" href="{{ URL::to('parent/show') }}">Show Parent Info</a>
+    </div> -->
+    <div class="row justify-content-center mt-4">
+        <div class="col-md-10 d-flex justify-content-end">
+            <a href="{{ URL::to('parent/show') }}" class="btn btn-dark">Show Parent</a>
+        </div>
     </div>
 
     <form id="parentForm" action="{{ URL::to('parent/insertRecord') }}" method="POST">
@@ -172,7 +177,12 @@
         
         <input type="submit" name="save" value="Save Record" onclick="return confirmSubmit()" />
     </form>
-    <a class="button" href="{{ URL::to('/form') }}">Back</a>
+    <!-- <a class="button" href="{{ URL::to('/form') }}">Back</a> -->
+    <div class="row justify-content-center mt-4">
+        <div class="col-md-10 d-flex justify-content-end">
+            <a href="{{ URL::to('/form') }}" class="btn btn-dark">Back</a>
+        </div>
+    </div>
 
     <script>
         function confirmSubmit() {
