@@ -7,8 +7,8 @@
 @endif
 <!-- <a class="button" href="{{ URL::to('faculty') }}">Add Faculty Info</a> -->
 <div class="row justify-content-center mt-4">
-    <div style="text-align: left;">
-        <a href="{{ URL::to('faculty') }}" class="btn btn-dark">ADD</a>
+    <div style="text-align: left;  ">
+        <a  style="background-color: #626cd6;" href="{{ URL::to('faculty') }}" class="btn btn-dark">ADD</a>
     </div>
 </div>
 <br>
