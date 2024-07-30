@@ -8,7 +8,7 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="class_id">Class Name</label>
-                    <select name="class_id" class="form-control" required>
+                    <select name="class_id" class="form-control" value="{{ old('class_id')}}"required>
                         <option value="">Select Class</option>
                         @foreach($classes as $class_id => $class_name)
                             <option value="{{ $class_id }}">{{ $class_name }}</option>
@@ -19,7 +19,7 @@
             
                 <div class="form-group col-md-6">
                     <label for="student_name">Student Name</label>
-                    <input type="text" name="student_name" class="form-control" value="{{$studnt->student_name}}" aria-describedby="helpId">
+                    <input type="text" name="student_name" class="form-control" value="{{$studnt->student_name}}"aria-describedby="helpId">
                     <span class="text-danger">
                         @error('student_name') {{$message}} @enderror
                     </span>
@@ -29,14 +29,14 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="dob">DOB</label>
-                    <input type="date" name="dob" class="form-control" value="{{$studnt->dob}}" aria-describedby="helpId">
+                    <input type="date" name="dob" class="form-control" value="{{$studnt->dob}}"aria-describedby="helpId">
                     <span class="text-danger">
                         @error('dob') {{$message}} @enderror
                     </span>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="gender">Gender</label>
-                    <select name="gender" class="form-control" aria-describedby="helpId">
+                    <select name="gender" class="form-control"  value="{{ old('class_id')}}"aria-describedby="helpId">
                         <option value="">Select Gender</option>
                         <option value="male" {{ old('gender') == 'male' ? 'selected' : '' }}>Male</option>
                         <option value="female" {{ old('gender') == 'female' ? 'selected' : '' }}>Female</option>
