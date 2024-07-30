@@ -82,6 +82,7 @@
     <main class="main-content">
         <div class="card">
             <h2>Student Information</h2>
+            <a href="{{URL::to('student/edit/'.$student_id)}}" >Update</a>
             <table>
                 <tr>
                     <th>Class Name</th>
