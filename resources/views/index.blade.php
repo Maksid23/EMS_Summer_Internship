@@ -283,8 +283,13 @@
 
                 @if (Auth::user()->role === 'Faculty')
                     <li class="active">
-                        <a href="{{ url('/faculty_dashboard') }}" data-toggle="collapse" aria-expanded="false"
+                        <a href="#teacherSubmenu" data-toggle="collapse" aria-expanded="false"
                             class="dropdown-toggle">Faculty</a>
+                        <ul class="collapse list-unstyled" id="teacherSubmenu">
+                            <li><a href="{{ url('/faculty_dashboard') }}"
+                                    onclick="displayInfo('teacher', 'classes')">Show Info</a></li>
+                            <li><a href="#" onclick="displayInfo('teacher', 'schedule')">Schedule</a></li>
+                        </ul>
                     </li>
                 @endif
 

@@ -107,23 +107,23 @@ class MainController extends Controller
         $redirect = '';
 
         if (Auth::user() && Auth::user()->role == 'Student') {
-            $redirect = '/form/1';
+            $redirect = '/form';
         }
 
         if (Auth::user() && Auth::user()->role == 'Institute') {
-            $redirect = '/form/2';
+            $redirect = '/form';
         }
 
         if (Auth::user() && Auth::user()->role == 'Faculty') {
-            $redirect = '/faculty_dashboard';
+            $redirect = '/form';
         }
 
         if (Auth::user() && Auth::user()->role == 'Management') {
-            $redirect = '/form/4';
+            $redirect = '/form';
         }
 
         if (Auth::user() && Auth::user()->role == 'Parents') {
-            $redirect = '/form/5';
+            $redirect = '/form';
         }
 
         return $redirect;
