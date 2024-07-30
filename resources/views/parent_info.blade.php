@@ -115,7 +115,7 @@
         <div class="form-group">
         <label for="class_name">Student ID</label>
             <select name="student_id" class="form-control" required>
-    <option value="">Select Class</option>
+    <option value="">Select Student id</option>
     @foreach($classes as $student_id => $student_name)
         <option value="{{ $student_id }}">{{ $student_id }}</option>
     @endforeach
