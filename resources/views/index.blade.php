@@ -28,11 +28,16 @@
         }
 
         #sidebar {
-            background: #626cd6;
+            background: #626CD6;
             color: #fff;
+            width: 250px;
             min-width: 250px;
-            max-width: 250px;
             padding-top: 20px;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            overflow-y: auto;
+            z-index: 1000; /* Ensure the sidebar is always on top */
         }
 
         #sidebar .sidebar-header {
