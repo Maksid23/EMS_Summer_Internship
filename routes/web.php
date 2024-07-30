@@ -97,11 +97,9 @@ Route::group(['prefix' => 'clss'], function () {
 
 
 Route::group(['prefix'=> 'institute'], function () {
-   Route::get('/instituteshow', function () {
-      $institute = Institute::all();
-      return view('instituteshow', compact('institute'));
-   });
+   
    Route::post('/insert_institute', [institutecontroller::class, 'insert']);
+   Route::get('/instituteshow', [institutecontroller::class, 'view']);
    Route::get('/delete_institute/{institute_id}', [institutecontroller::class, 'delete']);
    Route::get('/edit_institute/{institute_id}', [institutecontroller::class, 'edit']);
    Route::post('/update_institute/{institute_id}', [institutecontroller::class, 'update']);

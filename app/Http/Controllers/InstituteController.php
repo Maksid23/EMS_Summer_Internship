@@ -6,6 +6,10 @@ use App\Models\users;
 use Illuminate\Support\Facades\Hash;
 class institutecontroller extends Controller
 {
+    public function view(){
+        $institute = Institute::where('institute_name', '!=', 'admin')->get();
+        return view('instituteshow',compact('institute'));
+    }
     public function insertform(){
         return view("insertinstitute");
     }
@@ -24,6 +28,7 @@ class institutecontroller extends Controller
         $user->address=$data->input('address');
         $user->contact=$data->input('contact');
         $user->email=$data->input('email');
+        $user->password=$data->input('password');
         // $user->password=$data->input('password');
         $user->save();
         $id=$user->institute_id;
