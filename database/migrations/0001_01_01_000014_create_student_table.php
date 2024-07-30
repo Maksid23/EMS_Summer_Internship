@@ -25,7 +25,8 @@ return new class extends Migration
             $table->string('other_contact', 255);
             $table->string('email_address', 255);
             $table->timestamps();
-            $table->string('class_name'); 
+            $table->unsignedBigInteger('class_id'); 
+            $table->foreign('class_id')->references('class_id')->on('class')->onDelete('cascade');
           });
     }
 

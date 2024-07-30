@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth; // Add this line
 use App\Models\Institute;
 use App\Models\studnt;
 use App\Models\Faculty;
@@ -20,10 +21,11 @@ class FormController extends Controller
 
     public function showForm()
     {
-        $all = DB::select("select count(student_id) as student_count from student where institute_id = 2");
+        $all = DB::select("select count(student_id) as student_count from student where institute_id = ".Auth::user()->institute_id);
+        $all1 = DB::select("select count(faculty_id) as faculty_count from faculty_info where institute_id = ".Auth::user()->institute_id);
         //dd($all);
         $rowCount1 = $all[0]->student_count;
-        $rowCount2 = Faculty::count();
+        $rowCount2 = $all1[0]->faculty_count;
         $rowCount3 = Institute::count();
         return view('welcome', [
             'rowCount1' => $rowCount1,

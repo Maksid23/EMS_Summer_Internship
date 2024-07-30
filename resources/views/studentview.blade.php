@@ -35,7 +35,7 @@
             @if($member->institute_id == Auth::user()->institute_id)
                 <tr>
                     <td>{{ $member->student_id }}</td>
-                    <td>{{ $member->class_name  }}</td>
+                    <td>{{ $class_name = DB::table('class')->where('class_id', $member->class_id)->value('class_name') }}</td>
                     <td>{{ $member->student_name }}</td>
                     <td>{{ $member->dob }}</td>
                     <td>{{ $member->gender }}</td>
