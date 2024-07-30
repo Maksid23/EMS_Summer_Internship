@@ -127,7 +127,7 @@ class FacultyController
             'faculty_gender' => 'required|string',
             'faculty_contact' => 'required|string|max:10',
             'faculty_address' => 'required|string|max:500',
-            'faculty_email' => 'required|email|max:255|unique:users,email',
+            'faculty_email' => 'required|email|max:255',
             'faculty_qualification' => 'required|string|max:255',
             'faculty_doj' => 'required|date',
             'faculty_specializations' => 'required|string|max:500',
@@ -145,9 +145,9 @@ class FacultyController
         $name = $request->input('faculty_name');
         $email = $request->input('faculty_email');
         $institute_id = Auth::user()->institute_id;
-        $password = Hash::make($request->input('password'));
+        //$password = Hash::make($request->input('password'));
         $role = 'Faculty';
-        DB::update("UPDATE `users` SET `name`='$name',`email`='$email',`institute_id`=$institute_id,`password`='$password',`role`='$role' WHERE `email`='".$oldemail."'");
+        DB::update("UPDATE `users` SET `name`='$name',`email`='$email',`institute_id`=$institute_id,`role`='$role' WHERE `email`='".$oldemail."'");
 
         // Assign each field individually from the request input
         // $faculty->faculty_id = $request->input('faculty_id');

@@ -86,6 +86,8 @@
 <main class="main-content">
     <div class="card">
         <h2>Faculty Information</h2>
+        <a href="{{URL::to('faculty/updateshow/'.$faculty_id)}}">Update</a>
+
         <table>
             <tr>
                 <th>Faculty ID</th>
