@@ -20,6 +20,7 @@
             <th>Staff ID</th>
             <th>Institute ID</th>
             <th>Staff Name</th>
+            <th>Gender</th>
             <th>Contact Number</th>
             <th>Email</th>
             <th>Address</th>
@@ -35,6 +36,7 @@
                 <td>{{ $member->staff_id }}</td>
                 <td>{{ $member->institute_id }}</td>
                 <td>{{ $member->staff_name }}</td>
+                <td>{{$member->gender}}</td>
                 <td>{{ $member->contact_number }}</td>
                 <td>{{ $member->email }}</td>
                 <td>{{ $member->address }}</td>

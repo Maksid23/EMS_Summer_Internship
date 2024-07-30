@@ -10,6 +10,7 @@
     <div class="row justify-content-center mt-4">
         <div class="col-md-10 d-flex justify-content-end">
             <a href="{{ URL::to('faculty') }}" class="btn btn-dark">ADD</a>
+            
         </div>
     </div>  
     <br>

@@ -6,9 +6,14 @@
         <form id="editForm" action="{{ URL::to('/parent/update') }}" method="POST">
             @csrf
             <div class="form-group">
-                <label for="parent_id">Parent ID:</label>
-                <input type="text" name="parent_id" class="form-control" value="{{ $parent->parent_id }}" placeholder="Enter ID" />
-            </div>
+            <label for="class_name">Student ID</label>
+            <select name="student_id" class="form-control" required>
+    <option value="">Select Class</option>
+    @foreach($classes as $student_id => $student_name)
+        <option value="{{ $student_id }}">{{ $student_id }}</option>
+    @endforeach
+</select>
+</div>
             <div class="form-group">
                 <label for="parent_name">Parent Name:</label>
                 <input type="text" name="parent_name" class="form-control" value="{{ $parent->parent_name }}" placeholder="Enter name" />

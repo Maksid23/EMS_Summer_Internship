@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use App\Models\Institute;
 use App\Models\users;
 use Illuminate\Support\Facades\Hash;
+
 class institutecontroller extends Controller
 {
     public function insertform(){

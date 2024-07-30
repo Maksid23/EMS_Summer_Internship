@@ -8,6 +8,7 @@
                 <th>Contact Number</th>
                 <th>Parent Email</th>
                 <th>Address</th>
+                <th>Student ID</th>
                 <th>Relationship to Student</th>
                 <th>Delete</th>
                 <th>Update</th>
@@ -22,6 +23,7 @@
                 <td>{{ $item->contact_number }}</td>
                 <td>{{ $item->parent_email }}</td>
                 <td>{{ $item->address }}</td>
+                <td>{{ $item->student_id }}</td>
                 <td>{{ $item->relationship_to_student }}</td>
                 <td><a href="{{ URL::to('parent/deleteRecord/'.$item->parent_id) }}" onclick="return confirmDelete()">Delete</a></td>
                 <td><a href="{{ URL::to('parent/updateRecord/'.$item->parent_id) }}">Edit</a></td>
@@ -36,6 +38,5 @@
         function confirmDelete() {
             return confirm('Are you sure you want to delete this record?');
         }
-        
     </script>
 @endsection
