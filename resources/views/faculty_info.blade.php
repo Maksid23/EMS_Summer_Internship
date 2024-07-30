@@ -4,7 +4,9 @@
 
 @section('content')
     <h2 class="form-title">Faculty Form</h2>
-    <a href="{{ URL::to('faculty/show') }}"> Show Faculty Info </a>
+    <a href="{{ URL::to('faculty/show') }}"  style="display: inline-block; padding: 10px 20px; font-size: 16px; color: white; background-color: #007bff; border: none; border-radius: 5px; text-align: center; text-decoration: none; cursor: pointer; transition: background-color 0.3s; margin-bottom: 10px;"
+    onmouseover="this.style.backgroundColor='#000';"
+    onmouseout="this.style.backgroundColor='#007bff';"> Show Faculty Info </a>
     @if (session('success'))
     <div class="alert alert-success">
         {{ session('success') }}
