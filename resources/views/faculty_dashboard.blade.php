@@ -75,7 +75,7 @@
         margin-bottom: 10px; /* Add some space below the button */
     }
     .update-button:hover {
-        background-color: #3e8e41;
+        background-color: #3E8E41;
     }
     .footer {
         background-color: var(--primary-color);
