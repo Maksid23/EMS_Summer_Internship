@@ -1,5 +1,7 @@
 @extends('index')
+
 @section('title', 'Faculty Info Update')
+
 @section('styles')
     <!-- Bootstrap CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
@@ -49,7 +51,7 @@
 @section('content')
     <div class="container">
         <h2 class="form-title">Edit Faculty Details</h2>
-        <form id="faculty-form" method="POST" action="{{ URL::to('/faculty/update') }}" onsubmit="return confirmUpdate()">
+        <form id="faculty-form" method="POST" action="{{ URL::to('/faculty_dashboard/update') }}" onsubmit="return confirmUpdate()">
             @csrf
             <!-- <div class="form-group">
                 <label for="faculty_id">Faculty ID</label>

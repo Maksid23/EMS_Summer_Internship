@@ -75,7 +75,7 @@ class StudentController extends Controller
 
 
 
-        return redirect()->back()->with('success', 'Student data Addrd successfully!');
+        return redirect()->back()->with('success', 'Student data Added successfully!');
     }
 
     //UPDATE
@@ -153,6 +153,10 @@ class StudentController extends Controller
             ->where('institute_id', $instituteId)
             ->pluck('class_name', 'class_id')
             ->toArray();
-        return view('studentEdit', compact('studnt', 'classes'));
+        
+        $stored_class_id = $studnt->class_id; // Assuming class_id is the field in your student table
+    
+        return view('studentEdit', compact('studnt', 'classes', 'stored_class_id'));
     }
+    
 }

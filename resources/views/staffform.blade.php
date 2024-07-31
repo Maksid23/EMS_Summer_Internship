@@ -9,7 +9,7 @@
         <form id="staffForm" action="{{ route('form.insert') }}" method="post">
             @csrf
             @if ($errors->any())
-                <div class="alert alert-danger">
+                <div class="alert alert-danger" >
                     <ul>
                         @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>
@@ -18,11 +18,11 @@
                 </div>
             @endif
 
-            @if (session('success'))
-                <div class="alert alert-success">
+            {{-- @if (session('success'))
+                <div class="alert alert-success" id="success-message">
                     {{ session('success') }}
                 </div>
-            @endif
+            @endif --}}
 
             <div class="form-group">
                 <label for="staff_name">Staff Name:</label>
@@ -124,6 +124,15 @@
                 phoneInput.value = phone.replace(/\D/g, ''); // Remove non-numeric characters
             }
         });
+
+        // document.addEventListener('DOMContentLoaded', function() {
+        //     var successMessage = document.getElementById('success-message');
+        //     if (successMessage) {
+        //         setTimeout(function() {
+        //             successMessage.style.display = 'none';
+        //         }, 2000); 
+        //     }
+        // });
         
     </script>
 @endsection
