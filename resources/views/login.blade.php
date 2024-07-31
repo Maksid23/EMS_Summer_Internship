@@ -86,6 +86,7 @@
 </head>
 
 <body class="bg-light">
+<a href="{{ URL::to('admin/insertinstitute') }}" class="btn btn-dark">ADD Super Admin</a>
     <section class=" p-3 p-md-4 p-xl-5">
         <div class="container">
             <div class="row justify-content-center">
