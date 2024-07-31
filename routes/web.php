@@ -75,6 +75,8 @@ Route::group(['prefix' => '/faculty_dashboard'], function () {
 
 Route::group(['prefix' => '/student_dashboard'], function () {
    Route::get('/', [student_dashboard_Controller::class, 'index'])->name('dashboard.form');
+   Route::post('updatestudent', [student_dashboard_Controller::class, 'update']);
+   Route::get('edit/{student_id}', [student_dashboard_Controller::class, 'edit']);
 });
 
 Route::group(['prefix' => '/student'], function () {
