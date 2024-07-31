@@ -23,9 +23,6 @@
     .box.bg-custom {
         background-color: #626cd6; /* Set the background color for both boxes */
     }
-    .box:hover {
-        background-color: rgba(0, 0, 0, 0.1); /* Optional: Subtle effect on hover */
-    }
 </style>
 
     @if(Auth::user()->role == 'Management')

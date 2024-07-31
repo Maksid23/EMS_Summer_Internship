@@ -126,7 +126,7 @@ class MainController extends Controller
         if (Auth::user() && Auth::user()->role == 'Parents') {
             $redirect = '/form';
         }
-
+        
         return $redirect;
     }
 }

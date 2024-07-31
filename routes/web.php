@@ -68,10 +68,15 @@ Route::group(['prefix' => '/faculty'], function () {
 
 Route::group(['prefix' => '/faculty_dashboard'], function () {
    Route::get('/', [FacultyDashboardController::class, 'index'])->name('faculty.dashboard');
+   Route::get('/showstudent', [FacultyDashboardController::class, 'showstudent'])->name('show.student');
+   Route::get('updateshow/{faculty_id}', [FacultyDashboardController::class, 'updateinfoview']);
+   Route::post('update', [FacultyDashboardController::class, 'update']);
 });
 
 Route::group(['prefix' => '/student_dashboard'], function () {
    Route::get('/', [student_dashboard_Controller::class, 'index'])->name('dashboard.form');
+   Route::post('updatestudent', [student_dashboard_Controller::class, 'update']);
+   Route::get('edit/{student_id}', [student_dashboard_Controller::class, 'edit']);
 });
 
 Route::group(['prefix' => '/student'], function () {
@@ -106,9 +111,7 @@ Route::group(['prefix' => 'clss'], function () {
 
 Route::group(['prefix'=> 'institute'], function () {
    Route::get('/instituteshow', function () {
-      $institutes = Institute::whereHas('users', function ($query) {
-         $query->where('role', 'Management');
-     })->get();
+      $institutes = Institute::all();
      return view('instituteshow', compact('institutes'));
    });
    Route::post('/insert_institute', [institutecontroller::class, 'insert']);
