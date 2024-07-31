@@ -61,15 +61,15 @@
       @csrf
       <div class="form-group">
         <label for="institute_id">Institute ID</label>
-        <select name="institute_id" id="institute_id" class="custom-dropdown" aria-placeholder="Institute ID">
-          <option value="" disabled selected>Select Institute ID</option>
+        <select name="institute_id" id="institute_id" class="custom-dropdown" aria-placeholder="Institute Name  ">
+          <option value="" disabled selected>Select Institute Name</option>
           @foreach ($institutes as $data)
-              <option value="{{ $data->institute_id }}">{{ $data->institute_id }}</option>
+              <option value="{{ $data->institute_name }}">{{ $data->institute_name }}</option>
           @endforeach
         </select>
         <span style="color: red">@error('institute_id'){{ $message }} @enderror</span>
         <div class="invalid-feedback">
-          Please select an institute ID.
+          Please select an institute Name.
         </div>
       </div>
       {{-- <div class="form-group">
@@ -81,11 +81,11 @@
         </div>
       </div> --}}
       <div class="form-group">
-        <label for="user_id">User ID</label>
+        <label for="user_id">User Name</label>
         <select name="user_id" id="user_id" class="custom-dropdown" aria-placeholder="User ID">
-          <option value="" disabled selected>Select User ID</option>
+          <option value="" disabled selected>Select User Name</option>
           @foreach ($users as $item)
-              <option value="{{ $item->id }}">{{ $item->id }}</option>
+              <option value="{{ $item->name }}">{{ $item->name }}</option>
           @endforeach
         </select>
         <span style="color: red">@error('user_id'){{ $message }} @enderror</span>

@@ -14,7 +14,7 @@ class CourseController extends Controller
     public function insertform()
     {   $institutes= Institute::all();
         $users= new users();
-        $users = users::all();
+        $users = users::where('name', '!=', 'admin')->get();
         return view('courseadd',compact('users','institutes'));
     }
     public function insert(Request $request)
