@@ -107,6 +107,7 @@
     }
 </style>
 @endpush
+
 @section('content')
 <header class="header">
     <h1>Welcome, Faculty {{$faculty_name}}</h1>

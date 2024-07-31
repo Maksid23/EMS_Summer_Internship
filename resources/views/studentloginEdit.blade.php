@@ -35,17 +35,18 @@
                     </span>
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="gender">Gender</label>
-                    <select name="gender" class="form-control" aria-describedby="helpId">
-                        <option value="">Select Gender</option>
-                        <option value="male" {{ old('gender') == 'male' ? 'selected' : '' }}>Male</option>
-                        <option value="female" {{ old('gender') == 'female' ? 'selected' : '' }}>Female</option>
-                        <option value="other" {{ old('gender') == 'other' ? 'selected' : '' }}>Other</option>
-                    </select>
-                    <span class="text-danger">
-                        @error('gender') {{$message}} @enderror
-                    </span>
-                </div>
+                <label for="gender">Gender</label>
+                <select name="gender" class="form-control" aria-describedby="helpId">
+                    <option value="">Select Gender</option>
+                    <option value="male" {{ old('gender', $studnt->gender) == 'male' ? 'selected' : '' }}>Male</option>
+                    <option value="female" {{ old('gender', $studnt->gender) == 'female' ? 'selected' : '' }}>Female</option>
+                    <option value="other" {{ old('gender', $studnt->gender) == 'other' ? 'selected' : '' }}>Other</option>
+                </select>
+                <span class="text-danger">
+                    @error('gender') {{$message}} @enderror
+                </span>
+
+            </div>
             </div>
 
             <div class="form-row">

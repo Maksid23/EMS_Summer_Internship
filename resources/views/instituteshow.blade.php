@@ -3,9 +3,8 @@
 @section('title', 'All Institutes')
 
 
-
 @section('content')
-<button onclick="location.href='{{ URL::to('/institute/insertinstitute') }}'" class="btn-add-institute">Add Institute</button>
+<button onclick="location.href='{{ URL::to('/institute/insertinstitute') }}'" >Add Institute</button>
 
 <h1>All Institutes</h1>
 <table>
