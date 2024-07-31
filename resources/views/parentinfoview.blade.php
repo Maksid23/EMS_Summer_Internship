@@ -6,6 +6,12 @@
             <a href="{{ URL::to('parent') }}" class="btn btn-dark">ADD</a>
         </div>
     </div>
+
+    @if (session('success'))
+<div class="alert alert-success" id="success-message">
+    {{ session('success') }}
+</div>
+@endif
     <table>
         <thead>
             <tr>
@@ -44,5 +50,14 @@
         function confirmDelete() {
             return confirm('Are you sure you want to delete this record?');
         }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var successMessage = document.getElementById('success-message');
+            if (successMessage) {
+                setTimeout(function() {
+                    successMessage.style.display = 'none';
+                }, 2000); // 5000 milliseconds = 5 seconds
+            }
+        });
     </script>
 @endsection
