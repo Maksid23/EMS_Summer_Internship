@@ -7,6 +7,7 @@ use App\Http\Controllers\FormController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\institutecontroller;
 use App\Http\Controllers\FacultyController;
+use App\Http\Controllers\FacultyDashboardController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\CourseController;
@@ -14,11 +15,13 @@ use App\Http\Controllers\ParentController;
 use App\Http\Controllers\Clsscontroller;
 use App\Http\Controllers\studenttimetablecontroller;
 use App\Http\Controllers\student_dashboard_Controller;
+use App\Http\Controllers\Parent_dashboard_Controller;
 use App\Http\Controllers\communicationcontroller;
 use App\Models\Student;
 use App\Models\Institute;
 use App\Http\Controllers\MailController;
 
+Route::get('/', [MainController::class, 'loadLogin']);
 
 Route::group(['middleware' => 'disable_back_btn'], function () {
    Route::group(['middleware' => 'guest'], function () {
@@ -65,8 +68,17 @@ Route::group(['prefix' => '/faculty'], function () {
    Route::get('show', [FacultyController::class, 'showFaculty'])->name('show.faculty');
 });
 
+Route::group(['prefix' => '/faculty_dashboard'], function () {
+   Route::get('/', [FacultyDashboardController::class, 'index'])->name('faculty.dashboard');
+   Route::get('/showstudent', [FacultyDashboardController::class, 'showstudent'])->name('show.student');
+   Route::get('updateshow/{faculty_id}', [FacultyDashboardController::class, 'updateinfoview']);
+   Route::post('update', [FacultyDashboardController::class, 'update']);
+});
+
 Route::group(['prefix' => '/student_dashboard'], function () {
    Route::get('/', [student_dashboard_Controller::class, 'index'])->name('dashboard.form');
+   Route::post('updatestudent', [student_dashboard_Controller::class, 'update']);
+   Route::get('edit/{student_id}', [student_dashboard_Controller::class, 'edit']);
 });
 
 Route::group(['prefix' => '/student'], function () {
@@ -101,17 +113,11 @@ Route::group(['prefix' => 'clss'], function () {
 
 Route::group(['prefix'=> 'institute'], function () {
    Route::get('/instituteshow', function () {
-      $institutes = DB::table('institute')
-            ->leftJoin('users', 'institute.institute_id', '=', 'users.institute_id')
-            ->where(function($query) {
-                $query->whereNull('users.role')
-                      ->orWhere('users.role', '!=', 'Institute');
-            })
-            ->select('institute.*')
-            ->get();
+      $institutes = Institute::all();
      return view('instituteshow', compact('institutes'));
    });
    Route::post('/insert_institute', [institutecontroller::class, 'insert']);
+   Route::get('/instituteshow', [institutecontroller::class, 'view']);
    Route::get('/delete_institute/{institute_id}', [institutecontroller::class, 'delete']);
    Route::get('/edit_institute/{institute_id}', [institutecontroller::class, 'edit']);
    Route::post('/update_institute/{institute_id}', [institutecontroller::class, 'update']);
@@ -139,7 +145,9 @@ Route::group(['prefix' => '/parent'], function () {
 });
 
 Route::group(['prefix' => '/parentdashboard'], function () {
-   Route::get('/', [ParentController::class, 'index1']);
+   Route::get('/', [Parent_dashboard_Controller::class, 'index']);
+   Route::get('updateRecord/{parent_id}', [Parent_dashboard_Controller::class, 'edit']);
+   Route::post('update', [Parent_dashboard_Controller::class, 'update']);
 });
 
 // Route::group(['prefix'=> '/course'], function () {

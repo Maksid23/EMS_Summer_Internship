@@ -22,12 +22,12 @@ class Clsscontroller extends Controller
     public function insert(Request $request)
     {
         $request->validate([
-            'class_name' => 'required|max:12|unique:class,class_name',
-            'class_teacher' => [
+            'class_name' => 'required|max:20',
+            'faculty_id' => [
                 'required',
-                'exists:faculty_info,faculty_name',
+                'exists:faculty_info,faculty_id',
                 function ($attribute, $value, $fail) {
-                    if (clss::where('class_teacher', $value)->exists()) {
+                    if (clss::where('faculty_id', $value)->exists()) {
                         $fail('The selected class teacher is already assigned to another class.');
                     }
                 }
@@ -39,7 +39,7 @@ class Clsscontroller extends Controller
         $class = new clss();
         $class->institute_id = $user->institute_id;
         $class->class_name = $request->input('class_name');
-        $class->class_teacher = $request->input('class_teacher');
+        $class->faculty_id = $request->input('faculty_id');
         $class->location = $request->input('location');
         $class->save();
     
@@ -53,7 +53,7 @@ class Clsscontroller extends Controller
     $class = clss::find($data->input('update_id'));
 
     $class->class_name = $data->input('class_name');
-    $class->class_teacher = $data->input('class_teacher');
+    $class->faculty_id = $data->input('faculty_id');
     $class->location = $data->input('location');
     $class->save();
 

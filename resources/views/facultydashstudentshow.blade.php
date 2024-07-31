@@ -2,18 +2,19 @@
 
 @section('content')
 
-    <div class="row justify-content-center mt-4">
+    <!-- <div class="row justify-content-center mt-4">
         <div class="col-md-10 d-flex justify-content-end">
             <a href="{{ route('student.form') }}" class="btn btn-dark">ADD</a>
         </div>
-    </div>
+    </div> -->
     <div>
         @if(session('success'))
-            <div class="alert alert-success" id="success-message">
+            <div class="alert alert-success">
                 {{ session('success') }}
             </div>
         @endif
     </div>
+    
     <table>
         <thead>
             <tr>
@@ -26,8 +27,6 @@
                 <th>Parent Contact Number</th>
                 <th>Other Contact</th>
                 <th>Email</th>
-                <th>Delete</th>
-                <th>Edit</th>
             </tr>
         </thead>
         <tbody>
@@ -43,27 +42,10 @@
                     <td>{{ $member->parent_guardian_contact_info }}</td>
                     <td>{{ $member->other_contact }}</td>
                     <td>{{ $member->email_address }}</td>
-                    <td><a href="{{ URL::to('student/delete/'.$member->student_id) }}" onclick="return confirmDelete()">
-                        <button>Delete</button></a></td>
-                    <td><a href="{{ URL::to('student/edit/'.$member->student_id) }}"><button>Edit</button></a></td>
                 </tr>
                 @endif
             @endforeach
         </tbody>
     </table>
 
-    <script>
-        function confirmDelete() {
-            return confirm('Are you sure you want to delete this student?');
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            var successMessage = document.getElementById('success-message');
-            if (successMessage) {
-                setTimeout(function() {
-                    successMessage.style.display = 'none';
-                }, 2000); // 5000 milliseconds = 5 seconds
-            }
-        });
-    </script>
 @endsection

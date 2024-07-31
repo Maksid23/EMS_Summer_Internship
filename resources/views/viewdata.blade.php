@@ -3,14 +3,17 @@
 @section('content')
 <div class="row justify-content-center mt-4">
     <div class="col-md-10 d-flex justify-content-end">
-        <a href="{{ route('form.index') }}" class="btn btn-dark">Create</a>
+        <a href="{{ route('form.index') }}" class="btn btn-dark">Add</a>
     </div>
 </div>
 <div>
-    @if(session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
+
+    <div class="container">
+        @if(session('success'))
+            <div class="alert alert-success" id="success-message">
+                {{ session('success') }}
+            </div>
+    </div>
     @endif
 </div>
 
@@ -20,6 +23,7 @@
             <th>Staff ID</th>
             <th>Institute ID</th>
             <th>Staff Name</th>
+            <th>Gender</th>
             <th>Contact Number</th>
             <th>Email</th>
             <th>Address</th>
@@ -35,6 +39,7 @@
                 <td>{{ $member->staff_id }}</td>
                 <td>{{ $member->institute_id }}</td>
                 <td>{{ $member->staff_name }}</td>
+                <td>{{$member->gender}}</td>
                 <td>{{ $member->contact_number }}</td>
                 <td>{{ $member->email }}</td>
                 <td>{{ $member->address }}</td>
@@ -50,9 +55,7 @@
     </tbody>
 </table>
 
-@endsection
 
-@push('scripts')
     <script>
         // Confirm before navigating to edit page
         document.querySelectorAll('.edit-btn').forEach(function(button) {
@@ -71,5 +74,14 @@
                 }
             });
         });
+        document.addEventListener('DOMContentLoaded', function() {
+            var successMessage = document.getElementById('success-message');
+            if (successMessage) {
+                setTimeout(function() {
+                    successMessage.style.display = 'none';
+                }, 2000);
+            }
+        });
     </script>
-@endpush
+
+@endsection

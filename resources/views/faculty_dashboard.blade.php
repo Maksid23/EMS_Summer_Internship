@@ -107,11 +107,11 @@
     }
 </style>
 @endpush
+
 @section('content')
 <header class="header">
-    <h1>Welcome, {{$student_name}}</h1>
+    <h1>Welcome, Faculty {{$faculty_name}}</h1>
 </header>
-
 <main class="main-content">
     <div class="card">
         @if (session('success'))
@@ -119,44 +119,64 @@
             {{ session('success') }}
         </div>
         @endif
-        <h2>Student Information</h2>
-        <a href="{{URL::to('student_dashboard/edit/'.$student_id)}}" class="update-button">Update</a>
+        <h2>Faculty Information</h2>
+        <a href="{{URL::to('faculty_dashboard/updateshow/'.$faculty_id)}}" class="update-button">Update</a>
         <table>
             <tr>
-                <th>Class Name</th>
-                <td>{{$class_name = DB::table('class')->where('class_id', $class_id)->value('class_name')}}</td>
+                <th>Faculty ID</th>
+                <td>{{$faculty_id}}</td>
             </tr>
             <tr>
                 <th>Institute ID</th>
                 <td>{{$institute_id}}</td>
             </tr>
             <tr>
-                <th>Student Name</th>
-                <td>{{$student_name}}</td>
+                <th>Faculty Name</th>
+                <td>{{$faculty_name}}</td>
             </tr>
             <tr>
-                <th>Date of Birth</th>
-                <td>{{$dob}}</td>
+                <th>Faculty DOB</th>
+                <td>{{$faculty_dob}}</td>
             </tr>
             <tr>
-                <th>Gender</th>
-                <td>{{$gender}}</td>
+                <th>Faculty Gender</th>
+                <td>{{$faculty_gender}}</td>
             </tr>
             <tr>
-                <th>Address</th>
-                <td>{{$address}}</td>
+                <th>Faculty Contact</th>
+                <td>{{$faculty_contact}}</td>
             </tr>
             <tr>
-                <th>Parent/Guardian Contact Info</th>
-                <td>{{$parent_guardian_contact_info}}</td>
+                <th>Faculty Address</th>
+                <td>{{$faculty_address}}</td>
             </tr>
             <tr>
-                <th>Other Contact</th>
-                <td>{{$other_contact}}</td>
+                <th>Faculty Email</th>
+                <td>{{$faculty_email}}</td>
             </tr>
             <tr>
-                <th>Email Address</th>
-                <td>{{$email_address}}</td>
+                <th>Faculty Qualification</th>
+                <td>{{$faculty_qualification}}</td>
+            </tr>
+            <tr>
+                <th>Faculty DOJ</th>
+                <td>{{$faculty_doj}}</td>
+            </tr>
+            <tr>
+                <th>Faculty Specialization</th>
+                <td>{{$faculty_specializations}}</td>
+            </tr>
+            <tr>
+                <th>Faculty Experience</th>
+                <td>{{$faculty_experience}}</td>
+            </tr>
+            <tr>
+                <th>Faculty Designation</th>
+                <td>{{$faculty_designation}}</td>
+            </tr>
+            <tr>
+                <th>Faculty Department</th>
+                <td>{{$faculty_department}}</td>
             </tr>
         </table>
     </div>

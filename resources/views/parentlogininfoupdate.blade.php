@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <h1>Edit Details</h1>
-        <form id="editForm" action="{{ URL::to('/parent/update') }}" method="POST">
+        <form id="editForm" action="{{ URL::to('/parentdashboard/update') }}" method="POST">
             @csrf
             <div class="form-group">
             <label for="class_name">Student ID</label>

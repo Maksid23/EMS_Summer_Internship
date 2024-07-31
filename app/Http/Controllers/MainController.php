@@ -16,11 +16,12 @@ class MainController extends Controller
     // public function admin(){
     //     return view('admin');
     // }
-    public function welcome(){
-        return view('welcome');
+
+    public function redirctToLogin()
+    {
+            $route = '/login';
+            return redirect($route);
     }
-
-
     public function login()
     {
         return view('login');
@@ -52,7 +53,8 @@ class MainController extends Controller
     public function loginUser(Request $data)
     {
         if (Auth::attempt(['email' => $data->email, 'password' => $data->password])) {
-            return redirect()->route('form');
+            $route = $this->redirectDash();
+            return redirect($route);
         }
         return redirect()->back()->with('error', 'Invalid email or password');
     }
@@ -106,25 +108,25 @@ class MainController extends Controller
         $redirect = '';
 
         if (Auth::user() && Auth::user()->role == 'Student') {
-            $redirect = '/form/1';
+            $redirect = '/form';
         }
 
         if (Auth::user() && Auth::user()->role == 'Institute') {
-            $redirect = '/form/2';
+            $redirect = '/form';
         }
 
         if (Auth::user() && Auth::user()->role == 'Faculty') {
-            $redirect = '/form/3';
+            $redirect = '/form';
         }
 
         if (Auth::user() && Auth::user()->role == 'Management') {
-            $redirect = '/form/4';
+            $redirect = '/form';
         }
 
         if (Auth::user() && Auth::user()->role == 'Parents') {
-            $redirect = '/form/5';
+            $redirect = '/form';
         }
-
+        
         return $redirect;
     }
 }

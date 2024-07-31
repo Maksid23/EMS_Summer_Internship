@@ -8,6 +8,10 @@ use Mail;
 use App\Mail\Demomail;
 class institutecontroller extends Controller
 {
+    public function view(){
+        $institute = Institute::where('institute_id', '!=', '1')->get();
+        return view('instituteshow',compact('institute'));
+    }
     public function insertform(){
         return view("insertinstitute");
     }
@@ -28,6 +32,8 @@ class institutecontroller extends Controller
         $user->email=$data->input('email');
         // $user->password=$data->input('password');
         $user->save();
+
+
         $id=$user->institute_id;
         $users = new users();
         $users->name = $data->input('institute_name');

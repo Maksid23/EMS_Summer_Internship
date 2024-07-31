@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('class', function (Blueprint $table) {
             $table->id('class_id');
-            $table->text('class_name');
-            $table->text('class_teacher');
+            $table->string('class_name');
+            $table->unsignedBigInteger('faculty_id');
+            $table->foreign('faculty_id')->references('faculty_id')->on('faculty_info')->onDelete('cascade');
             $table->unsignedBigInteger('institute_id');
             $table->foreign('institute_id')->references('institute_id')->on('institute')->onDelete('cascade');
             $table->text('location');

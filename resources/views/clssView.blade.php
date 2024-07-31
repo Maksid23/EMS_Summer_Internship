@@ -8,7 +8,7 @@
     </div>
     <div>
         @if(session('success'))
-            <div class="alert alert-success">
+            <div class="alert alert-success" id="success-message">
                 {{ session('success') }}
             </div>
         @endif
@@ -29,7 +29,7 @@
                 <tr>
                     
                     <td>{{ $member->class_name }}</td>
-                    <td>{{ $member->class_teacher  }}</td>
+                    <td>{{ $faculty_name = DB::table('faculty_info')->where('faculty_id', $member->faculty_id)->value('faculty_name')  }}</td>
                     <td>{{ $member->location }}</td>
                     <td><a href="{{URL::to('clss/delete/'.$member->class_id)}}" onclick="return confirmDelete()">
                         <button>Delete</button></a></td>
@@ -43,6 +43,15 @@
         function confirmDelete() {
             return confirm('Are you sure you want to delete this record?');
         }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var successMessage = document.getElementById('success-message');
+            if (successMessage) {
+                setTimeout(function() {
+                    successMessage.style.display = 'none';
+                }, 2000); 
+            }
+        });
         
     </script>
 @endsection

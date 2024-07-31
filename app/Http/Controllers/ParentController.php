@@ -5,8 +5,10 @@ use Illuminate\Http\Request;
 use App\Models\Users; // Ensure the model name is capitalized
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 use Mail;
 use App\Mail\Demomail;
+
 class ParentController extends Controller
 {
     /**
@@ -14,13 +16,17 @@ class ParentController extends Controller
      */
     public function index()
     {
+        $institute_id = Auth::user()->institute_id;
+        $classes = DB::table('student')
+            ->where('institute_id', $institute_id)
+            ->pluck('student_name', 'student_id'); 
         $parents = Parents::all();
-        return view('parent_info', compact('parents'));
+        return view('parent_info', compact('parents', 'classes'));
     }
-    public function index1()
-    {
-        return view('parentdashboard');
-    }
+    // public function index1()
+    // {
+    //     return view('parentdashboard');
+    // }
     public function insert(Request $request)
     {
         $request->validate([
@@ -28,7 +34,8 @@ class ParentController extends Controller
             'contact_number' => 'required|numeric',
             'parent_email' => 'required|email|unique:parent,parent_email',
             'address' => 'required|string|max:255',
-            'relationship_to_student' => 'required|string|in:F,M,G'
+            'relationship_to_student' => 'required|string|in:F,M,G',
+            'student_id' => 'required'
         ]);
         $parent = new Parents();
         $parent->institute_id = Auth::user()->institute_id;
@@ -37,6 +44,7 @@ class ParentController extends Controller
         $parent->parent_email = $request->input('parent_email');
         $parent->address = $request->input('address');
         $parent->relationship_to_student = $request->input('relationship_to_student');
+        $parent->student_id = $request->input('student_id');
         $parent->save();
         $user = new Users();
         $user->name = $request->input('parent_name');
@@ -105,11 +113,15 @@ class ParentController extends Controller
     }
     public function edit($parent_id)
     {
+        $institute_id = Auth::user()->institute_id;
+        $classes = DB::table('student')
+            ->where('institute_id', $institute_id)
+            ->pluck('student_name', 'student_id'); 
         $parent = Parents::find($parent_id);
         if (!$parent) {
             return redirect()->back()->withErrors('Parent not found.');
         }
-        return view('parentinfoupdate', compact('parent'));
+        return view('parentinfoupdate', compact('parent','classes'));
     }
     public function showparent()
     {
