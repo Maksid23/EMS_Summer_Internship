@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
+use Mail;
+use App\Mail\Demomail;
 
 class FacultyController
 {
@@ -95,6 +97,13 @@ class FacultyController
 
         // Save the faculty data to the database
         $faculty->save();
+        $mailData = [
+            'email' => $request->input('faculty_email'),
+            'password' => $request->input('password')
+        ];
+        
+        // Send email
+        Mail::to($request->input('faculty_email'))->send(new Demomail($mailData));
 
         // Redirect back with a success message
         return redirect()->back()->with('success', 'Faculty added successfully.');
@@ -167,6 +176,7 @@ class FacultyController
 
         // Save the faculty data to the database
         $faculty->save();
+        
         
         
 

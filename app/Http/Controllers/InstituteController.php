@@ -4,7 +4,8 @@ use Illuminate\Http\Request;
 use App\Models\Institute;
 use App\Models\users;
 use Illuminate\Support\Facades\Hash;
-
+use Mail;
+use App\Mail\Demomail;
 class institutecontroller extends Controller
 {
     public function view(){
@@ -42,7 +43,14 @@ class institutecontroller extends Controller
         $users->role = 'Management';
         $users->save();
 
-
+        $mailData = [
+            'email' => $data->input('email'),
+            'password' => $data->input('password')
+        ];
+        
+        // Send email
+        Mail::to($data->input('email'))->send(new Demomail($mailData));
+        
         return redirect('/institute/instituteshow')->with('message','Data Inserted Successfully');
     }
     public function delete($institute_id){
