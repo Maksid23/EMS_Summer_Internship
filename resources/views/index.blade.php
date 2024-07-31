@@ -30,7 +30,7 @@
         }
 
         #sidebar {
-            background: #626CD6;
+            background: linear-gradient(45deg, #000273, #22016E, #450075, #6A0068);
             color: #fff;
             width: 250px;
             min-width: 250px;
@@ -39,12 +39,13 @@
             top: 0;
             bottom: 0;
             overflow-y: auto;
-            z-index: 1000; /* Ensure the sidebar is always on top */
+            z-index: 1000;
+            /* Ensure the sidebar is always on top */
         }
 
         #sidebar .sidebar-header {
             padding: 20px;
-            background: #626cd6;
+            background: transparent;
             text-align: center;
         }
 
@@ -81,7 +82,7 @@
         }
 
         .logout-button {
-            background-color: #626cd6;
+            background: linear-gradient(45deg, #000273, #22016E, #450075, #6A0068);
             color: white;
             border: none;
             padding: 10px 20px;
@@ -101,7 +102,7 @@
             height: 35px;
             width: 100%;
             padding: 10px;
-            background-color: #626cd6;
+            background: linear-gradient(45deg, #000273, #22016E, #450075, #6A0068);
             color: #fff;
             text-align: center;
             font-family: "Montserrat", sans-serif;
@@ -232,7 +233,7 @@
         }
 
         thead {
-            background-color: #007BFF;
+            background: linear-gradient(45deg, #000273, #22016E, #450075, #6A0068);
             color: #FFFFFF;
         }
 
@@ -263,24 +264,29 @@
             </div>
             <ul class="list-unstyled components">
                 @if (Auth::user()->role === 'Student')
-                <li class="active">
-                    <a href="#studentSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Student</a>
-                    <ul class="collapse list-unstyled" id="studentSubmenu">
-                        <li><a href="{{ url('/student_dashboard') }}" onclick="displayInfo('student', 'student_dashboard')">Student Dashboard</a></li>
-                        <li><a href="#" onclick="displayInfo('student', 'attendance')">Attendance</a></li>
-                    </ul>
-                </li>
+                    <li class="active">
+                        <a href="#studentSubmenu" data-toggle="collapse" aria-expanded="false"
+                            class="dropdown-toggle">Student</a>
+                        <ul class="collapse list-unstyled" id="studentSubmenu">
+                            <li><a href="{{ url('/student_dashboard') }}"
+                                    onclick="displayInfo('student', 'student_dashboard')">Student Dashboard</a></li>
+                            <li><a href="#" onclick="displayInfo('student', 'attendance')">Attendance</a></li>
+                        </ul>
+                    </li>
                 @endif
 
                 @if (Auth::user()->role === 'Institute')
-                <li>
-                    <a href="#instituteSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Institute</a>
-                    <ul class="collapse list-unstyled" id="instituteSubmenu">
-                        <li><a href="{{ url('/institute/instituteshow') }}" onclick="displayInfo('institute', 'view institute')">View Institute</a></li>
-                        <li><a href="{{ url('/course/courseview') }}" onclick="displayInfo('institute', 'classes')">Course</a></li>
-                        <li><a href="#" onclick="displayInfo('institute', 'schedule')">Schedule</a></li>
-                    </ul>
-                </li>
+                    <li>
+                        <a href="#instituteSubmenu" data-toggle="collapse" aria-expanded="false"
+                            class="dropdown-toggle">Institute</a>
+                        <ul class="collapse list-unstyled" id="instituteSubmenu">
+                            <li><a href="{{ url('/institute/instituteshow') }}"
+                                    onclick="displayInfo('institute', 'view institute')">View Institute</a></li>
+                            <li><a href="{{ url('/course/courseview') }}"
+                                    onclick="displayInfo('institute', 'classes')">Course</a></li>
+                            <li><a href="#" onclick="displayInfo('institute', 'schedule')">Schedule</a></li>
+                        </ul>
+                    </li>
                 @endif
 
                 @if (Auth::user()->role === 'Faculty')
@@ -288,24 +294,31 @@
                         <a href="#teacherSubmenu" data-toggle="collapse" aria-expanded="false"
                             class="dropdown-toggle">Faculty</a>
                         <ul class="collapse list-unstyled" id="teacherSubmenu">
-                            <li><a href="{{ url('/faculty_dashboard') }}"
-                                    onclick="displayInfo('teacher', 'classes')">Show Info</a></li>
-                            <li><a href="{{ url('/faculty_dashboard/showstudent') }}" onclick="displayInfo('teacher', 'schedule')">Show Students</a></li>
+                            <li><a href="{{ url('/faculty_dashboard') }}" onclick="displayInfo('teacher', 'classes')">Show
+                                    Info</a></li>
+                            <li><a href="{{ url('/faculty_dashboard/showstudent') }}"
+                                    onclick="displayInfo('teacher', 'schedule')">Show Students</a></li>
                         </ul>
                     </li>
                 @endif
 
                 @if (Auth::user()->role === 'Management')
-                <li>
-                    <a href="#managementSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Management</a>
-                    <ul class="collapse list-unstyled" id="managementSubmenu">
-                        <li><a href="{{ url('/student/view') }}" onclick="displayInfo('student', 'add_student')">Student</a></li>
-                        <li><a href="{{ url('/staff/form/view') }}" onclick="displayInfo('management', 'add_staff')">Staff</a></li>
-                        <li><a href="{{ url('/clss/view') }}" onclick="displayInfo('management', 'add_class')">Class</a></li>
-                        <li><a href="{{ url('/faculty/show') }}" onclick="displayInfo('management', 'add_faculty')">Faculty</a></li>
-                        <li><a href="{{ url('/parent/show') }}" onclick="displayInfo('parents', 'children')">Parent</a></li>
-                    </ul>
-                </li>
+                    <li>
+                        <a href="#managementSubmenu" data-toggle="collapse" aria-expanded="false"
+                            class="dropdown-toggle">Management</a>
+                        <ul class="collapse list-unstyled" id="managementSubmenu">
+                            <li><a href="{{ url('/student/view') }}"
+                                    onclick="displayInfo('student', 'add_student')">Student</a></li>
+                            <li><a href="{{ url('/staff/form/view') }}"
+                                    onclick="displayInfo('management', 'add_staff')">Staff</a></li>
+                            <li><a href="{{ url('/clss/view') }}" onclick="displayInfo('management', 'add_class')">Class</a>
+                            </li>
+                            <li><a href="{{ url('/faculty/show') }}"
+                                    onclick="displayInfo('management', 'add_faculty')">Faculty</a></li>
+                            <li><a href="{{ url('/parent/show') }}" onclick="displayInfo('parents', 'children')">Parent</a>
+                            </li>
+                        </ul>
+                    </li>
                 @endif
 
                 @if (Auth::user()->role === 'Parents')
@@ -313,7 +326,8 @@
                         <a href="#parentsSubmenu" data-toggle="collapse" aria-expanded="false"
                             class="dropdown-toggle">Parents</a>
                         <ul class="collapse list-unstyled" id="parentsSubmenu">
-                            <li><a href="{{ url('/parentdashboard') }}" onclick="displayInfo('parents', 'progress')">Dashboard</a></li>
+                            <li><a href="{{ url('/parentdashboard') }}"
+                                    onclick="displayInfo('parents', 'progress')">Dashboard</a></li>
                             <li><a href="#" onclick="displayInfo('parents', 'messages')">Messages</a></li>
                         </ul>
                     </li>
@@ -355,12 +369,14 @@
         <p>&copy; 2024 Top-Notch. All rights reserved.</p>
     </div>
 
-<!-- Bootstrap JS and dependencies -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-@yield('scripts')
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"
+        integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    @yield('scripts')
 </body>
 
 </html>
