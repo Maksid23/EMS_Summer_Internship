@@ -119,7 +119,7 @@ class StudentController extends Controller
         $institute_id = Auth::user()->institute_id;
         //$password = Hash::make($data->input('password'));
         $role = 'Student';
-        DB::update("UPDATE `users` SET `name`='$name',`email`='$email',`institute_id`=$institute_id,`password`='$password',`role`='$role' WHERE `email`='".$oldemail."'");
+        DB::update("UPDATE `users` SET `name`='$name',`email`='$email',`institute_id`=$institute_id,`role`='$role' WHERE `email`='".$oldemail."'");
            // $studnt->student_id = $data->input('student_id');
             $studnt->student_name = $data->input('student_name');
             $studnt->dob = $data->input('dob');
