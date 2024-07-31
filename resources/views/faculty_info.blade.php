@@ -8,7 +8,7 @@
     onmouseover="this.style.backgroundColor='#000';"
     onmouseout="this.style.backgroundColor='#007bff';"> Show Faculty Info </a>
     @if (session('success'))
-    <div class="alert alert-success">
+    <div class="alert alert-success" id="success-message" >
         {{ session('success') }}
     </div>
     @endif
@@ -120,7 +120,7 @@
         <button type="submit" class="btn btn-primary" name="save">Submit</button>
     </form>
     <script>
-        document.getElementById('faculty_dob').addEventListener('input', function() {
+       document.getElementById('faculty_dob').addEventListener('input', function() {
     var dobInput = document.getElementById('faculty_dob');
     var dobFeedback = document.getElementById('dob_feedback');
     var dob = new Date(dobInput.value);
@@ -130,9 +130,12 @@
     if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dob.getDate())) {
         age--;
     }
+
     if (age < 18) {
         dobFeedback.textContent = 'You must be at least 18 years old.';
         dobInput.setCustomValidity('You must be at least 18 years old.'); // Prevent form submission
+
+        
     } else {
         dobFeedback.textContent = '';
         dobInput.setCustomValidity(''); // Allow form submission
@@ -183,6 +186,15 @@
             const today = new Date().toISOString().split('T')[0];
             document.getElementById('faculty_doj').setAttribute('min', today);
         };
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var successMessage = document.getElementById('success-message');
+            if (successMessage) {
+                setTimeout(function() {
+                    successMessage.style.display = 'none';
+                }, 2000); // 5000 milliseconds = 5 seconds
+            }
+        });
     
     </script>
 @endsection

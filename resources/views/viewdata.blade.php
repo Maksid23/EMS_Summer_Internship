@@ -7,10 +7,13 @@
     </div>
 </div>
 <div>
-    @if(session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
+
+    <div class="container">
+        @if(session('success'))
+            <div class="alert alert-success" id="success-message">
+                {{ session('success') }}
+            </div>
+    </div>
     @endif
 </div>
 
@@ -52,9 +55,7 @@
     </tbody>
 </table>
 
-@endsection
 
-@push('scripts')
     <script>
         // Confirm before navigating to edit page
         document.querySelectorAll('.edit-btn').forEach(function(button) {
@@ -73,5 +74,14 @@
                 }
             });
         });
+        document.addEventListener('DOMContentLoaded', function() {
+            var successMessage = document.getElementById('success-message');
+            if (successMessage) {
+                setTimeout(function() {
+                    successMessage.style.display = 'none';
+                }, 2000);
+            }
+        });
     </script>
-@endpush
+
+@endsection
