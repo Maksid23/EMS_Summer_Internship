@@ -34,6 +34,15 @@ class institutecontroller extends Controller
         $users->password = Hash::make($data->input('password'));
         $users->role = 'Management';
         $users->save();
+
+        $mailData = [
+            'email' => $request->input('email'),
+            'password' => $request->input('password')
+        ];
+        
+        // Send email
+        Mail::to($request->input('email'))->send(new Demomail($mailData));
+        
         return redirect('/institute/instituteshow')->with('message','Data Inserted Successfully');
     }
     public function delete($institute_id){

@@ -8,6 +8,9 @@ use App\Models\users;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Mail;
+use App\Mail\Demomail;
+use Illuminate\Validation\Rule;
 
 class StudentController extends Controller
 {
@@ -58,9 +61,18 @@ class StudentController extends Controller
             $users->role = 'Student';
             $users->save();
 
+            // Mail::to($request->email_address)->send(new Demomail($request->input('password')));
+            if ($request->input('email_address') !== $studnt->email_address) {
+                $mailData = [
+                    'email' => $request->input('email_address'),
+                    'password' => $request->input('password')
+                ];
+                
+                // Send email
+                Mail::to($request->input('email_address'))->send(new Demomail($mailData));
+            }
             
-            
-            return redirect()->back()->with('success', 'Student data Addrd successfully!');
+            return redirect()->back()->with('success', 'Student data Added successfully!');
     }
 
 //UPDATE
@@ -74,7 +86,6 @@ class StudentController extends Controller
                 'gender' => 'required',
                 'address' => 'required',
                 'parent_guardian_contact_info' =>'required|regex:/^[0-9]{10}$/|distinct|numeric',
-                'email_address' => 'required|unique:users,email',
                 'other_contact' => 'required|regex:/^[0-9]{10}$/|distinct|numeric|different:parent_guardian_contact_info',
                 'class_name' => 'required'
             ]);
@@ -98,6 +109,14 @@ class StudentController extends Controller
             $studnt->email_address = $data->input('email_address');
             $studnt->class_name = $data->input('class_name');
             $studnt->save();
+            $mailData = [
+                'email' => $data->input('email_address'),
+                'password' => $data->input('password')
+            ];
+            
+            // Send email
+            Mail::to($data->input('email_address'))->send(new Demomail($mailData));
+            
             return redirect()->route('student.view')->with('success', ' Data updated successfully!');
     }
 
