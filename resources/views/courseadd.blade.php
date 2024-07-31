@@ -60,11 +60,11 @@
       <h2 class="text-center mb-4">Course Registration</h2>
       @csrf
       <div class="form-group">
-        <label for="institute_id">Institute ID</label>
+        <label for="institute_id">Institute Name</label>
         <select name="institute_id" id="institute_id" class="custom-dropdown" aria-placeholder="Institute Name  ">
           <option value="" disabled selected>Select Institute Name</option>
           @foreach ($institutes as $data)
-              <option value="{{ $data->institute_name }}">{{ $data->institute_name }}</option>
+              <option value="{{ $data->institute_id }}">{{ $data->institute_name }}</option>
           @endforeach
         </select>
         <span style="color: red">@error('institute_id'){{ $message }} @enderror</span>
@@ -80,7 +80,7 @@
           Please enter a course ID.
         </div>
       </div> --}}
-      <div class="form-group">
+      {{-- <div class="form-group">
         <label for="user_id">User Name</label>
         <select name="user_id" id="user_id" class="custom-dropdown" aria-placeholder="User ID">
           <option value="" disabled selected>Select User Name</option>
@@ -89,7 +89,7 @@
           @endforeach
         </select>
         <span style="color: red">@error('user_id'){{ $message }} @enderror</span>
-      </div>
+      </div> --}}
       <div class="form-group">
         <label for="course_name">Course Name</label>
         <input type="text" id="course_name" name="course_name" value="{{ old('course_name') }}" class="form-control" required>

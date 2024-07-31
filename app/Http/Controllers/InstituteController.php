@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Hash;
 class institutecontroller extends Controller
 {
     public function view(){
-        $institute = Institute::where('institute_name', '!=', 'top notch')->get();
+        $institute = Institute::where('institute_id', '!=', '1')->get();
         return view('instituteshow',compact('institute'));
     }
     public function insertform(){
@@ -29,9 +29,10 @@ class institutecontroller extends Controller
         $user->address=$data->input('address');
         $user->contact=$data->input('contact');
         $user->email=$data->input('email');
-        $user->password=$data->input('password');
         // $user->password=$data->input('password');
         $user->save();
+
+
         $id=$user->institute_id;
         $users = new users();
         $users->name = $data->input('institute_name');
@@ -40,6 +41,8 @@ class institutecontroller extends Controller
         $users->password = Hash::make($data->input('password'));
         $users->role = 'Management';
         $users->save();
+
+
         return redirect('/institute/instituteshow')->with('message','Data Inserted Successfully');
     }
     public function delete($institute_id){
