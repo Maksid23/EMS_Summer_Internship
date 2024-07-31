@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Education Management System</title>
     <!-- Bootstrap CSS -->
+     @stack('styles')
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
@@ -28,11 +29,16 @@
         }
 
         #sidebar {
-            background: #626cd6;
+            background: #626CD6;
             color: #fff;
+            width: 250px;
             min-width: 250px;
-            max-width: 250px;
             padding-top: 20px;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            overflow-y: auto;
+            z-index: 1000; /* Ensure the sidebar is always on top */
         }
 
         #sidebar .sidebar-header {

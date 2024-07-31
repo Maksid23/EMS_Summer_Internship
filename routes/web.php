@@ -146,6 +146,8 @@ Route::group(['prefix' => '/parent'], function () {
 
 Route::group(['prefix' => '/parentdashboard'], function () {
    Route::get('/', [Parent_dashboard_Controller::class, 'index']);
+   Route::get('updateRecord/{parent_id}', [Parent_dashboard_Controller::class, 'edit']);
+   Route::post('update', [Parent_dashboard_Controller::class, 'update']);
 });
 
 // Route::group(['prefix'=> '/course'], function () {
