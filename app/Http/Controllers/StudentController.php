@@ -75,7 +75,7 @@ class StudentController extends Controller
 
 
 
-        return redirect()->back()->with('success', 'Student data Addrd successfully!');
+        return redirect()->back()->with('success', 'Student data Added successfully!');
     }
 
     //UPDATE

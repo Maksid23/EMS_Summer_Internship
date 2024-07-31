@@ -22,7 +22,7 @@ class Clsscontroller extends Controller
     public function insert(Request $request)
     {
         $request->validate([
-            'class_name' => 'required|max:12|unique:class,class_name',
+            'class_name' => 'required|max:20',
             'faculty_id' => [
                 'required',
                 'exists:faculty_info,faculty_id',

@@ -36,7 +36,7 @@
 <form action="{{ URL::to('student/store') }}" method="post" onsubmit="return confirmSubmit()">
     @csrf
     @if ($errors->any())
-    <div class="alert alert-danger">
+    <div class="alert alert-danger" >
         <ul>
             @foreach ($errors->all() as $error)
                 <li>{{ $error }}</li>
@@ -46,7 +46,7 @@
 @endif
 
 @if (session('success'))
-    <div class="alert alert-success">
+    <div class="alert alert-success" id="success-message">
         {{ session('success') }}
     </div>
 @endif
@@ -173,6 +173,15 @@
             } else {
                 phoneFeedback.textContent = 'Please enter only digits.';
                 phoneInput.value = phone.replace(/\D/g, ''); // Remove non-numeric characters
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var successMessage = document.getElementById('success-message');
+            if (successMessage) {
+                setTimeout(function() {
+                    successMessage.style.display = 'none';
+                }, 2000); 
             }
         });
        
