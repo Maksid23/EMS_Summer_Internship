@@ -111,14 +111,7 @@ Route::group(['prefix' => 'clss'], function () {
 
 Route::group(['prefix'=> 'institute'], function () {
    Route::get('/instituteshow', function () {
-      $institutes = DB::table('institute')
-            ->leftJoin('users', 'institute.institute_id', '=', 'users.institute_id')
-            ->where(function($query) {
-                $query->whereNull('users.role')
-                      ->orWhere('users.role', '!=', 'Institute');
-            })
-            ->select('institute.*')
-            ->get();
+      $institutes = Institute::all();
      return view('instituteshow', compact('institutes'));
    });
    Route::post('/insert_institute', [institutecontroller::class, 'insert']);
