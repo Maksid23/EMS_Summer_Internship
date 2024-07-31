@@ -15,6 +15,7 @@ use App\Http\Controllers\ParentController;
 use App\Http\Controllers\Clsscontroller;
 use App\Http\Controllers\studenttimetablecontroller;
 use App\Http\Controllers\student_dashboard_Controller;
+use App\Http\Controllers\Parent_dashboard_Controller;
 use App\Http\Controllers\communicationcontroller;
 use App\Models\Student;
 use App\Models\Institute;
@@ -145,7 +146,9 @@ Route::group(['prefix' => '/parent'], function () {
 });
 
 Route::group(['prefix' => '/parentdashboard'], function () {
-   Route::get('/', [ParentController::class, 'index1']);
+   Route::get('/', [Parent_dashboard_Controller::class, 'index']);
+   Route::get('updateRecord/{parent_id}', [Parent_dashboard_Controller::class, 'edit']);
+   Route::post('update', [Parent_dashboard_Controller::class, 'update']);
 });
 
 // Route::group(['prefix'=> '/course'], function () {

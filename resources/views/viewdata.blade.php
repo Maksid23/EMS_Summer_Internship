@@ -3,7 +3,7 @@
 @section('content')
 <div class="row justify-content-center mt-4">
     <div class="col-md-10 d-flex justify-content-end">
-        <a href="{{ route('form.index') }}" class="btn btn-dark">Create</a>
+        <a href="{{ route('form.index') }}" class="btn btn-dark">Add</a>
     </div>
 </div>
 <div>

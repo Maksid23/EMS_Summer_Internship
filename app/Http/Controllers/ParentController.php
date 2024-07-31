@@ -21,10 +21,10 @@ class ParentController extends Controller
         $parents = Parents::all();
         return view('parent_info', compact('parents', 'classes'));
     }
-    public function index1()
-    {
-        return view('parentdashboard');
-    }
+    // public function index1()
+    // {
+    //     return view('parentdashboard');
+    // }
     public function insert(Request $request)
     {
         $request->validate([

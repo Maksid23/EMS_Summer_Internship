@@ -29,11 +29,16 @@
         }
 
         #sidebar {
-            background: #626cd6;
+            background: #626CD6;
             color: #fff;
+            width: 250px;
             min-width: 250px;
-            max-width: 250px;
             padding-top: 20px;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            overflow-y: auto;
+            z-index: 1000; /* Ensure the sidebar is always on top */
         }
 
         #sidebar .sidebar-header {
@@ -318,7 +323,7 @@
                         <a href="#parentsSubmenu" data-toggle="collapse" aria-expanded="false"
                             class="dropdown-toggle">Parents</a>
                         <ul class="collapse list-unstyled" id="parentsSubmenu">
-                            <li><a href="#" onclick="displayInfo('parents', 'progress')">Progress</a></li>
+                            <li><a href="{{ url('/parentdashboard') }}" onclick="displayInfo('parents', 'progress')">Dashboard</a></li>
                             <li><a href="#" onclick="displayInfo('parents', 'messages')">Messages</a></li>
                         </ul>
                     </li>
