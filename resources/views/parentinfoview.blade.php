@@ -1,5 +1,11 @@
 @extends('index')
 @section('content')
+    <!-- <a class="button" href="{{ URL::to('parent') }}">Add parent</a> -->
+    <div class="row justify-content-center mt-4">
+        <div class="col-md-10 d-flex justify-content-end">
+            <a href="{{ URL::to('parent') }}" class="btn btn-dark">ADD</a>
+        </div>
+    </div>
     <table>
         <thead>
             <tr>
@@ -32,7 +38,7 @@
             @endforeach
         </tbody>
     </table>
-    <a class="button" href="{{ URL::to('parent') }}">Add parent</a>
+    
 
     <script>
         function confirmDelete() {
