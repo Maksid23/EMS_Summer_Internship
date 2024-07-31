@@ -113,7 +113,7 @@
                 <label for="faculty_email">Faculty Email Address</label>
                 <input type="email" class="form-control" id="faculty_email" name="faculty_email" value="{{ $faculty->faculty_email }}" placeholder="Enter Email Address" required>
                 @error('faculty_email')
-                <div class="error">{{ $message }} </div>
+                <div class="error" style="color:red;">{{ $message }} </div>
                 @enderror
             </div>
 

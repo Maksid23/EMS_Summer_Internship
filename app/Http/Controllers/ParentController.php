@@ -64,6 +64,11 @@ class ParentController extends Controller
     }
     public function update(Request $request)
     {
+        $parent = Parents::find($request->input('update_id'));
+        $oldEmail = $parent->parent_email;
+        $users = users::where('email', $oldEmail)->first();
+        $id = $users->id;
+
         $request->validate([
             'parent_name' => 'required|string|max:255',
             'contact_number' => 'required|numeric',
@@ -71,12 +76,10 @@ class ParentController extends Controller
             'address' => 'required|string|max:255',
             'relationship_to_student' => 'required|string|in:F,M,G'
         ]);
-        $parent = Parents::find($request->input('update_id'));
         if (!$parent) {
             return redirect()->back()->withErrors('Parent not found.');
         }
         // Check if email is being updated
-        $oldEmail = $parent->parent_email;
         $newEmail = $request->input('parent_email');
         $parent->parent_name = $request->input('parent_name');
         $parent->contact_number = $request->input('contact_number');

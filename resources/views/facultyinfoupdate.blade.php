@@ -91,7 +91,7 @@
 
             <div class="form-group">
                 <label for="faculty_contact">Faculty Contact No</label>
-                <input type="text" class="form-control" id="faculty_contact" name="faculty_contact" value="{{ $faculty->faculty_contact }}" placeholder="Enter Faculty Contact No" required>
+                <input type="text" class="form-control" id="faculty_contact" name="faculty_contact" maxlength="10" value="{{ $faculty->faculty_contact }}" placeholder="Enter Faculty Contact No" required>
 
                 <span id="phone_feedback" style="color: red;"></span>
                 @error('faculty_contact')
@@ -110,8 +110,9 @@
             <div class="form-group">
                 <label for="faculty_email">Faculty Email Address</label>
                 <input type="email" class="form-control" id="faculty_email" name="faculty_email" value="{{ $faculty->faculty_email }}" placeholder="Enter Email Address" required>
+                <span id="phone_feedback" style="color: red;"></span>
                 @error('faculty_email')
-                <div class="error">{{ $message }} </div>
+                <div class="error" style="color:red;">{{ $message }} </div>
                 @enderror
             </div>
 

@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Mail;
 use App\Mail\Demomail;
+use Illuminate\Validation\Rule;
 
 class FacultyController
 {
@@ -127,16 +128,25 @@ class FacultyController
         $faculty = Faculty::find($faculty_id);
         return view('facultyinfoupdate', compact('faculty'));
     }
-
+    
     public function update(Request $request)
     {
+        $faculty = Faculty::find($request->input('update_id'));
+        $oldemail = $faculty->faculty_email;
+        $users = users::where('email', $oldemail)->first();
+        $id = $users->id;
+
         $request->validate([
             'faculty_name' => 'required|string|max:255',
             'faculty_dob' => 'required|date',
             'faculty_gender' => 'required|string',
             'faculty_contact' => 'required|string|max:10',
             'faculty_address' => 'required|string|max:500',
-            'faculty_email' => 'required|email|max:255',
+            'faculty_email' => [
+                    'required',
+                    'email',
+                    Rule::unique('users', 'email')->ignore($id)  // Ensure uniqueness except for the current user
+            ],
             'faculty_qualification' => 'required|string|max:255',
             'faculty_doj' => 'required|date',
             'faculty_specializations' => 'required|string|max:500',
@@ -147,10 +157,8 @@ class FacultyController
 
     
         // Create a new Faculty instance
-        $faculty = Faculty::find($request->input('update_id'));
 
         
-        $oldemail = $faculty->faculty_email;
         $name = $request->input('faculty_name');
         $email = $request->input('faculty_email');
         $institute_id = Auth::user()->institute_id;
