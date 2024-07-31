@@ -2,30 +2,26 @@
 
 @section('title', 'All Institutes')
 
-@section('buttons')
-    <button onclick="location.href='{{ URL::to('/form')}}'" class="btn-back">Back</button>
-    <button onclick="location.href='{{ URL::to('/institute/insertinstitute')}}'" class="btn-add-institute">Add Institute</button>
-@endsection
 
 @section('content')
 <button onclick="location.href='{{ URL::to('/institute/insertinstitute') }}'" >Add Institute</button>
 
-    <h1>All Institutes</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>Institute ID</th>
-                <th>Institute Name</th>
-                <th>Address</th>
-                <th>Contact</th>
-                <th>Email</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-    @foreach($institutes as $field)
-    <tr>
-        @if($field->institute_id != 1)
+<h1>All Institutes</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Institute ID</th>
+            <th>Institute Name</th>
+            <th>Address</th>
+            <th>Contact</th>
+            <th>Email</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach($institutes as $field)
+        <tr>
+            @if($field->institute_id != 1)
             <td data-label="Institute ID">{{ $field->institute_id }}</td>
             <td data-label="Institute Name">{{ $field->institute_name }}</td>
             <td data-label="Address">{{ $field->address }}</td>
@@ -35,13 +31,12 @@
                 <a href="{{ URL::to('institute/delete_institute/'.$field->institute_id) }}" class="delete-link">Delete</a>
                 <a href="{{ URL::to('institute/edit_institute/'.$field->institute_id) }}">Edit</a>
             </td>
+            @endif
         </tr>
-        @endif
-    @endforeach
-    
-</tbody>
+        @endforeach
+    </tbody>
 
-    </table>
+</table>
 @endsection
 
 @push('styles')
@@ -54,11 +49,15 @@
         text-decoration: none;
         font-weight: bold;
         position: absolute;
-        top: 50px; /* Adjust based on your header's height */
-        right: 120px; /* Adjust based on your container's padding */
+        top: 50px;
+        margin: 52px 0px;
+        /* Adjust based on your header's height */
+        right: 120px;
+        /* Adjust based on your container's padding */
         border-radius: 5px;
         cursor: pointer;
     }
+
     .btn-back {
         display: inline-block;
         padding: 10px 20px;
@@ -67,17 +66,21 @@
         text-decoration: none;
         font-weight: bold;
         position: absolute;
-        top: 50px; /* Adjust based on your header's height */
-        left: 120px; /* Adjust based on your container's padding */
+        top: 50px;
+        /* Adjust based on your header's height */
+        left: 120px;
+        /* Adjust based on your container's padding */
         border-radius: 5px;
         cursor: pointer;
     }
+
     body {
         font-family: Arial, sans-serif;
         margin: 0;
         padding: 0;
         background-color: #F4F4F4;
     }
+
     .container {
         width: 90%;
         margin: 20px auto;
@@ -85,39 +88,49 @@
         background-color: #fff;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
+
     h1 {
         color: #333;
         text-align: center;
         margin-bottom: 20px;
     }
+
     table {
         border-collapse: collapse;
         width: 100%;
         margin-bottom: 20px;
     }
-    th, td {
+
+    th,
+    td {
         border: 1px solid #ddd;
         padding: 12px;
         text-align: left;
     }
+
     thead th {
         background-color: #007bff;
     }
+
     tbody tr:nth-child(even) {
         background-color: #F9F9F9;
     }
+
     tbody tr:hover {
         background-color: #F1F1F1;
     }
+
     .actions a {
         margin-right: 10px;
         text-decoration: none;
         color: #007BFF;
         font-weight: bold;
     }
+
     .actions a:hover {
         text-decoration: underline;
     }
+
     .alert {
         padding: 15px;
         background-color: #4CAF50;
@@ -125,27 +138,38 @@
         margin-bottom: 20px;
         text-align: center;
     }
+
     @media (max-width: 768px) {
         .container {
             width: 100%;
             padding: 10px;
         }
-        table, thead, tbody, th, td, tr {
+
+        table,
+        thead,
+        tbody,
+        th,
+        td,
+        tr {
             display: block;
         }
+
         thead tr {
             display: none;
         }
+
         tbody tr {
             margin-bottom: 10px;
             border-bottom: 2px solid #ddd;
         }
+
         tbody td {
             border: none;
             padding: 10px;
             position: relative;
             padding-left: 50%;
         }
+
         tbody td:before {
             position: absolute;
             top: 10px;
@@ -157,6 +181,7 @@
             font-weight: bold;
         }
     }
+
     /* Confirmation Pop-up CSS */
     .popup {
         display: none;
@@ -165,9 +190,12 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba(0, 0, 0, 0.5); /* semi-transparent black background */
-        z-index: 999; /* ensures it appears above everything else */
+        background-color: rgba(0, 0, 0, 0.5);
+        /* semi-transparent black background */
+        z-index: 999;
+        /* ensures it appears above everything else */
     }
+
     .popup-content {
         background-color: white;
         width: 300px;
@@ -180,22 +208,28 @@
         left: 50%;
         transform: translate(-50%, -50%);
     }
+
     .button-container {
         margin-top: 20px;
     }
-    .confirm-btn, .cancel-btn {
+
+    .confirm-btn,
+    .cancel-btn {
         padding: 10px 20px;
         margin: 0 10px;
         cursor: pointer;
         border: none;
         border-radius: 4px;
     }
+
     .confirm-btn {
         background-color: #4CAF50;
         color: white;
     }
+
     .cancel-btn {
         background-color: #FAFAFA;
         color: rgb(0, 0, 0);
     }
-</style>@endpush
+</style>
+@endpush
