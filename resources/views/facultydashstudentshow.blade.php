@@ -2,11 +2,11 @@
 
 @section('content')
 
-    <div class="row justify-content-center mt-4">
+    <!-- <div class="row justify-content-center mt-4">
         <div class="col-md-10 d-flex justify-content-end">
             <a href="{{ route('student.form') }}" class="btn btn-dark">ADD</a>
         </div>
-    </div>
+    </div> -->
     <div>
         @if(session('success'))
             <div class="alert alert-success">

@@ -3,12 +3,12 @@
 @section('title', 'All Institutes')
 
 @section('buttons')
-    <button onclick="location.href='{{ URL::to('/form') }}'" class="btn-back">Back</button>
-    <button onclick="location.href='{{ URL::to('/institute/insertinstitute') }}'" class="btn-add-institute">Add Institute</button>
+    <button onclick="location.href='{{ URL::to('/form')}}'" class="btn-back">Back</button>
+    <button onclick="location.href='{{ URL::to('/institute/insertinstitute')}}'" class="btn-add-institute">Add Institute</button>
 @endsection
 
 @section('content')
-<button onclick="location.href='{{ URL::to('/institute/insertinstitute') }}'" class="btn-add-institute">Add Institute</button>
+<button onclick="location.href='{{ URL::to('/institute/insertinstitute') }}'" >Add Institute</button>
 
     <h1>All Institutes</h1>
     <table>
@@ -25,6 +25,7 @@
         <tbody>
     @foreach($institutes as $field)
     <tr>
+        @if($field->institute_id != 1)
             <td data-label="Institute ID">{{ $field->institute_id }}</td>
             <td data-label="Institute Name">{{ $field->institute_name }}</td>
             <td data-label="Address">{{ $field->address }}</td>
@@ -35,7 +36,9 @@
                 <a href="{{ URL::to('institute/edit_institute/'.$field->institute_id) }}">Edit</a>
             </td>
         </tr>
+        @endif
     @endforeach
+    
 </tbody>
 
     </table>
@@ -98,7 +101,7 @@
         text-align: left;
     }
     thead th {
-        background-color: #F2F2F2;
+        background-color: #007bff;
     }
     tbody tr:nth-child(even) {
         background-color: #F9F9F9;
@@ -195,5 +198,4 @@
         background-color: #FAFAFA;
         color: rgb(0, 0, 0);
     }
-</style>
-@endpush
+</style>@endpush
