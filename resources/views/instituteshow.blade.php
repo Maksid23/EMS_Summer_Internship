@@ -6,37 +6,60 @@
 @section('content')
 <button onclick="location.href='{{ URL::to('/institute/insertinstitute') }}'" >Add Institute</button>
 
-<h1>All Institutes</h1>
-<table>
-    <thead>
-        <tr>
-            <th>Institute ID</th>
-            <th>Institute Name</th>
-            <th>Address</th>
-            <th>Contact</th>
-            <th>Email</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach($institutes as $field)
-        <tr>
-            @if($field->institute_id != 1)
-            <td data-label="Institute ID">{{ $field->institute_id }}</td>
-            <td data-label="Institute Name">{{ $field->institute_name }}</td>
-            <td data-label="Address">{{ $field->address }}</td>
-            <td data-label="Contact">{{ $field->contact }}</td>
-            <td data-label="Email">{{ $field->email }}</td>
-            <td data-label="Actions" class="actions">
-                <a href="{{ URL::to('institute/delete_institute/'.$field->institute_id) }}" class="delete-link">Delete</a>
-                <a href="{{ URL::to('institute/edit_institute/'.$field->institute_id) }}">Edit</a>
-            </td>
-            @endif
-        </tr>
-        @endforeach
-    </tbody>
+    <h1>All Institutes</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Institute ID</th>
+                <th>Institute Name</th>
+                <th>Address</th>
+                <th>Contact</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($institute as $field)
+                <tr>
+                    <td data-label="Institute ID">{{ $field->institute_id }}</td>
+                    <td data-label="Institute Name">{{ $field->institute_name }}</td>
+                    <td data-label="Address">{{ $field->address }}</td>
+                    <td data-label="Contact">{{ $field->contact }}</td>
+                    <td data-label="Email">{{ $field->email }}</td>
+                    <td data-label="Actions" class="actions">
+                        <a href="{{URL::to('institute/delete_institute/'.$field->institute_id)}}"  class="delete-link" onclick="confirm(event)">Delete</a>
+                        <a href="{{URL::to('institute/edit_institute/'.$field->institute_id)}}">Edit</a>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+    @if (Session::has('message'))
+    <div class="alert alert-info">{{ Session::get('message') }}</div>
+ @endif
+@endsection
 
-</table>
+@section('scripts')
+<script type="text/javascript">
+function confirm(event)
+{
+    event.preventDefault();
+    var url = event.currentTarget.getAttribute('href');
+    console.log(url);
+    swal({
+        title: "Are you sure?",
+        text: "Once deleted, you will not be able to recover this data!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    })
+    .then((willDelete) => {
+        if (willDelete) {
+            window.location.href=url;
+        }
+    })
+}
+</script>
 @endsection
 
 @push('styles')

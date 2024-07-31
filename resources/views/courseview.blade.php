@@ -129,7 +129,7 @@
         <thead>
             <tr>
                 <th>Course ID</th>
-                <th>User ID</th>
+                <th>Institute Name</th>
                 <th>Course Name</th>
                 <th>Actions</th>
             </tr>
@@ -138,7 +138,7 @@
             @foreach($courses as $field)
                 <tr>
                     <td data-label="Course ID">{{ $field->course_id }}</td>
-                    <td data-label="User ID">{{ $field->user_id }}</td>
+                    <td data-label="Institute Name">{{ $Institute_name = DB::table('institute')->where('institute_id', $field->institute_id)->value('institute_name') }}</td>
                     <td data-label="Course Name">{{ $field->course_name }}</td>
                     <td data-label="Actions" class="actions">
                         <a href="{{ URL::to('/course/delete/'.$field->course_id) }}" class="delete-link">Delete</a>

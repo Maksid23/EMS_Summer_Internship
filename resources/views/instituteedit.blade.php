@@ -1,8 +1,5 @@
-<!-- resources/views/edit_institute.blade.php -->
 @extends('index')
-
 @section('title', 'Edit Institute')
-
 @section('css')
 <style>
     body {
@@ -69,7 +66,6 @@
     }
 </style>
 @endsection
-
 @section('content')
     <div class="container">
         <a href="{{ URL::to('/institute/instituteshow') }}" class="btn btn-secondary" style="position: absolute; top: 45px; left: 80px; background-color: #007BFF"> Back</a>
@@ -78,7 +74,7 @@
                 <h1>Edit Institute</h1>
             </div>
             <div class="card-body">
-                <form id="editInstituteForm" action="{{ URL::to('institute/update_institute/' . $user->institute_id) }}" method="POST">
+                <form id="editInstituteForm" action="{{ URL::to('institute/update_institute/' . $user->institute_id) }}" method="POST" onsubmit="return confirmFormSubmission(event)">
                     @csrf
                     {{-- @method('PUT') --}}
                     <div class="form-group">
@@ -116,35 +112,27 @@
             </div>
         </div>
     </div>
-    <!-- Confirmation Pop-up -->
-    <div class="popup" id="updatePopup">
-        <div class="popup-content">
-            <p>Are you sure you want to update the institute details?</p>
-            <div class="button-container">
-                <button class="confirm-btn" id="confirmUpdate">Update</button>
-                <button class="cancel-btn" onclick="closeUpdatePopup()">Cancel</button>
-            </div>
-        </div>
-    </div>
 @endsection
-
 @section('scripts')
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script>
-    // Function to open the confirmation pop-up
-    document.getElementById('updateButton').addEventListener('click', function(event) {
-        event.preventDefault(); // Prevent form submission
-        document.getElementById('updatePopup').style.display = 'block';
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script type="text/javascript">
+function confirmFormSubmission(event) {
+    event.preventDefault();
+    swal({
+        title: "Are you sure?",
+        text: "Do you want to save the changes?",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    })
+    .then((willSubmit) => {
+        if (willSubmit) {
+            event.target.submit();
+        }
     });
-    // Function to close the confirmation pop-up
-    function closeUpdatePopup() {
-        document.getElementById('updatePopup').style.display = 'none';
-    }
-    // Function to proceed with update
-    document.getElementById('confirmUpdate').addEventListener('click', function(event) {
-        document.getElementById('editInstituteForm').submit(); // Submit the form
-    });
+}
 </script>
 @endsection
