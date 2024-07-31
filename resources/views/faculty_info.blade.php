@@ -37,16 +37,16 @@
         </div>
         <div class="form-group">
             <label for="faculty_gender">Faculty Gender</label>
-            <select class="form-control" id="faculty_gender" value="{{old('faculty_gender')}}" name="faculty_gender" required>
+            <select name="faculty_gender" class="form-control" required>
                 <option value="">Select Gender</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-                <option value="other">Other</option>
+                <option value="Male" {{ old('faculty_gender') == 'Male' ? 'selected' : '' }}>Male</option>
+                <option value="Female" {{ old('faculty_gender') == 'Female' ? 'selected' : '' }}>Female</option>
+                <option value="Other" {{ old('faculty_gender') == 'Other' ? 'selected' : '' }}>Other</option>
             </select>
         </div>
         <div class="form-group">
             <label for="faculty_contact">Faculty Contact No</label>
-            <input type="tel" class="form-control" id="faculty_contact" name="faculty_contact" value="{{old('faculty_contact')}}" maxlength="10" placeholder="Enter Faculty Contact No" required>
+            <input type="tel" class="form-control" id="faculty_contact" name="faculty_contact" maxlength="10" value="{{old('faculty_contact')}}" maxlength="10" placeholder="Enter Faculty Contact No" required>
             <span id="phone_feedback" style="color: red;"></span>
             @error('faculty_contact')
             <div class="error">{{ $message }} </div>
@@ -61,9 +61,9 @@
         </div>
         <div class="form-group">
             <label for="faculty_email">Faculty Email Address</label>
-            <input type="email" class="form-control" id="faculty_email" name="faculty_email" value="{{old('faculty_email')}}" placeholder="Enter Email Address" required>
+            <input type="email" class="form-control"  id="faculty_email" name="faculty_email" value="{{old('faculty_email')}}" placeholder="Enter Email Address" required>
             @error('faculty_email')
-            <div class="error">{{ $message }} </div>
+            <div style="color: red" class="error">{{ $message }} </div>
             @enderror
         </div>
         <div class="form-group">
@@ -119,21 +119,23 @@
     </form>
     <script>
         document.getElementById('faculty_dob').addEventListener('input', function() {
-            var dobInput = document.getElementById('faculty_dob');
-            var dobFeedback = document.getElementById('dob_feedback');
-            var dob = new Date(dobInput.value);
-            var today = new Date();
-            var age = today.getFullYear() - dob.getFullYear();
-            var monthDiff = today.getMonth() - dob.getMonth();
-            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dob.getDate())) {
-                age--;
-            }
-            if (age < 18) {
-                dobFeedback.textContent = 'You must be at least 18 years old.';
-            } else {
-                dobFeedback.textContent = '';
-            }
-        });
+    var dobInput = document.getElementById('faculty_dob');
+    var dobFeedback = document.getElementById('dob_feedback');
+    var dob = new Date(dobInput.value);
+    var today = new Date();
+    var age = today.getFullYear() - dob.getFullYear();
+    var monthDiff = today.getMonth() - dob.getMonth();
+    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dob.getDate())) {
+        age--;
+    }
+    if (age < 18) {
+        dobFeedback.textContent = 'You must be at least 18 years old.';
+        dobInput.setCustomValidity('You must be at least 18 years old.'); // Prevent form submission
+    } else {
+        dobFeedback.textContent = '';
+        dobInput.setCustomValidity(''); // Allow form submission
+    }
+});
         function validateAge() {
             var ageInput = document.getElementById('faculty_age');
             var ageFeedback = document.getElementById('age_feedback');
@@ -158,5 +160,27 @@
                 phoneInput.value = phone.replace(/\D/g, ''); // Remove non-numeric characters
             }
         });
+
+        
+        function validateDate() {
+            const dateField = document.getElementById('faculty_doj');
+            const selectedDate = new Date(dateField.value);
+            const today = new Date();
+            
+            // Set time to midnight for accurate comparison
+            today.setHours(0, 0, 0, 0);
+
+            if (selectedDate < today) {
+                alert('Date of joining cannot be in the past.');
+                return false;
+            }
+            return true;
+        }
+
+        window.onload = function() {
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('faculty_doj').setAttribute('min', today);
+        };
+    
     </script>
 @endsection

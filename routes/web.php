@@ -1,10 +1,13 @@
 <?php
 
+use App\Http\Controllers\AdminController;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\institutecontroller;
 use App\Http\Controllers\FacultyController;
+use App\Http\Controllers\FacultyDashboardController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\CourseController;
@@ -16,6 +19,7 @@ use App\Http\Controllers\communicationcontroller;
 use App\Models\Student;
 use App\Models\Institute;
 
+Route::get('/', [MainController::class, 'loadLogin']);
 
 Route::group(['middleware' => 'disable_back_btn'], function () {
    Route::group(['middleware' => 'guest'], function () {
@@ -62,6 +66,11 @@ Route::group(['prefix' => '/faculty'], function () {
    Route::get('show', [FacultyController::class, 'showFaculty'])->name('show.faculty');
 });
 
+Route::group(['prefix' => '/faculty_dashboard'], function () {
+   Route::get('/', [FacultyDashboardController::class, 'index'])->name('faculty.dashboard');
+   Route::get('/showstudent', [FacultyDashboardController::class, 'showstudent'])->name('show.student');
+});
+
 Route::group(['prefix' => '/student_dashboard'], function () {
    Route::get('/', [student_dashboard_Controller::class, 'index'])->name('dashboard.form');
 });
@@ -97,7 +106,17 @@ Route::group(['prefix' => 'clss'], function () {
 
 
 Route::group(['prefix'=> 'institute'], function () {
-   
+   Route::get('/instituteshow', function () {
+      $institutes = DB::table('institute')
+            ->leftJoin('users', 'institute.institute_id', '=', 'users.institute_id')
+            ->where(function($query) {
+                $query->whereNull('users.role')
+                      ->orWhere('users.role', '!=', 'Institute');
+            })
+            ->select('institute.*')
+            ->get();
+     return view('instituteshow', compact('institutes'));
+   });
    Route::post('/insert_institute', [institutecontroller::class, 'insert']);
    Route::get('/instituteshow', [institutecontroller::class, 'view']);
    Route::get('/delete_institute/{institute_id}', [institutecontroller::class, 'delete']);
@@ -106,7 +125,7 @@ Route::group(['prefix'=> 'institute'], function () {
    Route::get('/insertinstitute', function () {
       return view('insertinstitute');
    });
-   });
+});
 
 Route::group(['prefix'=> '/course'], function () {
    Route::get('/courseview', [CourseController::class, 'view'])->name('course.view');
@@ -156,3 +175,7 @@ Route::group(['prefix' => 'communication'], function() {
     Route::post('update', [communicationcontroller::class, 'update']);
 });
 
+Route::post('admin/insert_institute', [AdminController::class, 'insert']);
+Route::get('admin/insertinstitute', function () {
+   return view('admininsert');
+});

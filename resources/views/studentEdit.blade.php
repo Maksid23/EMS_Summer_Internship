@@ -7,11 +7,11 @@
             @csrf
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="class_name">Class Name</label>
-                    <select name="class_name" class="form-control" required>
+                    <label for="class_id">Class Name</label>
+                    <select name="class_id" class="form-control" required>
                         <option value="">Select Class</option>
                         @foreach($classes as $class_id => $class_name)
-                            <option value="{{ $class_name }}">{{ $class_name }}</option>
+                            <option value="{{ $class_id }}">{{ $class_name }}</option>
                         @endforeach
                     </select>
                     <span class="text-danger">@error('class_id') {{$message}} @enderror</span>

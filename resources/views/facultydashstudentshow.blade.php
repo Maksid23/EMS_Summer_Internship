@@ -14,6 +14,7 @@
             </div>
         @endif
     </div>
+    
     <table>
         <thead>
             <tr>
@@ -26,8 +27,6 @@
                 <th>Parent Contact Number</th>
                 <th>Other Contact</th>
                 <th>Email</th>
-                <th>Delete</th>
-                <th>Edit</th>
             </tr>
         </thead>
         <tbody>
@@ -43,18 +42,10 @@
                     <td>{{ $member->parent_guardian_contact_info }}</td>
                     <td>{{ $member->other_contact }}</td>
                     <td>{{ $member->email_address }}</td>
-                    <td><a href="{{ URL::to('student/delete/'.$member->student_id) }}" onclick="return confirmDelete()">
-                        <button>Delete</button></a></td>
-                    <td><a href="{{ URL::to('student/edit/'.$member->student_id) }}"><button>Edit</button></a></td>
                 </tr>
                 @endif
             @endforeach
         </tbody>
     </table>
 
-    <script>
-        function confirmDelete() {
-            return confirm('Are you sure you want to delete this student?');
-        }
-    </script>
 @endsection
