@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use App\Models\Institute;
 use App\Models\users;
 use Illuminate\Support\Facades\Hash;
+use Mail;
+use App\Mail\Demomail;
 class institutecontroller extends Controller
 {
     public function insertform(){
@@ -36,12 +38,12 @@ class institutecontroller extends Controller
         $users->save();
 
         $mailData = [
-            'email' => $request->input('email'),
-            'password' => $request->input('password')
+            'email' => $data->input('email'),
+            'password' => $data->input('password')
         ];
         
         // Send email
-        Mail::to($request->input('email'))->send(new Demomail($mailData));
+        Mail::to($data->input('email'))->send(new Demomail($mailData));
         
         return redirect('/institute/instituteshow')->with('message','Data Inserted Successfully');
     }

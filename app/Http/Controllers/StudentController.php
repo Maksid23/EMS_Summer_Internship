@@ -62,7 +62,7 @@ class StudentController extends Controller
             $users->save();
 
             // Mail::to($request->email_address)->send(new Demomail($request->input('password')));
-            if ($request->input('email_address') !== $studnt->email_address) {
+            
                 $mailData = [
                     'email' => $request->input('email_address'),
                     'password' => $request->input('password')
@@ -70,7 +70,7 @@ class StudentController extends Controller
                 
                 // Send email
                 Mail::to($request->input('email_address'))->send(new Demomail($mailData));
-            }
+            
             
             return redirect()->back()->with('success', 'Student data Added successfully!');
     }

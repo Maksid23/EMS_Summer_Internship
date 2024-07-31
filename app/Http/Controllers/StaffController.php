@@ -6,6 +6,8 @@ use App\Models\users;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Mail;
+use App\Mail\Demomail;
 
 class StaffController extends Controller
 {
@@ -59,6 +61,15 @@ class StaffController extends Controller
         $users->password = Hash::make($request->input('password'));
         $users->role = 'Management';
         $users->save();
+        
+        $mailData = [
+            'email' => $request->input('email'),
+            'password' => $request->input('password')
+        ];
+        
+        // Send email
+        Mail::to($request->input('email'))->send(new Demomail($mailData));
+
         return redirect()->route('form.view')->with('success', 'Data Added sucsessfully');
     }
     public function view()

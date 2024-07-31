@@ -15,7 +15,7 @@
 <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nam, nisi eligendi, illo aperiam nesciunt ducimus ipsa, modi hic vero suscipit neque! Molestiae excepturi rerum accusantium nam omnis, commodi consequuntur aperiam?</p>
     <p>Thank you</p> --}}
 
-    <h1>Welcome to Our Platform</h1>
+    <h1>Welcome to Edu-Master</h1>
     <p>Your account has been created successfully. Here are your login details:</p>
     <p>Email: {{ $mailData['email'] }}</p>
     <p>Password: {{ $mailData['password'] }}</p>
