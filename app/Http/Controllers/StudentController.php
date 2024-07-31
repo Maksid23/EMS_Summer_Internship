@@ -8,6 +8,7 @@ use App\Models\studnt;
 use App\Models\users;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
 use App\Models\clss;
 
@@ -81,6 +82,10 @@ class StudentController extends Controller
     public function update(Request $data)
     {
 
+        $studnt = studnt::find($data->input('update_id'));
+        $oldemail = $studnt->email_address;
+        $users = users::where('email', $oldemail)->first();
+        $id = $users->id;
         $data->validate(
             [
                 //'student_id' => 'required',
@@ -90,13 +95,15 @@ class StudentController extends Controller
                 'address' => 'required',
                 'parent_guardian_contact_info' => 'required|regex:/^[0-9]{10}$/|distinct|numeric',
                 'other_contact' => 'required|regex:/^[0-9]{10}$/|distinct|numeric|different:parent_guardian_contact_info',
-                'class_id' => 'required'
+                'class_id' => 'required',
+                'email_address' => [
+                    'required',
+                    'email',
+                    Rule::unique('users', 'email')->ignore($id)  // Ensure uniqueness except for the current user
+                ]
             ]
         );
 
-        $studnt = studnt::find($data->input('update_id'));
-
-        $oldemail = $studnt->email_address;
         $name = $data->input('student_name');
         $email = $data->input('email_address');
         $institute_id = Auth::user()->institute_id;

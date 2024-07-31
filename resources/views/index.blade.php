@@ -308,13 +308,14 @@
                 @endif
 
                 @if (Auth::user()->role === 'Parents')
-                <li>
-                    <a href="#parentsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Parents</a>
-                    <ul class="collapse list-unstyled" id="parentsSubmenu">
-                        <li><a href="#" onclick="displayInfo('parents', 'progress')">Progress</a></li>
-                        <li><a href="#" onclick="displayInfo('parents', 'messages')">Messages</a></li>
-                    </ul>
-                </li>
+                    <li>
+                        <a href="#parentsSubmenu" data-toggle="collapse" aria-expanded="false"
+                            class="dropdown-toggle">Parents</a>
+                        <ul class="collapse list-unstyled" id="parentsSubmenu">
+                            <li><a href="{{ url('/parentdashboard') }}" onclick="displayInfo('parents', 'progress')">Dashboard</a></li>
+                            <li><a href="#" onclick="displayInfo('parents', 'messages')">Messages</a></li>
+                        </ul>
+                    </li>
                 @endif
             </ul>
         </nav>
