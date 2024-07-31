@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\studnt;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;  
 
 class student_dashboard_Controller extends Controller
 {
@@ -12,8 +13,14 @@ class student_dashboard_Controller extends Controller
     {
         $email = Auth::user()->email;
         $pwd = Auth::user()->password;
-        $student_id = studnt::where('email_address', $email)->first();
-
+        $student_id = DB::table('student')
+    ->join('class', 'student.class_id', '=', 'class.class_id')
+    ->select(
+        'student.*', 
+        'class.class_name'
+    )
+    ->where('student.email_address', $email)
+    ->first();
         $class_name = $student_id->class_name;
         $institute_id = $student_id->institute_id;
         $student_name = $student_id->student_name;

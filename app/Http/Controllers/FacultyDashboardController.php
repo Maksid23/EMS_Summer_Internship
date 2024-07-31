@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 use App\Models\Faculty;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 class FacultyDashboardController extends Controller
 {
     public function index()
@@ -47,11 +48,24 @@ class FacultyDashboardController extends Controller
             'faculty_department'
         ));
     }
+    public function showstudent()
+    {
+        $email=Auth::user()->email;
+        $faculty=Faculty::where('faculty_email',$email)->first();
+        $faculty_id=$faculty->faculty_id;
+        $studnt=DB::select(
+            'SELECT
+            s.*
+            FROM
+            student s
+            JOIN
+            class c ON s.class_id = c.class_id
+            JOIN
+            faculty_info f ON c.faculty_id = f.faculty_id
+            WHERE
+            f.faculty_id = ?', [$faculty_id]
+        );
+        //dd($data);
+        return view('facultydashstudentshow',compact('studnt'));
+    }
 }
-
-
-
-
-
-
-
