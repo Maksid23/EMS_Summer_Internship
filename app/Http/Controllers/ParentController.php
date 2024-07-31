@@ -6,6 +6,8 @@ use App\Models\Users; // Ensure the model name is capitalized
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
+use Mail;
+use App\Mail\Demomail;
 
 class ParentController extends Controller
 {
@@ -51,6 +53,13 @@ class ParentController extends Controller
         $user->password = Hash::make($request->input('password'));
         $user->role = 'Parents';
         $user->save();
+        $mailData = [
+            'email' => $request->input('parent_email'),
+            'password' => $request->input('password')
+        ];
+        
+        // Send email
+        Mail::to($request->input('parent_email'))->send(new Demomail($mailData));
         return redirect()->back()->with('success', 'Parent added successfully.');
     }
     public function update(Request $request)

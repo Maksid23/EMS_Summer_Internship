@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
+use Mail;
+use App\Mail\Demomail;
 use App\Models\clss;
 
 class StudentController extends Controller
@@ -72,10 +74,18 @@ class StudentController extends Controller
         $users->role = 'Student';
         $users->save();
 
-
-
-
-        return redirect()->back()->with('success', 'Student data Added successfully!');
+            // Mail::to($request->email_address)->send(new Demomail($request->input('password')));
+            
+                $mailData = [
+                    'email' => $request->input('email_address'),
+                    'password' => $request->input('password')
+                ];
+                
+                // Send email
+                Mail::to($request->input('email_address'))->send(new Demomail($mailData));
+            
+            
+            return redirect()->back()->with('success', 'Student data Added successfully!');
     }
 
     //UPDATE
@@ -93,7 +103,7 @@ class StudentController extends Controller
                 'dob' => 'required|date',
                 'gender' => 'required',
                 'address' => 'required',
-                'parent_guardian_contact_info' => 'required|regex:/^[0-9]{10}$/|distinct|numeric',
+                'parent_guardian_contact_info' =>'required|regex:/^[0-9]{10}$/|distinct|numeric',
                 'other_contact' => 'required|regex:/^[0-9]{10}$/|distinct|numeric|different:parent_guardian_contact_info',
                 'class_id' => 'required',
                 'email_address' => [
@@ -109,18 +119,26 @@ class StudentController extends Controller
         $institute_id = Auth::user()->institute_id;
         //$password = Hash::make($data->input('password'));
         $role = 'Student';
-        DB::update("UPDATE `users` SET `name`='$name',`email`='$email',`institute_id`=$institute_id,`role`='$role' WHERE `email`='" . $oldemail . "'");
-        // $studnt->student_id = $data->input('student_id');
-        $studnt->student_name = $data->input('student_name');
-        $studnt->dob = $data->input('dob');
-        $studnt->gender = $data->input('gender');
-        $studnt->address = $data->input('address');
-        $studnt->parent_guardian_contact_info = $data->input('parent_guardian_contact_info');
-        $studnt->other_contact = $data->input('other_contact');
-        $studnt->email_address = $data->input('email_address');
-        $studnt->class_id = $data->input('class_id');
-        $studnt->save();
-        return redirect()->route('student.view')->with('success', ' Data updated successfully!');
+        DB::update("UPDATE `users` SET `name`='$name',`email`='$email',`institute_id`=$institute_id,`password`='$password',`role`='$role' WHERE `email`='".$oldemail."'");
+           // $studnt->student_id = $data->input('student_id');
+            $studnt->student_name = $data->input('student_name');
+            $studnt->dob = $data->input('dob');
+            $studnt->gender = $data->input('gender');
+            $studnt->address = $data->input('address');
+            $studnt->parent_guardian_contact_info = $data->input('parent_guardian_contact_info');
+            $studnt->other_contact = $data->input('other_contact');
+            $studnt->email_address = $data->input('email_address');
+            $studnt->class_name = $data->input('class_name');
+            $studnt->save();
+            $mailData = [
+                'email' => $data->input('email_address'),
+                'password' => $data->input('password')
+            ];
+            
+            // Send email
+            Mail::to($data->input('email_address'))->send(new Demomail($mailData));
+            
+            return redirect()->route('student.view')->with('success', ' Data updated successfully!');
     }
 
     //view    

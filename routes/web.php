@@ -19,6 +19,7 @@ use App\Http\Controllers\Parent_dashboard_Controller;
 use App\Http\Controllers\communicationcontroller;
 use App\Models\Student;
 use App\Models\Institute;
+use App\Http\Controllers\MailController;
 
 Route::get('/', [MainController::class, 'loadLogin']);
 
@@ -179,3 +180,5 @@ Route::post('admin/insert_institute', [AdminController::class, 'insert']);
 Route::get('admin/insertinstitute', function () {
    return view('admininsert');
 });
+
+Route::get('send-mail', [MailController::class,'index']);

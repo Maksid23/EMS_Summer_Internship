@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use App\Models\Institute;
 use App\Models\users;
 use Illuminate\Support\Facades\Hash;
+use Mail;
+use App\Mail\Demomail;
 class AdminController extends Controller
 {
     public function insertform(){
@@ -34,8 +36,17 @@ class AdminController extends Controller
         $users->password = Hash::make($data->input('password'));
         $users->role = 'Institute';
         $users->save();
+
+        $mailData = [
+            'email' => $data->input('email'),
+            'password' => $data->input('password')
+        ];
+        
+        // Send email
+        Mail::to($data->input('email'))->send(new Demomail($mailData));
         return redirect('/login')->with('success','Super Admin Inserted Successfully');
     }
+
     public function delete($institute_id){
         $user=Institute::find($institute_id);
         $user->delete();
